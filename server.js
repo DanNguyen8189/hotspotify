@@ -32,8 +32,8 @@ if (process.env.NODE_ENV !== "production") {
     REDIRECT_URI = "http://localhost:5000/callback";
     FRONTEND_URI = "http://localhost:8080";
 }
-FRONTEND_URI="https://spotiflames.herokuapp.com/";
-REDIRECT_URI="https://spotiflames.herokuapp.com/callback";
+FRONTEND_URI="https://hotspotify.herokuapp.com/";
+REDIRECT_URI="https://hotspotify.herokuapp.com/callback";
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
