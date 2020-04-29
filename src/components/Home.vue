@@ -17,9 +17,9 @@
       </template>
       <template v-else>
         <div id="login-page">
-          <h1>Spotifire</h1>
-          <a href="http://localhost:8081/login" class="btn btn-primary">LOG IN WITH SPOTIFY</a><br>
-          <a href=# class="btn btn-primary">VIEW SAMPLE</a>
+          <h1>Hotspotify</h1>
+          <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">LOG IN WITH SPOTIFY</a><br>
+          <!--<a href=# class="btn btn-primary">VIEW SAMPLE</a>-->
         </div>
       </template>
     </div>
@@ -35,7 +35,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Home page'
+      msg: 'Home page',
     }
   },
   computed: {
@@ -60,6 +60,14 @@ export default {
         this.$store.commit('setUser', response.data);
         console.log(response.data);
       });
+    },
+    getLoginURI (element) {
+      console.log("welp");
+      if (process.env.NODE_ENV !== 'production') {
+        document.getElementById("login-button").href = 'http://localhost:5000/login';
+      } else {
+        document.getElementById("login-button").href = 'https://hotspotify.herokuapp.com/login';
+      }
     }
   },
   created () {

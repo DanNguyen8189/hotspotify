@@ -28,6 +28,11 @@ let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:5000/callback";
 let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:8080";
 const port = process.env.PORT || 5000;
 
+if (process.env.NODE_ENV !== "production") {
+    REDIRECT_URI = "http://localhost:5000/callback";
+    FRONTEND_URI = "http://localhost:8080";
+}
+
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
