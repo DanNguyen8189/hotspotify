@@ -8,33 +8,8 @@ const setLocalAccessToken = token => {
     setTokenTimestamp();
     window.localStorage.setItem('spotify_access_token', token);
 };
-const setLocalRefreshToken = token => window.localStorage.setItem('spotify_refresh_token', token);
 const getTokenTimestamp = () => window.localStorage.getItem('spotify_token_timestamp');
 const getLocalAccessToken = () => window.localStorage.getItem('spotify_access_token');
-const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_token');
-
-// Refresh the token
-const refreshAccessToken = async () => {
-  console.log("refresh token: ");
-  console.log(getLocalRefreshToken());
-  try {
-    /* console.log("OOOOF");
-    axios.get('http://localhost8081/status').then(response => {
-      console.log(response);
-    }).catch(error => console.log("yikes mate " + error)); */
-
-    console.log("what the fuuuuuuuuck?: ");
-    const { data } = await axios.get(`https://localhost:8081/refresh_token?refresh_token=${getLocalRefreshToken()}`);
-    // const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
-    const { accessToken } = data;
-    console.log("Acces token gotten from refresh: " + accessToken);
-    setLocalAccessToken(accessToken);
-    window.location.reload();
-    return;
-  } catch (e) {
-    console.error(e);
-  }
-};
 
 // called on app start
 export const getAccessToken = () => {

@@ -61,8 +61,8 @@ export default {
         console.log(response.data);
       });
     },
+    /** Sets the button target url based on whether the app is in production or not */
     getLoginURI (element) {
-      console.log("welp");
       if (process.env.NODE_ENV !== 'production') {
         document.getElementById("login-button").href = 'http://localhost:5000/login';
       } else {
@@ -71,22 +71,6 @@ export default {
     }
   },
   created () {
-    /* console.log("Home on create hook");
-    // Look and see if there's an access token in the url, if there is then the user logged in
-    const hashParams = {};
-    let e;
-    const r = /([^&;=]+)=?([^&;]*)/g;
-    const q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    if (hashParams.access_token) {
-      console.log("found tokens");
-      // get access and refresh tokens from url
-      console.log("access token found in home.vue: " + hashParams.access_token);
-      console.log("refresh token found in home.vue: " + hashParams.refresh_token);
-      this.getUserInfo();
-    } */
     this.getUserInfo();
   }
 }
