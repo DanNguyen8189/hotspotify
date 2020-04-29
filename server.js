@@ -28,13 +28,12 @@ let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:5000/callback";
 let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:8080";
 const port = process.env.PORT || 5000;
 
-console.log("checking production or not");
 if (process.env.NODE_ENV !== "production") {
-    console.log("not production");
     REDIRECT_URI = "http://localhost:5000/callback";
     FRONTEND_URI = "http://localhost:8080";
 }
-
+FRONTEND_URI="https://spotiflames.herokuapp.com/";
+REDIRECT_URI="https://spotiflames.herokuapp.com/callback";
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
