@@ -66,9 +66,8 @@ app.get("/status", (req, res) => {
     });
 });
   
-  /*home page: __dirname tells you the absolute path of the directory containing the executing file
-  https://alligator.io/nodejs/how-to-use__dirname/*/
-  
+/*home page: __dirname tells you the absolute path of the directory containing the executing file
+https://alligator.io/nodejs/how-to-use__dirname/*/  
 app.get("/login", function(req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
