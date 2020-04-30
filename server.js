@@ -24,14 +24,16 @@ const serveStatic = require('serve-static');
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 // remember to add redirect URIs to the spotify app through settings or else a client error occurs
-let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:5000/callback";
-let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:8080";
+// let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:5000/callback";
+// let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:8080";
+let REDIRECT_URI = (process.env.NODE_ENV === "production") ? process.env.REDIRECT_URI : "http://localhost:5000/callback";
+let FRONTEND_URI = (process.env.NODE_ENV === "production") ? process.env.FRONTEND_URI : "http://localhost:8080";
 const port = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV === "development") {
+/* if (process.env.NODE_ENV === "development") {
     REDIRECT_URI = "http://localhost:5000/callback";
     FRONTEND_URI = "http://localhost:8080";
-}
+} */
 
 /**
  * Generates a random string containing numbers and letters
@@ -74,7 +76,7 @@ app.get("/login", function(req, res) {
     // what your application is allowed to do. Spotify will ask user to allow access
     const scope =
     'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
-    console.log("logging in");
+    console.log("logging in " + REDIRECT_URI);
     // your application requests authorization, redirect to the spotify login page
     res.redirect(
         "https://accounts.spotify.com/authorize?" +
