@@ -50,7 +50,12 @@ export const logout = () => {
   window.localStorage.removeItem('spotify_access_token');
   window.localStorage.removeItem('spotify_refresh_token');
   // window.location.href("http://localhost:8080");
-  window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
+  if (process.env.NODE_ENV === "development") {
+    window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
+  } else {
+    window.location.assign(process.env.FRONTEND_URI);
+  } 
+  // window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
   // window.location.reload(); // all access token info is removed from the server and page is reloaded
 };
 
