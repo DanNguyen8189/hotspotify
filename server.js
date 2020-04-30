@@ -71,7 +71,7 @@ https://alligator.io/nodejs/how-to-use__dirname/*/
 app.get("/login", function(req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
-  
+    window.alert(REDIRECT_URI + "and the front end uri is " + FRONTEND_URI);
     // what your application is alllowed to do. Spotify will ask user to allow access
     const scope =
     'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
