@@ -18,7 +18,7 @@
       <template v-else>
         <div id="login-page">
           <h1>Hotspotify</h1>
-          <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">LOG IN WITH SPOTIFY</a><br>
+          <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a><br>
           <!--<a href=# class="btn btn-primary">VIEW SAMPLE</a>-->
         </div>
       </template>
@@ -111,7 +111,7 @@ img {
   background-color: #e56b1f;
   display: inline-block;
   margin: auto;
-  margin-bottom: 1em;
+  margin-top: 1em;
   padding: 0 2em;
   color: white;
   text-decoration: none;

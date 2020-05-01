@@ -15,7 +15,7 @@
           <!--<img src="https://i.scdn.co/image/6c785e6be62ae82a5222578045439fc235086f64">-->
           <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
           <!--<img :src="this.$store.state.topArtistsShort.items[0].images[2].url" alt="artist_picture">-->
-          <img :src=getImage(n-1)>
+          <img :src=getImage(n-1) :alt=getName(n-1)>
           <div class='artist-text'>{{ getName(n-1) }}</div>
         </div>
         </div>

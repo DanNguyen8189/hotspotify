@@ -21,7 +21,9 @@
         <span>Log Out</span>
       </a>
     </Menu>
-    <router-view/>
+    <transition name = 'fade' mode='out-in'>
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -107,13 +109,20 @@ h1 {
   border: none;
 }
 .timeperiod-button-container button span {
-  line-height: .5em;
-  padding:  0 0 .3em 0;
+  padding: .3em;
+  border-top: 2px solid #ff741e;
   border-bottom: 2px solid #ff741e;
+  border-radius: .5em;
   font-size: 1.2em;
   color: #ff741e
 }
+.timeperiod-button-container button span:hover {
+  border-top: 2px solid #fcd02c;
+  border-bottom: 2px solid #fcd02c;
+  color: #fcd02c;
+}
 
+/* Fire loading animation*/
 @keyframes scaleUpDown {
   0%,
   100% {
@@ -310,5 +319,19 @@ h1 {
   .fire {
      top: calc(50% - 50px);
   }
+}
+
+
+/*Router animation properties*/
+.fade-enter-active,
+.fade-leave-active {
+    transition-duration: 0.5s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+}
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+    transform: translateY(5em);
 }
 </style>

@@ -172,7 +172,7 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden; /* need this for text-overflow property to work */
-  margin: 1.2em 0 0 0;
+  margin: 1.3em 0 0 0;
 }
 .artist-name {
   color: rgba(255, 255, 255, 0.40);
@@ -226,8 +226,9 @@ export default {
     border-left: 26.25px solid #ff741e;
   }
   .preview-na {
+    font-size: .8em;
     width: 3em;
-    margin: 1.05em 0.75em 0 0.45em;
+    margin: 1.7em 1em 0 0.45em;
   }
 }
 </style>

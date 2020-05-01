@@ -1,7 +1,7 @@
 <template>
   <div>
     <div ref="sideNav" class="bm-menu">
-      <nav class="bm-item-list">
+      <nav class="bm-item-list" @click="closeMenu">
         <slot></slot>
       </nav>
       <span class="bm-cross-button cross-style" @click="closeMenu" :class="{ hidden: !crossIcon }">
@@ -273,9 +273,14 @@ html {
   text-decoration: none;
   padding: 0.7em;
 }
+.bm-item-list > * :hover {
+  color: #fcd02c;
+}
+
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
   color: white;
+  cursor: pointer;
 }
 </style>
