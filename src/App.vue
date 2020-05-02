@@ -321,7 +321,6 @@ h1 {
   }
 }
 
-
 /*Router animation properties*/
 .fade-enter-active,
 .fade-leave-active {

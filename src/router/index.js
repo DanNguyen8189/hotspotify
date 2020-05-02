@@ -28,5 +28,9 @@ export default new Router({
       name: "Home",
       component: Home
     }
-  ]
+  ],
+  // Scroll to top of page when switching components
+  scrollBehavior() {
+    return {x: 0, y: 0}
+  } 
 })
