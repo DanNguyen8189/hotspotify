@@ -80,12 +80,15 @@ export default {
 .home {
   height: 100%;
 }
+#login-page {
+  transform: translateY(50%); /*vertically center*/
+}
+#login-page h1 {
+  margin: 0;
+}
 #profile-page {
   width: 100%;
   transform: translateY(5%); /*vertically center*/
-}
-#login-page {
-  transform: translateY(30%); /*vertically center*/
 }
 #profile-page h1 {
   font-size: 2.5em;
