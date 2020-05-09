@@ -23,7 +23,7 @@
       <template v-else>
       <!--This is here because the data from spotify doesn't come fast enough
       for the above template to render right away-->
-        <div class="fire">
+        <!--<div class="fire">
           <div class="fire-left">
             <div class="main-fire"></div>
             <div class="particle-fire"></div>
@@ -39,19 +39,24 @@
           <div class="fire-bottom">
             <div class="main-fire"></div>
           </div>
-        </div>
+        </div>-->
+        <fire-animation></fire-animation>
       </template>
     </div>
 </template>
 
 <script>
 import { getTopArtists } from "../services/spotifyApi";
+import FireAnimation from "./FireAnimation.vue";
 export default {
   name: 'TopArtists',
   data () {
     return {
       msg: 'Top artists page'
     }
+  },
+  components :{
+    'fire-animation': FireAnimation
   },
   // might not need this
   computed: {
