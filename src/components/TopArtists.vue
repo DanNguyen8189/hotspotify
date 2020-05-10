@@ -113,7 +113,7 @@ export default {
 }
 .list-item{
   display: inline-block;
-  margin: 2em 3%;
+  margin: 1.2em 3%;
   flex-basis: 10em;
   flex-shrink: 4;
 }
@@ -129,6 +129,7 @@ export default {
 .list-item .artist-text{
   color: #fcd02c;
   margin-top: 1em;
+  font-size: 1.1em;
   font-weight: 600;
 }
 </style>

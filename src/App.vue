@@ -76,7 +76,8 @@ body {
 }
 
 body {
-  min-height: 100%;
+  /* min-height: 100%; */
+  height: 100vh;
   /* background-color: #0a2b5c; */
   background: linear-gradient(rgba(10, 43, 92, 0.60), rgba(10, 43, 92, 0.60)),
   url("./assets/background-sgabriel.jpg"); /*background image + tint*/
@@ -110,15 +111,13 @@ h1 {
 }
 .timeperiod-button-container button span {
   padding: .3em;
-  border-top: 2px solid #ff741e;
-  border-bottom: 2px solid #ff741e;
+  border: 2px solid #ff741e;
   border-radius: .5em;
   font-size: 1.2em;
   color: #ff741e
 }
 .timeperiod-button-container button span:hover {
-  border-top: 2px solid #fcd02c;
-  border-bottom: 2px solid #fcd02c;
+  border: 2px solid #fcd02c;
   color: #fcd02c;
 }
 
@@ -135,6 +134,9 @@ h1 {
   .fire {
      top: calc(50% - 50px);
   }
+  .timeperiod-button-container button span {
+  font-size: 1.3em;
+}
 }
 
 /*Router animation properties*/

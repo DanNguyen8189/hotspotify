@@ -197,11 +197,14 @@ export default {
   }
   .list-item .track-number {
     float: left;
-    line-height: 2em;
+    line-height: 2.5em;
     margin-left: 2%;
   }
   .list-item img {
     width: 3.609em;
+  }
+  .track-name {
+    margin: 1.05em 0 0 0; 
   }
   .triangle-right {
     margin: 1.25em 0.9em .99em 1.8em;
