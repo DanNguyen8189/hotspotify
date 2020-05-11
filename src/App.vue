@@ -111,9 +111,7 @@ h1 {
 }
 .timeperiod-button-container button span {
   padding: .3em;
-  border: 2px solid #ff741e;
-  border-radius: .5em;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #ff741e
 }
 .timeperiod-button-container button span:hover {
@@ -128,6 +126,12 @@ h1 {
   box-sizing: border-box;
 }
 @media screen and (max-width: 480px) {
+  body {
+    /* background-attachment doesn't work on mobile devices */
+    background-size: contain;
+    background-position: left top;
+    background-attachment: scroll;
+  }
   h1 {
     font-size: 2.5em;
   }

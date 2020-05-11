@@ -7,7 +7,7 @@
           <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
           <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
         </div>
-        <div class="track-list-container">
+        <div class="artist-list-container">
       <!--<img :src="this.user.images[0].url" alt="profile_picture" class="profile_pic">-->
         <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
         <div v-for="n in getAmount()" :key="n" class="list-item">
@@ -104,12 +104,14 @@ export default {
 </script>
 
 <style scoped>
-.track-list-container {
+.artist-list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 75em;
+  max-width: 60em;
   margin: auto;
+  background-color: rgba(22, 85, 121, .5);
+  padding-top: 1.5em;
 }
 .list-item{
   display: inline-block;

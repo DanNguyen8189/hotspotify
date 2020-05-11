@@ -10,9 +10,10 @@
           <!--<p>Email address: {{ this.user.email }}</p>-->
           <!--<p>Following: {{ this.user.followers.total }}</p>-->
           <!--<p>Followers: {{ this.user.followers.total }}</p>-->
+          <!--
           <p>
             <a v-on:click="logOut()" class="btn btn-primary">Log Out</a>
-          </p>
+          </p> -->
         </div>
       </template>
       <template v-else>
@@ -92,7 +93,7 @@ export default {
 }
 #profile-page h1 {
   font-size: 2.5em;
-  color: #ff741e;
+  color: #fcd02c;
 }
 #profile-page h1:nth-child(1) {
   margin-bottom: 0;

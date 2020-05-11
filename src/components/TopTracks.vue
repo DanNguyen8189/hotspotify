@@ -204,7 +204,7 @@ export default {
     width: 3.609em;
   }
   .track-name {
-    margin: 1.05em 0 0 0; 
+    margin: 1em 0 0 0; 
   }
   .triangle-right {
     margin: 1.25em 0.9em .99em 1.8em;
