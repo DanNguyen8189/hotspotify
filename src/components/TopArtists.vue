@@ -1,12 +1,16 @@
 <template>
     <div class="topartists">
-      <h1>Top Artists</h1>
       <template v-if="this.userArtistsShort">
-        <div class="timeperiod-button-container">
-          <button v-on:click="changeTimePeriod('short')"><span>Past Month</span></button>
-          <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
-          <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
-        </div>
+        <div class='header-wrapper'>
+          <div class='header-inside'>
+            <h1>Top Artists</h1>
+              <div class="timeperiod-button-container">
+                <button v-on:click="changeTimePeriod('short')"><span>Past Month</span></button>
+                <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
+                <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
+              </div>
+            </div>
+          </div>
         <div class="artist-list-container">
       <!--<img :src="this.user.images[0].url" alt="profile_picture" class="profile_pic">-->
         <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
@@ -104,6 +108,10 @@ export default {
 </script>
 
 <style scoped>
+.topartists {
+  max-width: 65em;
+  margin: auto;
+}
 .artist-list-container {
   display: flex;
   flex-wrap: wrap;
@@ -129,7 +137,7 @@ export default {
   padding: 3%;
 }
 .list-item .artist-text{
-  color: #fcd02c;
+  color: white;
   margin-top: 1em;
   font-size: 1.1em;
   font-weight: 600;

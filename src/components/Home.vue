@@ -93,7 +93,7 @@ export default {
 }
 #profile-page h1 {
   font-size: 2.5em;
-  color: #fcd02c;
+  color: white;
 }
 #profile-page h1:nth-child(1) {
   margin-bottom: 0;

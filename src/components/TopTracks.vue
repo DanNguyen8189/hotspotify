@@ -1,12 +1,16 @@
 <template>
-  <div class='topartists'>
-  <h1>Top Tracks</h1>
+  <div class='toptracks'>
     <template v-if="this.userTracksShort">
-      <div class= "timeperiod-button-container">
-          <button v-on:click="changeTimePeriod('short')" class="button"><span>Past Month</span></button>
-          <button v-on:click="changeTimePeriod('medium')" class="button"><span>Past 6 Months</span></button>
-          <button v-on:click="changeTimePeriod('long')" class="button"><span>All Time</span></button>
-      </div>      
+        <div class='header-wrapper'>
+          <div class='header-inside'>
+            <h1>Top Tracks</h1>
+              <div class="timeperiod-button-container">
+                <button v-on:click="changeTimePeriod('short')"><span>Past Month</span></button>
+                <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
+                <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
+              </div>
+            </div>
+          </div>
       <div v-for="n in getAmount()" :key="n" @click.prevent="playTrack(n-1)" class="list-item">
         <span>
         <p class="track-number">{{n}}</p>
@@ -105,15 +109,15 @@ export default {
 }
 </script>
 <style scoped>
-.topartists {
-  max-width: 70em;
+.toptracks {
+  max-width: 65em;
   margin: auto;
 }
 
 .list-item {
   cursor: pointer; /* changes the cursor to the hand cursor on hover */
   background-color: #165479; /* 155479 */
-  margin: 0.5em 5%;
+  margin: 0 5% .5em 5%;
   height: 5em;
   -webkit-transition: background-color 0.5s;
   -moz-transition:    background-color 0.5s;
@@ -135,6 +139,16 @@ export default {
   line-height: 3em;
   margin-left: 2%;
   color: #2f93c2;
+  -webkit-transition: color 0.5s;
+  -moz-transition:    color 0.5s;
+  -ms-transition:     color 0.5s;
+  -o-transition:      color 0.5s;
+  transition:         color 0.5s;
+}
+.list-item:hover .track-name {
+  color: orange;
+}
+.list-item .track-name {
   -webkit-transition: color 0.5s;
   -moz-transition:    color 0.5s;
   -ms-transition:     color 0.5s;

@@ -95,13 +95,22 @@ body {
   width: 100%;
 }
 h1 {
-  color: #fcd02c;
+  color: white;
   font-family: 'Nothing You Could Do', cursive;
   font-size: 4em;
 }
-
+.header-wrapper {
+  margin: auto;
+  padding: 2em 5%;
+}
+.header-inside {
+  border: 2px solid white;
+}
+.header-inside h1 {
+  margin: .7em 0 .3em 0;
+}
 .timeperiod-button-container {
-  margin-bottom: 3em;
+  margin-bottom: 2.1em;
 }
 .timeperiod-button-container button {
   cursor: pointer;
@@ -112,11 +121,11 @@ h1 {
 .timeperiod-button-container button span {
   padding: .3em;
   font-size: 1em;
-  color: #ff741e
+  color: white;
 }
 .timeperiod-button-container button span:hover {
-  border: 2px solid #fcd02c;
-  color: #fcd02c;
+  text-decoration: underline;
+  color: orange;
 }
 
 *,
@@ -139,7 +148,7 @@ h1 {
      top: calc(50% - 50px);
   }
   .timeperiod-button-container button span {
-  font-size: 1.3em;
+  font-size: 1em;
 }
 }
 
