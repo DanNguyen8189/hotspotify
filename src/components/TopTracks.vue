@@ -221,6 +221,7 @@ export default {
   }
   .track-artist-text {
     font-size: .9em;
+    font-weight: 700;
   }
   .track-name {
     margin: 1.2em 0 0 0; 
