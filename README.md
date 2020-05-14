@@ -1,6 +1,7 @@
 # hotspotify
 
 > A Vue.js project
+> Deployed at https://hotspotify.herokuapp.com/#/
 
 ## Build Setup
 
