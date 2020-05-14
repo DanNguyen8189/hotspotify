@@ -5,9 +5,15 @@
           <div class='header-inside'>
             <h1>Top Artists</h1>
               <div class="timeperiod-button-container">
-                <button v-on:click="changeTimePeriod('short')"><span>Past Month</span></button>
-                <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
-                <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
+                <button v-on:click="changeTimePeriod('short')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'short' }">Past Month</span>
+                </button>
+                <button v-on:click="changeTimePeriod('medium')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'medium' }">Past 6 Months</span>
+                </button>
+                <button v-on:click="changeTimePeriod('long')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'long' }">All Time</span>
+                </button>
               </div>
             </div>
           </div>

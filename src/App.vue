@@ -79,10 +79,10 @@ body {
   /* min-height: 100%; */
   height: 100vh;
   /* background-color: #0a2b5c; */
-  background: linear-gradient(rgba(10, 43, 92, 0.60), rgba(10, 43, 92, 0.60)),
+  background: linear-gradient(rgba(10, 43, 92, 0.40), rgba(10, 43, 92, 0.40)),
   url("./assets/background-sgabriel.jpg"); /*background image + tint*/
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center;
 }
 #app {
@@ -125,8 +125,11 @@ h1 {
   font-weight: 700;
 }
 .timeperiod-button-container button span:hover {
-  text-decoration: underline;
-  color: orange;
+  border-bottom: 1px solid white;
+}
+.active {
+  box-sizing: border-box;
+  border-bottom: 1px solid white;
 }
 
 *,
@@ -138,7 +141,7 @@ h1 {
 @media screen and (max-width: 480px) {
   body {
     /* background-attachment doesn't work on mobile devices */
-    background-size: contain;
+    background-size: 100% auto;
     background-position: left top;
     background-attachment: scroll;
   }

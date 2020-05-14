@@ -5,9 +5,15 @@
           <div class='header-inside'>
             <h1>Top Tracks</h1>
               <div class="timeperiod-button-container">
-                <button v-on:click="changeTimePeriod('short')"><span>Past Month</span></button>
-                <button v-on:click="changeTimePeriod('medium')"><span>Past 6 Months</span></button>
-                <button v-on:click="changeTimePeriod('long')"><span>All Time</span></button>
+                <button v-on:click="changeTimePeriod('short')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'short' }">Past Month</span>
+                </button>
+                <button v-on:click="changeTimePeriod('medium')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'medium' }">Past 6 Months</span>
+                </button>
+                <button v-on:click="changeTimePeriod('long')">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'long' }">All Time</span>
+                </button>
               </div>
             </div>
           </div>
@@ -204,6 +210,7 @@ export default {
   width: 4em;
   margin: 1.4em 1em 0 0.6em;
   color: #2da9e2;
+  font-weight: 500;
 }
 @media screen and (max-width: 480px) {
   .list-item {
@@ -239,7 +246,7 @@ export default {
   .preview-na {
     font-size: .7em;
     width: 3em;
-    margin: 1.7em 1em 0 0.45em;
+    margin: 1.7em 1.5em 0 1.2em;
   }
 }
 </style>

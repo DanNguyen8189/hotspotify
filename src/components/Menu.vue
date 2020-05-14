@@ -274,13 +274,13 @@ html {
   padding: 0.7em;
 }
 .bm-item-list > * :hover {
-  color: #fcd02c;
+  color: white;
 }
 
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
-  color: white;
+  color: #fcd02c;
   cursor: pointer;
 }
 </style>
