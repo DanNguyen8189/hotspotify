@@ -166,6 +166,7 @@ export default {
   display: inline-block;
   overflow: hidden;
   width: 40%;
+  font-weight: 700;
 }
 .track-name {
   color: white;

@@ -122,6 +122,7 @@ h1 {
   padding: .3em;
   font-size: 1em;
   color: white;
+  font-weight: 700;
 }
 .timeperiod-button-container button span:hover {
   text-decoration: underline;
