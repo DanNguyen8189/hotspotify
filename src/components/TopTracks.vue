@@ -213,9 +213,13 @@ export default {
     float: left;
     line-height: 2.5em;
     margin-left: 2%;
+    font-size: .9em;
   }
   .list-item img {
     width: 3.609em;
+  }
+  .track-artist-text {
+    font-size: .9em;
   }
   .track-name {
     margin: 1em 0 0 0; 
@@ -230,7 +234,7 @@ export default {
     border-left: 26.25px solid #ff741e;
   }
   .preview-na {
-    font-size: .8em;
+    font-size: .7em;
     width: 3em;
     margin: 1.7em 1em 0 0.45em;
   }
