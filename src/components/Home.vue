@@ -118,7 +118,7 @@ img {
   margin: auto;
   margin-top: 1em;
   padding: 0 2em;
-  color: white;
+  color: #fcd02c;
   text-decoration: none;
   letter-spacing: 2px;
   font-weight: 700;
