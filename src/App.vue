@@ -91,7 +91,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  margin-top: 60px;
+  padding: 60px 0; /* note to self, using margin here instead makes 
+  pages longer and scroll when they dont need to */
   width: 100%;
 }
 h1 {
@@ -128,7 +129,6 @@ h1 {
   border-bottom: 1px solid white;
 }
 .active {
-  box-sizing: border-box;
   border-bottom: 1px solid white;
 }
 

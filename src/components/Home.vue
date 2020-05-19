@@ -59,8 +59,8 @@ export default {
       getUser().then((response) => {
         // this.$store.commit('setUser', response.user);
         this.$store.commit('setUser', response.data);
-        console.log(response.data);
-      });
+        // console.log(response.data);
+      }).catch(err => console.log("user not logged in"));
     },
     /** Sets the button target url based on whether the app is in production or not */
     getLoginURI (element) {
@@ -113,7 +113,7 @@ img {
 .btn-primary {
   cursor: pointer;
   border-radius: 2em;
-  background-color: #e56b1f;
+  background-color: #e42c6a;
   display: inline-block;
   margin: auto;
   margin-top: 1em;

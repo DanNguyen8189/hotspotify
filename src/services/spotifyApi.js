@@ -13,7 +13,7 @@ const getLocalAccessToken = () => window.localStorage.getItem('spotify_access_to
 
 // called on app start
 export const getAccessToken = () => {
-  console.log("getAccessToken called");
+  // console.log("getAccessToken called");
   /* window.localStorage.removeItem('spotify_token_timestamp');
   window.localStorage.removeItem('spotify_access_token');
   window.localStorage.removeItem('spotify_refresh_token');
@@ -31,12 +31,12 @@ export const getAccessToken = () => {
     }
   } 
   else if (getLocalAccessToken() !== null) {
-    console.log("getting local access token");
-    console.log(getLocalAccessToken());
+    /* console.log("getting local access token");
+    console.log(getLocalAccessToken()); */
     return getLocalAccessToken();
   }
   else if (accessToken){
-    console.log("setting local access token to hashparam: " + accessToken);
+    // console.log("setting local access token to hashparam: " + accessToken);
     setLocalAccessToken(accessToken);
   }
   // return localAccessToken;
@@ -45,7 +45,7 @@ export const getAccessToken = () => {
 export const token = getAccessToken();
 
 export const logout = () => {
-  console.log("removing tokens from local storage");
+  // console.log("removing tokens from local storage");
   window.localStorage.removeItem('spotify_token_timestamp');
   window.localStorage.removeItem('spotify_access_token');
   window.localStorage.removeItem('spotify_refresh_token');

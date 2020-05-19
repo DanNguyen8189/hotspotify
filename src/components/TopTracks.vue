@@ -71,11 +71,11 @@ export default {
     getTopTracks2 () {
       getTopTracks().then((response) => {
         // this.$store.commit('setUser', response.user);
-        console.log("Tracks response data:");
-        console.log(response)
+        /* console.log("Tracks response data:");
+        console.log(response) */
         this.$store.commit('setTopTracks', response);
         // this.$store.commit('setTimePeriod', 'short');
-      });
+      }).catch(err => console.log("user not logged in"));
     },
     /** function to change the time period to display */
     changeTimePeriod (state) {
@@ -104,7 +104,11 @@ export default {
      * the currently playing track) */
     playTrack (index) {
       if (this.audioElement) this.audioElement.pause();
-      this.audioElement = new Audio(this.getTrackURL(index));
+      const trackURL = this.getTrackURL(index);
+      if (trackURL === null){
+        return;
+      }
+      this.audioElement = new Audio(trackURL);
       // this.audioElement.addEventListener('ended', this.stop());
       this.audioElement.play();
     }
@@ -152,15 +156,19 @@ export default {
   transition:         color 0.5s;
 }
 .list-item:hover .track-name {
-  color: orange;
+  color: #fcd02c;
 }
-.list-item .track-name {
+.list-item:hover .artist-name {
+  color: #f78036;
+}
+.list-item .track-name, .list-item .artist-name {
   -webkit-transition: color 0.5s;
   -moz-transition:    color 0.5s;
   -ms-transition:     color 0.5s;
   -o-transition:      color 0.5s;
   transition:         color 0.5s;
 }
+
 .list-item img {
   border-radius: 50%;
   float: left;

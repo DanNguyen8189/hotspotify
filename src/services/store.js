@@ -56,7 +56,7 @@ export default new Vuex.Store({
     },
     // set the time period - the options for the data are 'short', 'medium', and 'long'
     setTimePeriod (state, data) {
-      console.log("time period setter:" + data);
+      // console.log("time period setter:" + data);
       state.timePeriod = data;
     },
     clearAll (state) {
@@ -100,14 +100,14 @@ export default new Vuex.Store({
     getTopArtists (state) {
       switch (state.timePeriod) {
         case 'short':
-          console.log("returning short artists");
+          // console.log("returning short artists");
           return state.topArtistsShort;
         case 'medium':
           return state.topArtistsMedium;
         case 'long':
           return state.topArtistsLong;
         default:
-          console.log("defaulting");
+          // console.log("defaulting");
           return state.topArtistsShort;
       }
     },
@@ -115,14 +115,14 @@ export default new Vuex.Store({
     getTopTracks (state) {
       switch (state.timePeriod) {
         case 'short':
-          console.log("returning short tracks");
+          // console.log("returning short tracks");
           return state.topTracksShort;
         case 'medium':
           return state.topTracksMedium;
         case 'long':
           return state.topTracksLong;
         default:
-          console.log("defaulting");
+          // console.log("defaulting");
           return state.topTracksShort;
       }
     }
