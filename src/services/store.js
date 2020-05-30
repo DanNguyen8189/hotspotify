@@ -44,14 +44,14 @@ export default new Vuex.Store({
       state.topArtistsShort = data.topArtistsShort;
       state.topArtistsMedium = data.topArtistsMedium;
       state.topArtistsLong = data.topArtistsLong;
-      state.timePeriod = 'short';
+      state.timePeriod = 0;
       state.loggedIn = true;
     },
     setTopTracks (state, data) {
       state.topTracksShort = data.topTracksShort;
       state.topTracksMedium = data.topTracksMedium;
       state.topTracksLong = data.topTracksLong;
-      state.timePeriod = 'short';
+      state.timePeriod = 0;
       state.loggedIn = true;
     },
     // set the time period - the options for the data are 'short', 'medium', and 'long'
@@ -99,12 +99,12 @@ export default new Vuex.Store({
     // return the top artists list based in the timePeriod state
     getTopArtists (state) {
       switch (state.timePeriod) {
-        case 'short':
+        case 0:
           // console.log("returning short artists");
           return state.topArtistsShort;
-        case 'medium':
+        case 1:
           return state.topArtistsMedium;
-        case 'long':
+        case 2:
           return state.topArtistsLong;
         default:
           // console.log("defaulting");
@@ -114,12 +114,12 @@ export default new Vuex.Store({
     // return the top tracks list based on the timePeriod state
     getTopTracks (state) {
       switch (state.timePeriod) {
-        case 'short':
+        case 0:
           // console.log("returning short tracks");
           return state.topTracksShort;
-        case 'medium':
+        case 1:
           return state.topTracksMedium;
-        case 'long':
+        case 2:
           return state.topTracksLong;
         default:
           // console.log("defaulting");

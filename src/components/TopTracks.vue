@@ -5,19 +5,21 @@
           <div class='header-inside'>
             <h1>Top Tracks</h1>
               <div class="timeperiod-button-container">
-                <button v-on:click="changeTimePeriod('short')">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'short' }">Past Month</span>
+                <button v-on:click="changeTimePeriod(0)">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
                 </button>
-                <button v-on:click="changeTimePeriod('medium')">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'medium' }">Past 6 Months</span>
+                <button v-on:click="changeTimePeriod(1)">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod === 1 }">Past 6 Months</span>
                 </button>
-                <button v-on:click="changeTimePeriod('long')">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod == 'long' }">All Time</span>
+                <button v-on:click="changeTimePeriod(2)">
+                  <span v-bind:class="{ active: this.$store.state.timePeriod === 2 }">All Time</span>
                 </button>
               </div>
             </div>
           </div>
-      <div v-for="n in getAmount()" :key="n" @click.prevent="playTrack(n-1)" class="list-item">
+      <div v-for="n in getAmount()" :key="n" @click.prevent="playTrack(n-1)" class="list-item"
+      v-bind:class="{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }">
+        <!--v-bind:class="{ activeTrack: activeTrack === n-1 }"-->
         <span>
         <p class="track-number">{{n}}</p>
         <img :src=getImage(n-1)>
@@ -48,7 +50,9 @@ export default {
   data () {
     return {
       msg: 'Top tracks page',
-      audioElement: null
+      audioElement: null,
+      activeTrackIndex: -1,
+      activeTrackPage: -1
     }
   },
   components :{
@@ -111,6 +115,12 @@ export default {
       this.audioElement = new Audio(trackURL);
       // this.audioElement.addEventListener('ended', this.stop());
       this.audioElement.play();
+      this.activeTrackIndex = index;
+      this.activeTrackPage = this.$store.state.timePeriod;
+      /* setTimeout(function () {
+        this.activeTrackIndex = -1;
+        console.log("Timeout fired");
+      }, 3000); */
     }
   },
   created () {
@@ -126,9 +136,10 @@ export default {
 
 .list-item {
   cursor: pointer; /* changes the cursor to the hand cursor on hover */
-  background-color: #165479; /* 155479 */
+  background-color: #154e6e; /* 155479 */
   margin: 0 5% .5em 5%;
   height: 5em;
+  border-radius: 5px;
   -webkit-transition: background-color 0.5s;
   -moz-transition:    background-color 0.5s;
   -ms-transition:     background-color 0.5s;
@@ -220,9 +231,32 @@ export default {
   color: #2da9e2;
   font-weight: 500;
 }
+.activeTrack {
+  background-color: #b92557;
+}
+.activeTrack img {
+  animation: spin;
+  animation-duration: 15s;
+  animation-iteration-count: 2;
+  animation-timing-function: linear; 
+}
+.actveTrack .track-name{
+  color: #fcd02c;
+}
+.activetrack .artist-name {
+  color: #f78036;
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 @media screen and (max-width: 480px) {
   .list-item {
-    margin: .25em 5%;
+    margin: .7em 5%;
     height: 4.5em;
   }
   .list-item .track-number {
