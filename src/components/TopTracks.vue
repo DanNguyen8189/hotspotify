@@ -52,7 +52,8 @@ export default {
       msg: 'Top tracks page',
       audioElement: null,
       activeTrackIndex: -1,
-      activeTrackPage: -1
+      activeTrackPage: -1,
+      timOut: null
     }
   },
   components :{
@@ -107,9 +108,13 @@ export default {
     /** function to load currently selected track to play (and pause if it's the same as
      * the currently playing track) */
     playTrack (index) {
+      // remove previous playing track's stuff if still playing
       if (this.audioElement) this.audioElement.pause();
+      if (this.timeOut) clearTimeout(this.timeOut);
+
       const trackURL = this.getTrackURL(index);
-      if (trackURL === null){
+      if (trackURL === null) {
+        this.activeTrackIndex = -1; // needed if user clicks a track with no available preview
         return;
       }
       this.audioElement = new Audio(trackURL);
@@ -117,11 +122,12 @@ export default {
       this.audioElement.play();
       this.activeTrackIndex = index;
       this.activeTrackPage = this.$store.state.timePeriod;
-      /* setTimeout(function () {
+
+      // set prop so that the activeTrack class is removed from the currently playing track after it ends 
+      this.timeOut = setTimeout(function () {
         this.activeTrackIndex = -1;
-        console.log("Timeout fired");
-      }, 3000); */
-    }
+      }.bind(this), 30000); //The value of this is different inside the setTimeout so bind(this) needed to be added
+    },
   },
   created () {
     this.getTopTracks2();
@@ -146,15 +152,7 @@ export default {
   -o-transition:      background-color 0.5s;
   transition:         background-color 0.5s;
 }
-.list-item:hover {
-  background-color: #b92557;
-}
-.list-item:hover .triangle-right {
-  border-left: 35px solid #ff741e;
-}
-.list-item:hover .track-number {
-  color: orange;
-}
+
 .list-item .track-number {
   float: left;
   line-height: 3em;
@@ -166,12 +164,7 @@ export default {
   -o-transition:      color 0.5s;
   transition:         color 0.5s;
 }
-.list-item:hover .track-name {
-  color: #fcd02c;
-}
-.list-item:hover .artist-name {
-  color: #f78036;
-}
+
 .list-item .track-name, .list-item .artist-name {
   -webkit-transition: color 0.5s;
   -moz-transition:    color 0.5s;
@@ -231,6 +224,8 @@ export default {
   color: #2da9e2;
   font-weight: 500;
 }
+
+/*Active playing track styling*/
 .activeTrack {
   background-color: #b92557;
 }
@@ -240,11 +235,17 @@ export default {
   animation-iteration-count: 2;
   animation-timing-function: linear; 
 }
-.actveTrack .track-name{
+.activeTrack .track-name {
   color: #fcd02c;
 }
-.activetrack .artist-name {
+.activeTrack .artist-name {
   color: #f78036;
+}
+.activeTrack .triangle-right {
+  border-left: 35px solid #ff741e;
+}
+.activeTrack .track-number {
+  color: orange;
 }
 @keyframes spin {
     from {
@@ -254,6 +255,7 @@ export default {
         transform:rotate(360deg);
     }
 }
+
 @media screen and (max-width: 480px) {
   .list-item {
     margin: .7em 5%;
@@ -282,7 +284,7 @@ export default {
     border-left: 26.25px solid #0a2b5c;
     border-bottom: 15px solid transparent;
   }
-  .list-item:hover .triangle-right {
+  .activeTrack .triangle-right {
     border-left: 26.25px solid #ff741e;
   }
   .preview-na {
@@ -290,5 +292,27 @@ export default {
     width: 3em;
     margin: 1.7em 1.5em 0 1.2em;
   }
+}
+
+@media (hover:hover) {
+  /* Primary Input responds to hover fully, such as a mouse or a Nintendo Wii controller */
+  .list-item:hover {
+  background-color: #b92557;
+  }
+  .list-item:hover .triangle-right {
+    border-left: 35px solid #ff741e;
+  }
+  .list-item:hover .track-number {
+    color: orange;
+  }
+  .list-item:hover .track-name {
+    color: #fcd02c;
+  }
+  .list-item:hover .artist-name {
+    color: #f78036;
+  }
+  /*.list-item:hover .triangle-right {
+    border-left: 26.25px solid #ff741e;
+  }*/
 }
 </style>
