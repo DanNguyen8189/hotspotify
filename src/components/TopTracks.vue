@@ -27,7 +27,9 @@
           <p class="track-name">{{ getTrackName(n-1) }}</p>
           <p class="artist-name">{{ getArtistName(n-1) }}</p>
         </div>
-        <div v-if="getTrackURL(n-1) !== null" class="play-button-area triangle-right"
+        <div v-if="getTrackURL(n-1) !== null" class="play-button-area"
+        v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
+                        pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
           @click.prevent="playTrack(n-1)">
         </div>
         <p v-else class="play-button-area preview-na">Preview N/A</p>
@@ -214,19 +216,43 @@ export default {
 .play-button-area {
   float: right;
 }
-.triangle-right {
+.play {
   /* width: 0;
   height: 0; */
   margin: 1.1em 1em 1.1em 2em;
   border-top: 20px solid transparent;
   border-left: 35px solid #0a2b5c;
   border-bottom: 20px solid transparent;
-  -webkit-transition: border-left 0.5s;
+  /*-webkit-transition: border-left 0.5s;
   -moz-transition:    border-left 0.5s;
   -ms-transition:     border-left 0.5s;
   -o-transition:      border-left 0.5s;
   transition:         border-left 0.5s;
+  -webkit-transition: border-top 0.5s;
+  -moz-transition:    border-top 0.5s;
+  -ms-transition:     border-top 0.5s;
+  -o-transition:      border-top 0.5s;
+  transition:         border-top 0.5s;*/
 }
+.pause {
+  width: 24px;
+  height: 35px;
+  margin: 1.1em 1.7em 1.1em 2em;
+  border-right: 8px solid #ff741e;
+  border-left: 8px solid #ff741e;
+  /*-webkit-transition: border-left 0.5s;
+  -moz-transition:    border-left 0.5s;
+  -ms-transition:     border-left 0.5s;
+  -o-transition:      border-left 0.5s;
+  transition:         border-left 0.5s;
+  -webkit-transition: border-right 0.5s;
+  -moz-transition:    border-right 0.5s;
+  -ms-transition:     border-right 0.5s;
+  -o-transition:      border-right 0.5s;
+  transition:         border-right 0.5s;*/
+  transition:         all 0.5s;
+}
+
 .preview-na {
   width: 4em;
   margin: 1.4em 1em 0 0.6em;
@@ -250,7 +276,7 @@ export default {
 .activeTrack .artist-name {
   color: #f78036;
 }
-.activeTrack .triangle-right {
+.activeTrack .play {
   border-left: 35px solid #ff741e;
 }
 .activeTrack .track-number {
@@ -287,13 +313,13 @@ export default {
   .track-name {
     margin: 1.2em 0 0 0; 
   }
-  .triangle-right {
+  .play {
     margin: 1.25em 0.9em .99em 1.8em;
     border-top: 15px solid transparent;
     border-left: 26.25px solid #0a2b5c;
     border-bottom: 15px solid transparent;
   }
-  .activeTrack .triangle-right {
+  .activeTrack .play {
     border-left: 26.25px solid #ff741e;
   }
   .preview-na {
@@ -308,7 +334,7 @@ export default {
   .list-item:hover {
   background-color: #b92557;
   }
-  .list-item:hover .triangle-right {
+  .list-item:hover .play {
     border-left: 35px solid #ff741e;
   }
   .list-item:hover .track-number {
@@ -320,7 +346,7 @@ export default {
   .list-item:hover .artist-name {
     color: #f78036;
   }
-  /*.list-item:hover .triangle-right {
+  /*.list-item:hover .play {
     border-left: 26.25px solid #ff741e;
   }*/
 }
