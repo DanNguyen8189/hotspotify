@@ -219,7 +219,7 @@ export default {
 .play {
   /* width: 0;
   height: 0; */
-  margin: 1.1em 1em 1.1em 2em;
+  margin: 1.25em 1em 1.1em 2em;
   border-top: 20px solid transparent;
   border-left: 35px solid #0a2b5c;
   border-bottom: 20px solid transparent;
@@ -236,8 +236,8 @@ export default {
 }
 .pause {
   width: 24px;
-  height: 35px;
-  margin: 1.1em 1.7em 1.1em 2em;
+  height: 37px;
+  margin: 1.25em 1.7em 1.1em 2em;
   border-right: 8px solid #ff741e;
   border-left: 8px solid #ff741e;
   /*-webkit-transition: border-left 0.5s;
@@ -314,13 +314,20 @@ export default {
     margin: 1.2em 0 0 0; 
   }
   .play {
-    margin: 1.25em 0.9em .99em 1.8em;
+    margin: 1.30em 0.9em 0 1.8em;
     border-top: 15px solid transparent;
     border-left: 26.25px solid #0a2b5c;
     border-bottom: 15px solid transparent;
   }
   .activeTrack .play {
     border-left: 26.25px solid #ff741e;
+  }
+  .activeTrack .pause {
+    width: 18px;
+    height: 26px;
+    border-right: 6px solid #ff741e;
+    border-left: 6px solid #ff741e;
+    margin: 1.35em 1.4em 0 1.8em;
   }
   .preview-na {
     font-size: .7em;
