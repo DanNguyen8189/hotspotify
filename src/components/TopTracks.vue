@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-      <div v-for="n in getAmount()" :key="n" @click.prevent="playTrack(n-1)" class="list-item"
+      <div v-for="n in getAmount()" :key="n" class="list-item"
       v-bind:class="{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }">
         <!--v-bind:class="{ activeTrack: activeTrack === n-1 }"-->
         <span>
@@ -109,7 +109,16 @@ export default {
      * the currently playing track) */
     playTrack (index) {
       // remove previous playing track's stuff if still playing
-      if (this.audioElement) this.audioElement.pause();
+      if (this.audioElement) {
+        this.audioElement.pause();
+
+        // don't play the same track again, user wanted to pause
+        if (this.activeTrackIndex === index && this.activeTrackPage === this.$store.state.timePeriod) {
+          this.activeTrackIndex = -1;
+          if (this.timeOut) clearTimeout(this.timeOut);
+          return;        
+        }
+      }
       if (this.timeOut) clearTimeout(this.timeOut);
 
       const trackURL = this.getTrackURL(index);
@@ -232,7 +241,7 @@ export default {
 .activeTrack img {
   animation: spin;
   animation-duration: 15s;
-  animation-iteration-count: 2;
+  animation-iteration-count: infinite;
   animation-timing-function: linear; 
 }
 .activeTrack .track-name {
