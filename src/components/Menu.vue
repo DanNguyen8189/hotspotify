@@ -239,7 +239,7 @@ html {
   cursor: pointer;
 }
 .bm-cross {
-  background: #fcd02c;
+  background: #f5d76e;
 }
 .bm-cross-button {
   height: 24px;
@@ -280,7 +280,7 @@ html {
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
-  color: #fcd02c;
+  color: #f5d76e;
   cursor: pointer;
 }
 </style>

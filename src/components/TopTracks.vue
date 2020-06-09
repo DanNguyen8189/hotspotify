@@ -238,8 +238,8 @@ export default {
   width: 24px;
   height: 37px;
   margin: 1.25em 1.7em 1.1em 2em;
-  border-right: 8px solid #ff741e;
-  border-left: 8px solid #ff741e;
+  border-right: 8px solid #f5d76e;
+  border-left: 8px solid #f5d76e;
   /*-webkit-transition: border-left 0.5s;
   -moz-transition:    border-left 0.5s;
   -ms-transition:     border-left 0.5s;
@@ -250,7 +250,7 @@ export default {
   -ms-transition:     border-right 0.5s;
   -o-transition:      border-right 0.5s;
   transition:         border-right 0.5s;*/
-  transition:         all 0.5s;
+  /* transition:         all 0.5s; */
 }
 
 .preview-na {
@@ -271,16 +271,16 @@ export default {
   animation-timing-function: linear; 
 }
 .activeTrack .track-name {
-  color: #fcd02c;
+  color: white;
 }
 .activeTrack .artist-name {
-  color: #f78036;
+  color: #f5d76e;
 }
 .activeTrack .play {
   border-left: 35px solid #ff741e;
 }
 .activeTrack .track-number {
-  color: orange;
+  color: #f5d76e;
 }
 @keyframes spin {
     from {
@@ -320,13 +320,13 @@ export default {
     border-bottom: 15px solid transparent;
   }
   .activeTrack .play {
-    border-left: 26.25px solid #ff741e;
+    border-left: 26.25px solid #f5d76e;
   }
   .activeTrack .pause {
     width: 18px;
     height: 26px;
-    border-right: 6px solid #ff741e;
-    border-left: 6px solid #ff741e;
+    border-right: 6px solid #f5d76e;
+    border-left: 6px solid #f5d76e;
     margin: 1.35em 1.4em 0 1.8em;
   }
   .preview-na {
@@ -342,16 +342,16 @@ export default {
   background-color: #b92557;
   }
   .list-item:hover .play {
-    border-left: 35px solid #ff741e;
+    border-left: 35px solid #f5d76e;
   }
   .list-item:hover .track-number {
-    color: orange;
+    color: #f5d76e;
   }
   .list-item:hover .track-name {
-    color: #fcd02c;
+    color: white;
   }
   .list-item:hover .artist-name {
-    color: #f78036;
+    color: #f5d76e;
   }
   /*.list-item:hover .play {
     border-left: 26.25px solid #ff741e;
