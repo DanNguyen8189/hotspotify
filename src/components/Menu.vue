@@ -1,10 +1,14 @@
 <template>
   <div>
     <div ref="sideNav" class="bm-menu">
-      <nav class="bm-item-list" @click="closeMenu">
+      <nav class="bm-item-list" @click="closeMenu" @keyup.enter="closeMenu">
         <slot></slot>
       </nav>
-      <span class="bm-cross-button cross-style" @click="closeMenu" :class="{ hidden: !crossIcon }">
+      <span class="bm-cross-button cross-style" 
+      @click="closeMenu" 
+      @keyup.enter="closeMenu"
+      tabindex = 0
+      :class="{ hidden: !crossIcon }">
         <span
           v-for="(x, index) in 2"
           :key="x"
@@ -18,6 +22,8 @@
       ref="bmBurgerButton"
       class="bm-burger-button"
       @click="openMenu"
+      @keyup.enter="openMenu"
+      tabindex = 0
       :class="{ hidden: !burgerIcon }"
     >
       <span
@@ -276,6 +282,10 @@ html {
 .bm-item-list > * :hover {
   color: white;
 }
+/*.bm-item-list > * :focus {
+  color: white;
+  outline: none;
+} */
 
 .bm-item-list > * > span {
   margin-left: 10px;

@@ -3,20 +3,20 @@
     <!--<img src="./assets/logo.png">-->
     <!--<SpotifyLogin v-if='accessToken'/>
     <HelloWorld/>-->
-    <Menu v-if="this.loggedIn">
-      <a v-on:click="goHome()">
+    <Menu v-if="this.loggedIn" tabindex = 0>
+      <a v-on:click="goHome()" @keyup.enter="goHome()" tabindex = 0>
         <i class="fa fa-fw fa-star-o"></i>
         <span>Home</span>
       </a>
-      <a v-on:click="goTopArtists()">
+      <a v-on:click="goTopArtists()" @keyup.enter="goTopArtists()" tabindex = 0>
         <i class="fa fa-fw fa-bell-o"></i>
         <span>Top Artists</span>
       </a>
-      <a v-on:click="goTopTracks()">
+      <a v-on:click="goTopTracks()" @keyup.enter="goTopTracks()" tabindex = 0>
         <i class="fa fa-fw fa-envelope-o"></i>
         <span>Top Tracks</span>
       </a>
-      <a v-on:click="logOut()">
+      <a v-on:click="logOut()" @keyup.enter="logOut()" tabindex = 0>
         <i class="fa fa-fw fa-envelope-o"></i>
         <span>Log Out</span>
       </a>
@@ -129,6 +129,9 @@ h1 {
   border-bottom: 1px solid white;
 }
 .active {
+  border-bottom: 1px solid white;
+}
+.timeperiod-button-container button:focus {
   border-bottom: 1px solid white;
 }
 
