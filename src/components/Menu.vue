@@ -23,7 +23,7 @@
       class="bm-burger-button"
       @click="openMenu"
       @keyup.enter="openMenu"
-      tabindex = 0
+      tabindex = 1
       :class="{ hidden: !burgerIcon }"
     >
       <span
