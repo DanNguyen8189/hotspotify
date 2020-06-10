@@ -27,7 +27,7 @@
           <p class="track-name">{{ getTrackName(n-1) }}</p>
           <p class="artist-name">{{ getArtistName(n-1) }}</p>
         </div>
-        <div v-if="getTrackURL(n-1) !== null" class="play-button-area"
+        <div v-if="getTrackURL(n-1) !== null" class="play-button-area" tabindex = 0 @keyup.enter="playTrack(n-1)"
         v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
                         pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
           @click.prevent="playTrack(n-1)">
@@ -356,5 +356,30 @@ export default {
   /*.list-item:hover .play {
     border-left: 26.25px solid #ff741e;
   }*/
+}
+
+/*Keyboard user accessability*/
+.list-item:focus {
+  background-color: #b92557;
+  outline: none;
+  }
+  .list-item:focus .play {
+    border-left: 35px solid #f5d76e;
+  }
+  .list-item:focus .track-number {
+    color: #f5d76e;
+  }
+  .list-item:focus .track-name {
+    color: white;
+  }
+  .list-item:focus .artist-name {
+    color: #f5d76e;
+  } 
+.play:focus {
+  border-left: 35px solid #f5d76e;
+  outline: none;
+}
+.pause:focus {
+  outline: none;
 }
 </style>
