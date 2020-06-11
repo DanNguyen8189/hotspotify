@@ -66,7 +66,20 @@ const router = new Router({
     {
       path: "/:tokens",
       name: "Home",
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Home Page - hotspotify',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'The home page of hotspotify.'
+          },
+          {
+            property: 'og:description',
+            content: 'The home page of hotspotify.'
+          }
+        ]
+      }
     }
   ]
 });
