@@ -14,26 +14,24 @@ const router = new Router({
       path: "/",
       name: "Home",
       component: Home,
-      /*meta: {
-        title: 'Hotspotify',
+      meta: {
         metaTags: [
           {
             name: 'description',
-            content: 'The home page of hotspotify.'
+            content: 'Hotspotify home'
           },
           {
             property: 'og:description',
-            content: 'The home page of hotspotify.'
+            content: 'Hotspotify home'
           }
         ]
-      }*/
+      }
     },
     {
       path: "/topartists",
       name: "TopArtists",
       component: TopArtists,
-      /*meta: {
-        title: 'Hotspotify - top artists',
+      meta: {
         metaTags: [
           {
             name: 'description',
@@ -44,14 +42,13 @@ const router = new Router({
             content: 'your top artists on Spotify'
           }
         ]
-      }*/
+      }
     },
     {
       path: "/toptracks",
       name: "TopTracks",
       component: TopTracks,
-      /*meta: {
-        title: 'Hotspotify - top tracks',
+      meta: {
         metaTags: [
           {
             name: 'description',
@@ -62,32 +59,31 @@ const router = new Router({
             content: 'your top tracks on Spotify'
           }
         ]
-      }*/
-      
+      }
+    
     },
     {
       path: "/:tokens",
       name: "Home",
       component: Home,
-      /*meta: {
-        title: 'Home Page - hotspotify',
+      meta: {
         metaTags: [
           {
             name: 'description',
-            content: 'The home page of hotspotify.'
+            content: 'Hotspotify home'
           },
           {
             property: 'og:description',
-            content: 'The home page of hotspotify.'
+            content: 'Hotspotify home'
           }
         ]
-      }*/
+      }
     }
   ]
 });
 
 // This callback runs before every route change, including on page load.
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   // This goes through the matched routes from last to first, finding the closest route with a title.
   // eg. if we have /some/deep/nested/route and /some, /deep, and /nested have titles, nested's will be chosen.
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
@@ -122,6 +118,6 @@ const router = new Router({
   .forEach(tag => document.head.appendChild(tag));
 
   next();
-});*/
+});
 
 export default router

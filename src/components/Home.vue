@@ -4,9 +4,9 @@
         <div id="profile-page">
           <h1>Hi,</h1>
           <h1>{{ this.user.display_name }}</h1>
-          <a :href="this.user.external_urls.spotify">
+          <!--<a :href="this.user.external_urls.spotify">-->
             <img :src="this.user.images[0].url" alt="profile_picture" class="profile-pic">
-          </a>
+          <!--</a>-->
           <!--<p>Email address: {{ this.user.email }}</p>-->
           <!--<p>Following: {{ this.user.followers.total }}</p>-->
           <!--<p>Followers: {{ this.user.followers.total }}</p>-->
@@ -36,9 +36,7 @@ export default {
   name: 'Home',
   metaInfo: {
     meta: [
-      { charset: 'utf-8' },
-      { name: 'description', content: 'view your top tracks and artists from Spotify!' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'description', content: 'view your top tracks and artists from Spotify!' }
     ]
   },
   data () {

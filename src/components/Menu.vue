@@ -274,6 +274,9 @@ html {
   margin-left: 10%;
   font-size: 20px;
 }
+.bm-item-list :focus{
+  outline: none;
+}
 .bm-item-list > * {
   display: flex;
   text-decoration: none;
@@ -285,7 +288,7 @@ html {
 /*.bm-item-list > * :focus {
   color: white;
   outline: none;
-} */
+}*/
 
 .bm-item-list > * > span {
   margin-left: 10px;
