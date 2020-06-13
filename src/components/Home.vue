@@ -34,9 +34,16 @@ import { logout as removeTokens, getUser } from "../services/spotifyApi";
 
 export default {
   name: 'Home',
+  metaInfo: {
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'description', content: 'view your top tracks and artists from Spotify!' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
   data () {
     return {
-      msg: 'Home page',
+      msg: 'Hotspotify home page',
     }
   },
   computed: {

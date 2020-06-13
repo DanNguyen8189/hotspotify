@@ -34,6 +34,15 @@ import Menu from "./components/Menu.vue";
 import { logout as removeTokens } from "./services/spotifyApi";
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Hotspotify',
+    titleTemplate: '%s | Hotspotify',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'description', content: 'view your top tracks and artists from Spotify!' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
   components: {
     Menu
   },

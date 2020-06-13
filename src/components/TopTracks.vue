@@ -49,6 +49,12 @@ import { getTopTracks } from "../services/spotifyApi";
 import FireAnimation from "./FireAnimation.vue";
 export default {
   name: 'TopTracks',
+  metaInfo: {
+    title: 'Top tracks',
+    meta: [
+      { name: 'description', content: 'your top tracks on spotify' }
+    ]
+  },
   data () {
     return {
       msg: 'Top tracks page',

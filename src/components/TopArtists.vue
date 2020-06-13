@@ -60,6 +60,12 @@ import { getTopArtists } from "../services/spotifyApi";
 import FireAnimation from "./FireAnimation.vue";
 export default {
   name: 'TopArtists',
+  metaInfo: {
+    title: 'Top artists',
+    meta: [
+      { name: 'description', content: 'your top artists on spotify' }
+    ]
+  },
   data () {
     return {
       msg: 'Top artists page'
