@@ -27,11 +27,12 @@
           <p class="track-name">{{ getTrackName(n-1) }}</p>
           <p class="artist-name">{{ getArtistName(n-1) }}</p>
         </div>
-        <div v-if="getTrackURL(n-1) !== null" class="play-button-area" tabindex = 0 @keyup.enter="playTrack(n-1)"
-        v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
-                        pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
-          @click.prevent="playTrack(n-1)">
-        </div>
+        <button v-if="getTrackURL(n-1) !== null" class="play-button-area"
+                v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
+                                pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
+                @click.prevent="playTrack(n-1)"
+                aria-label="Pause and play current track">
+        </button>
         <p v-else class="play-button-area preview-na">Preview N/A</p>
         </span>
       </div>
@@ -158,7 +159,6 @@ export default {
 }
 
 .list-item {
-  cursor: pointer; /* changes the cursor to the hand cursor on hover */
   background-color: #154e6e; /* 155479 */
   margin: 0 5% .5em 5%;
   height: 5em;
@@ -221,14 +221,18 @@ export default {
 }
 .play-button-area {
   float: right;
+  transition: 100ms all ease;
+  will-change: border-width;
+  cursor: pointer; /* changes the cursor to the hand cursor on hover */
 }
 .play {
   /* width: 0;
   height: 0; */
-  margin: 1.25em 1em 1.1em 2em;
-  border-top: 20px solid transparent;
+  margin: 1.45em 1em 0 2em;
+  /*border-top: 20px solid transparent;
   border-left: 35px solid #0a2b5c;
   border-bottom: 20px solid transparent;
+  border-right: 0px solid transparent;*/
   /*-webkit-transition: border-left 0.5s;
   -moz-transition:    border-left 0.5s;
   -ms-transition:     border-left 0.5s;
@@ -239,13 +243,19 @@ export default {
   -ms-transition:     border-top 0.5s;
   -o-transition:      border-top 0.5s;
   transition:         border-top 0.5s;*/
+  width: 35px;
+  height: 35px;
+  border-style: solid;
+  border-width: 20px 0 20px 35px;
+  border-color: transparent transparent transparent #0a2b5c;
+  background-color: transparent;
 }
 .pause {
-  width: 24px;
+  /*width: 24px;
   height: 37px;
   margin: 1.25em 1.7em 1.1em 2em;
   border-right: 8px solid #f5d76e;
-  border-left: 8px solid #f5d76e;
+  border-left: 8px solid #f5d76e;*/
   /*-webkit-transition: border-left 0.5s;
   -moz-transition:    border-left 0.5s;
   -ms-transition:     border-left 0.5s;
@@ -257,6 +267,13 @@ export default {
   -o-transition:      border-right 0.5s;
   transition:         border-right 0.5s;*/
   /* transition:         all 0.5s; */
+  margin: 1.45em 1.8em 0 2em;
+  width: 35px;
+  height: 40px;
+  border-style: double;
+  border-width: 0 0 0 24px;
+  border-color: #f5d76e;
+  background-color: transparent;
 }
 
 .preview-na {
@@ -320,20 +337,32 @@ export default {
     margin: 1.2em 0 0 0; 
   }
   .play {
-    margin: 1.30em 0.9em 0 1.8em;
-    border-top: 15px solid transparent;
+    margin: 1.5em 0.5em 0 1.8em;
+    /*border-top: 15px solid transparent;
     border-left: 26.25px solid #0a2b5c;
-    border-bottom: 15px solid transparent;
+    border-bottom: 15px solid transparent;*/
+
+    width: 26.25px;
+    height: 26.25px;
+    border-style: solid;
+    border-width: 15px 0 15px 26.25px;
   }
   .activeTrack .play {
-    border-left: 26.25px solid #f5d76e;
+    border-color: transparent transparent transparent #f5d76e;
   }
   .activeTrack .pause {
-    width: 18px;
+    /*width: 18px;
     height: 26px;
     border-right: 6px solid #f5d76e;
     border-left: 6px solid #f5d76e;
-    margin: 1.35em 1.4em 0 1.8em;
+    margin: 1.35em 1.4em 0 1.8em;*/
+    margin: 1.5em 1em 0 1.8em;
+    width: 18px;
+    height: 30px;
+    border-style: double;
+    border-width: 0 0 0 20px;
+    border-color: #f5d76e;
+    background-color: transparent;
   }
   .preview-na {
     font-size: .7em;
@@ -370,7 +399,7 @@ export default {
   outline: none;
   }
   .list-item:focus .play {
-    border-left: 35px solid #f5d76e;
+    border-color: transparent transparent transparent #f5d76e;
   }
   .list-item:focus .track-number {
     color: #f5d76e;
@@ -382,7 +411,7 @@ export default {
     color: #f5d76e;
   } 
 .play:focus {
-  border-left: 35px solid #f5d76e;
+  border-color: transparent transparent transparent #f5d76e;;
   outline: none;
 }
 .pause:focus {

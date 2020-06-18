@@ -8,6 +8,8 @@
       @click="closeMenu" 
       @keyup.enter="closeMenu"
       tabindex = 0
+      aria-label="Close sidebar navigation menu"
+      aria-controls="sidebar menu"
       :class="{ hidden: !crossIcon }">
         <span
           v-for="(x, index) in 2"
@@ -24,6 +26,8 @@
       @click="openMenu"
       @keyup.enter="openMenu"
       tabindex = 1
+      aria-label="Open sidebar navigation menu"
+      aria-controls="sidebar menu"
       :class="{ hidden: !burgerIcon }"
     >
       <span
