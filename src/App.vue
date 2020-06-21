@@ -1,22 +1,21 @@
 <template>
   <div id="app">
-    <!--<img src="./assets/logo.png">-->
-    <!--<SpotifyLogin v-if='accessToken'/>
-    <HelloWorld/>-->
-    <Menu v-if="this.loggedIn" tabindex = 0>
-      <a v-on:click="goHome()" @keyup.enter="goHome()" tabindex = 0>
+    <!--openMenu and closeMenu are emitted from the Menu child component when the user opens
+    or closes the menu. This component uses that to toggle the state of the menu for tabindexing-->
+    <Menu v-if="this.loggedIn" v-on:openMenu="toggleMenuState" v-on:closeMenu="toggleMenuState">
+      <a v-on:click="goHome()" @keyup.enter="goHome()" :tabindex=[isMenuOpen]>
         <i class="fa fa-fw fa-star-o"></i>
         <span>Home</span>
       </a>
-      <a v-on:click="goTopArtists()" @keyup.enter="goTopArtists()" tabindex = 0>
+      <a v-on:click="goTopArtists()" @keyup.enter="goTopArtists()" :tabindex=[this.isMenuOpen]>
         <i class="fa fa-fw fa-bell-o"></i>
         <span>Top Artists</span>
       </a>
-      <a v-on:click="goTopTracks()" @keyup.enter="goTopTracks()" tabindex = 0>
+      <a v-on:click="goTopTracks()" @keyup.enter="goTopTracks()" :tabindex=[this.isMenuOpen]>
         <i class="fa fa-fw fa-envelope-o"></i>
         <span>Top Tracks</span>
       </a>
-      <a v-on:click="logOut()" @keyup.enter="logOut()" tabindex = 0>
+      <a v-on:click="logOut()" @keyup.enter="logOut()" :tabindex=[this.isMenuOpen]>
         <i class="fa fa-fw fa-envelope-o"></i>
         <span>Log Out</span>
       </a>
@@ -42,6 +41,11 @@ export default {
       { name: 'description', content: 'view your top tracks and artists from Spotify!' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ]
+  },
+  data () {
+    return {
+      isMenuOpen: -1 // used to keep track of whether the menu sidebar is opened or closed
+    }
   },
   components: {
     Menu
@@ -69,6 +73,10 @@ export default {
       // window.alert("logged out");
       // this.$router.push({name: 'Home'});
       // this.$router.go();
+    },
+    /** toggles the menu state */
+    toggleMenuState () {
+      this.isMenuOpen === -1 ? this.isMenuOpen = 0 : this.isMenuOpen = -1;
     }
   }
 }

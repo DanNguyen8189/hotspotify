@@ -1,13 +1,13 @@
 <template>
   <div>
     <div ref="sideNav" class="bm-menu">
-      <nav class="bm-item-list" @click="closeMenu" @keyup.enter="closeMenu">
+      <nav class="bm-item-list" @click="closeMenu" @keyup.enter="closeMenu" :aria-hidden="[!this.isSideBarOpen]">
         <slot></slot>
       </nav>
       <span class="bm-cross-button cross-style" 
       @click="closeMenu" 
       @keyup.enter="closeMenu"
-      tabindex = 0
+      :tabindex = "[this.isSideBarOpen ? 0 : -1]"
       aria-label="Close sidebar navigation menu"
       aria-controls="sidebar menu"
       :class="{ hidden: !crossIcon }">
@@ -25,7 +25,7 @@
       class="bm-burger-button"
       @click="openMenu"
       @keyup.enter="openMenu"
-      tabindex = 1
+      :tabindex = "[this.isSideBarOpen ? -1 : 1]"
       aria-label="Open sidebar navigation menu"
       aria-controls="sidebar menu"
       :class="{ hidden: !burgerIcon }"
