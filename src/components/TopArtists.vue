@@ -4,7 +4,7 @@
         <div class='header-wrapper'>
           <div class='header-inside'>
             <h1>Top Artists</h1>
-              <div class="timeperiod-button-container">
+              <div class="timeperiod-button-container" role="navigation">
                 <button v-on:click="changeTimePeriod(0)">
                   <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
                 </button>
@@ -17,39 +17,22 @@
               </div>
             </div>
           </div>
-        <div class="artist-list-container">
+        <div class="artist-list-container" role="list">
       <!--<img :src="this.user.images[0].url" alt="profile_picture" class="profile_pic">-->
         <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
-        <div v-for="n in getAmount()" :key="n" class="list-item">
-          <!--<img v-bind:src="`this.userArtistsShort.items[0].images[2].url`">-->
-          <!--<img src="https://i.scdn.co/image/6c785e6be62ae82a5222578045439fc235086f64">-->
-          <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
-          <!--<img :src="this.$store.state.topArtistsShort.items[0].images[2].url" alt="artist_picture">-->
-          <img :src=getImage(n-1) :alt=getName(n-1)>
-          <div class='artist-text'>{{ getName(n-1) }}</div>
-        </div>
+          <div v-for="n in getAmount()" :key="n" class="list-item">
+            <!--<img v-bind:src="`this.userArtistsShort.items[0].images[2].url`">-->
+            <!--<img src="https://i.scdn.co/image/6c785e6be62ae82a5222578045439fc235086f64">-->
+            <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
+            <!--<img :src="this.$store.state.topArtistsShort.items[0].images[2].url" alt="artist_picture">-->
+            <img :src=getImage(n-1) :alt=getName(n-1)>
+            <div class='artist-text'>{{ getName(n-1) }}</div>
+          </div>
         </div>
       </template>
       <template v-else>
       <!--This is here because the data from spotify doesn't come fast enough
       for the above template to render right away-->
-        <!--<div class="fire">
-          <div class="fire-left">
-            <div class="main-fire"></div>
-            <div class="particle-fire"></div>
-          </div>
-          <div class="fire-main">
-            <div class="main-fire"></div>
-            <div class="particle-fire"></div>
-          </div>
-          <div class="fire-right">
-            <div class="main-fire"></div>
-            <div class="particle-fire"></div>
-          </div>
-          <div class="fire-bottom">
-            <div class="main-fire"></div>
-          </div>
-        </div>-->
         <fire-animation></fire-animation>
       </template>
     </div>

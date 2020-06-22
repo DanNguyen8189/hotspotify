@@ -1,40 +1,42 @@
 <template>
   <div class='toptracks'>
     <template v-if="this.userTracksShort">
-        <div class='header-wrapper'>
-          <div class='header-inside'>
-            <h1>Top Tracks</h1>
-              <div class="timeperiod-button-container">
-                <button v-on:click="changeTimePeriod(0)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
-                </button>
-                <button v-on:click="changeTimePeriod(1)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 1 }">Past 6 Months</span>
-                </button>
-                <button v-on:click="changeTimePeriod(2)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 2 }">All Time</span>
-                </button>
-              </div>
-            </div>
+      <div class='header-wrapper'>
+        <div class='header-inside'>
+          <h1>Top Tracks</h1>
+          <div class="timeperiod-button-container">
+            <button v-on:click="changeTimePeriod(0)">
+              <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
+            </button>
+            <button v-on:click="changeTimePeriod(1)">
+              <span v-bind:class="{ active: this.$store.state.timePeriod === 1 }">Past 6 Months</span>
+            </button>
+            <button v-on:click="changeTimePeriod(2)">
+              <span v-bind:class="{ active: this.$store.state.timePeriod === 2 }">All Time</span>
+            </button>
           </div>
-      <div v-for="n in getAmount()" :key="n" class="list-item"
-      v-bind:class="{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }">
-        <!--v-bind:class="{ activeTrack: activeTrack === n-1 }"-->
-        <span>
-        <p class="track-number">{{n}}</p>
-        <img :src=getImage(n-1)>
-        <div class = "track-artist-text">
-          <p class="track-name">{{ getTrackName(n-1) }}</p>
-          <p class="artist-name">{{ getArtistName(n-1) }}</p>
         </div>
-        <button v-if="getTrackURL(n-1) !== null" class="play-button-area"
-                v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
-                                pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
-                @click.prevent="playTrack(n-1)"
-                aria-label="Pause and play current track">
-        </button>
-        <p v-else class="play-button-area preview-na">Preview N/A</p>
-        </span>
+      </div>
+      <div role="list">
+        <div v-for="n in getAmount()" :key="n" class="list-item"
+        v-bind:class="{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }">
+          <!--v-bind:class="{ activeTrack: activeTrack === n-1 }"-->
+          <span>
+          <p class="track-number">{{n}}</p>
+          <img :src=getImage(n-1)>
+          <div class = "track-artist-text">
+            <p class="track-name">{{ getTrackName(n-1) }}</p>
+            <p class="artist-name">{{ getArtistName(n-1) }}</p>
+          </div>
+          <button v-if="getTrackURL(n-1) !== null" class="play-button-area"
+                  v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
+                                  pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
+                  @click.prevent="playTrack(n-1)"
+                  aria-label="Pause or play current track">
+          </button>
+          <p v-else class="play-button-area preview-na">Preview N/A</p>
+          </span>
+        </div>
       </div>
     </template>
     <template v-else>
