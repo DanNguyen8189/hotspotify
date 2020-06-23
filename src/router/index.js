@@ -1,12 +1,18 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import VueMeta from 'vue-meta'
-import Home from "@/components/Home"
-import TopArtists from "@/components/TopArtists"
-import TopTracks from "@/components/TopTracks"
+import Vue from 'vue';
+import Router from 'vue-router';
+import VueMeta from 'vue-meta';
+import Home from "@/components/Home";
+import TopArtists from "@/components/TopArtists";
+import TopTracks from "@/components/TopTracks";
 
 Vue.use(Router);
-Vue.use(VueMeta)
+Vue.use(VueMeta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  ssrAttribute: 'data-vue-meta-server-rendered',
+  tagIDKeyName: 'vmid',
+  refreshOnceOnNavigation: true
+});
 
 const router = new Router({
   routes: [
@@ -14,7 +20,7 @@ const router = new Router({
       path: "/",
       name: "Home",
       component: Home,
-      meta: {
+      /* meta: {
         metaTags: [
           {
             name: 'description',
@@ -25,13 +31,13 @@ const router = new Router({
             content: 'Hotspotify home'
           }
         ]
-      }
+      } */
     },
     {
       path: "/topartists",
       name: "TopArtists",
       component: TopArtists,
-      meta: {
+      /* meta: {
         metaTags: [
           {
             name: 'description',
@@ -42,13 +48,13 @@ const router = new Router({
             content: 'your top artists on Spotify'
           }
         ]
-      }
+      } */
     },
     {
       path: "/toptracks",
       name: "TopTracks",
       component: TopTracks,
-      meta: {
+      /* meta: {
         metaTags: [
           {
             name: 'description',
@@ -59,14 +65,13 @@ const router = new Router({
             content: 'your top tracks on Spotify'
           }
         ]
-      }
-    
+      } */
     },
     {
       path: "/:tokens",
       name: "Home",
       component: Home,
-      meta: {
+      /* meta: {
         metaTags: [
           {
             name: 'description',
@@ -77,13 +82,13 @@ const router = new Router({
             content: 'Hotspotify home'
           }
         ]
-      }
+      } */
     }
   ]
 });
 
 // This callback runs before every route change, including on page load.
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   // This goes through the matched routes from last to first, finding the closest route with a title.
   // eg. if we have /some/deep/nested/route and /some, /deep, and /nested have titles, nested's will be chosen.
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
@@ -118,6 +123,6 @@ router.beforeEach((to, from, next) => {
   .forEach(tag => document.head.appendChild(tag));
 
   next();
-});
+}); */
 
 export default router

@@ -36,9 +36,11 @@ export default {
   metaInfo: {
     title: 'Hotspotify',
     titleTemplate: '%s | Hotspotify',
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
-      { name: 'description', content: 'view your top tracks and artists from Spotify!' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ]
   },

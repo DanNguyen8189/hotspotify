@@ -36,7 +36,7 @@ export default {
   name: 'Home',
   metaInfo: {
     meta: [
-      { name: 'description', content: 'view your top tracks and artists from Spotify!' }
+      { name: 'description', content: 'view your top tracks and artists from Spotify!' },
     ]
   },
   data () {
