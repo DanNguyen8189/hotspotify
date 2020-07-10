@@ -4,23 +4,23 @@
         <div class='header-wrapper'>
           <div class='header-inside'>
             <h1>Top Artists</h1>
-              <div class="timeperiod-button-container" role="navigation">
-                <button v-on:click="changeTimePeriod(0)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
+              <div class='timeperiod-button-container' role='navigation'>
+                <button v-on:click='changeTimePeriod(0)'>
+                  <span v-bind:class='{ active: this.$store.state.timePeriod === 0 }'>Past Month</span>
                 </button>
-                <button v-on:click="changeTimePeriod(1)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 1 }">Past 6 Months</span>
+                <button v-on:click='changeTimePeriod(1)'>
+                  <span v-bind:class='{ active: this.$store.state.timePeriod === 1 }'>Past 6 Months</span>
                 </button>
-                <button v-on:click="changeTimePeriod(2)">
-                  <span v-bind:class="{ active: this.$store.state.timePeriod === 2 }">All Time</span>
+                <button v-on:click='changeTimePeriod(2)'>
+                  <span v-bind:class='{ active: this.$store.state.timePeriod === 2 }'>All Time</span>
                 </button>
               </div>
             </div>
           </div>
-        <div class="artist-list-container" role="list">
+        <div class='artist-list-container' role='list'>
       <!--<img :src="this.user.images[0].url" alt="profile_picture" class="profile_pic">-->
         <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
-          <div v-for="n in getAmount()" :key="n" class="list-item">
+          <div v-for='n in getAmount()' :key='n' class='list-item'>
             <!--<img v-bind:src="`this.userArtistsShort.items[0].images[2].url`">-->
             <!--<img src="https://i.scdn.co/image/6c785e6be62ae82a5222578045439fc235086f64">-->
             <!--<img :src="this.userArtistsShort.items[0].images[2].url" alt="artist_picture">-->
@@ -39,8 +39,9 @@
 </template>
 
 <script>
-import { getTopArtists } from "../services/spotifyApi";
-import FireAnimation from "./FireAnimation.vue";
+import { getTopArtists } from '../services/spotifyApi';
+import FireAnimation from './FireAnimation.vue';
+
 export default {
   name: 'TopArtists',
   metaInfo: {

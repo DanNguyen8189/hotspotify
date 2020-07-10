@@ -17,8 +17,8 @@ Vue.use(VueMeta, {
 const router = new Router({
   routes: [
     {
-      path: "/",
-      name: "Home",
+      path: '/',
+      name: 'Home',
       component: Home,
       /* meta: {
         metaTags: [
@@ -34,8 +34,8 @@ const router = new Router({
       } */
     },
     {
-      path: "/topartists",
-      name: "TopArtists",
+      path: '/topartists',
+      name: 'TopArtists',
       component: TopArtists,
       /* meta: {
         metaTags: [
@@ -51,8 +51,8 @@ const router = new Router({
       } */
     },
     {
-      path: "/toptracks",
-      name: "TopTracks",
+      path: '/toptracks',
+      name: 'TopTracks',
       component: TopTracks,
       /* meta: {
         metaTags: [
@@ -68,8 +68,8 @@ const router = new Router({
       } */
     },
     {
-      path: "/:tokens",
-      name: "Home",
+      path: '/:tokens',
+      name: 'Home',
       component: Home,
       /* meta: {
         metaTags: [
@@ -125,4 +125,4 @@ const router = new Router({
   next();
 }); */
 
-export default router
+export default router;

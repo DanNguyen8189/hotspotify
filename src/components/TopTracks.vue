@@ -1,43 +1,55 @@
 <template>
   <div class='toptracks'>
-    <template v-if="this.userTracksShort">
+    <template v-if='this.userTracksShort'>
       <div class='header-wrapper'>
         <div class='header-inside'>
           <h1>Top Tracks</h1>
-          <div class="timeperiod-button-container">
-            <button v-on:click="changeTimePeriod(0)">
-              <span v-bind:class="{ active: this.$store.state.timePeriod === 0 }">Past Month</span>
+          <div class='timeperiod-button-container'>
+            <button v-on:click='changeTimePeriod(0)'>
+              <span v-bind:class='{ active: this.$store.state.timePeriod === 0 }'>Past Month</span>
             </button>
-            <button v-on:click="changeTimePeriod(1)">
-              <span v-bind:class="{ active: this.$store.state.timePeriod === 1 }">Past 6 Months</span>
+            <button v-on:click='changeTimePeriod(1)'>
+              <span v-bind:class='{ active: this.$store.state.timePeriod === 1 }'>Past 6 Months</span>
             </button>
-            <button v-on:click="changeTimePeriod(2)">
-              <span v-bind:class="{ active: this.$store.state.timePeriod === 2 }">All Time</span>
+            <button v-on:click='changeTimePeriod(2)'>
+              <span v-bind:class='{ active: this.$store.state.timePeriod === 2 }'>All Time</span>
             </button>
           </div>
         </div>
       </div>
-      <div role="list">
-        <div v-for="n in getAmount()" :key="n" class="list-item"
-        v-bind:class="{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }">
-          <!--v-bind:class="{ activeTrack: activeTrack === n-1 }"-->
+      <div role='list'>
+        <div v-for='n in getAmount()' :key='n' class='list-item'
+        v-bind:class='{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'>
+          <!--v-bind:class='{ activeTrack: activeTrack === n-1 }'-->
           <span>
-          <p class="track-number">{{n}}</p>
+          <p class='track-number'>{{n}}</p>
           <img :src=getImage(n-1)>
-          <div class = "track-artist-text">
-            <p class="track-name">{{ getTrackName(n-1) }}</p>
-            <p class="artist-name">{{ getArtistName(n-1) }}</p>
+          <div class = 'track-artist-text'>
+            <p class='track-name'>{{ getTrackName(n-1) }}</p>
+            <p class='artist-name'>{{ getArtistName(n-1) }}</p>
           </div>
-          <button v-if="getTrackURL(n-1) !== null" class="play-button-area"
-                  v-bind:class="{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
-                                  pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }"
-                  @click.prevent="playTrack(n-1)"
-                  aria-label="Pause or play current track">
+          <button v-if='getTrackURL(n-1) !== null' class='play-button-area'
+                  v-bind:class='{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
+                                  pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'
+                  @click.prevent='playTrack(n-1)'
+                  aria-label='Pause or play current track'>
           </button>
-          <p v-else class="play-button-area preview-na">Preview N/A</p>
+          <p v-else class='play-button-area preview-na'>Preview N/A</p>
           </span>
         </div>
       </div>
+        <button
+          type="button"
+          class="btn"
+          @click="showModal"
+        >
+          Open Modal!
+        </button>
+
+        <modal
+          v-show="isModalVisible"
+          @close="closeModal"
+        />
     </template>
     <template v-else>
     <!--This is here because the data from spotify doesn't come fast enough
@@ -48,8 +60,10 @@
 </template>
 
 <script>
-import { getTopTracks } from "../services/spotifyApi";
-import FireAnimation from "./FireAnimation.vue";
+import { getTopTracks } from '../services/spotifyApi';
+import FireAnimation from './FireAnimation.vue';
+import TrackInfo from './TrackInfo.vue';
+
 export default {
   name: 'TopTracks',
   metaInfo: {
@@ -64,11 +78,13 @@ export default {
       audioElement: null,
       activeTrackIndex: -1,
       activeTrackPage: -1,
-      timOut: null
+      timOut: null,
+      isModalVisible: false
     }
   },
   components :{
-    'fire-animation': FireAnimation
+    'fire-animation': FireAnimation,
+    'track-info': TrackInfo
   },
   // might not need this
   computed: {
@@ -87,11 +103,11 @@ export default {
     getTopTracks2 () {
       getTopTracks().then((response) => {
         // this.$store.commit('setUser', response.user);
-        /* console.log("Tracks response data:");
+        /* console.log('Tracks response data:');
         console.log(response) */
         this.$store.commit('setTopTracks', response);
         // this.$store.commit('setTimePeriod', 'short');
-      }).catch(err => console.log("user not logged in"));
+      }).catch(err => console.log('user not logged in'));
     },
     /** function to change the time period to display */
     changeTimePeriod (state) {
@@ -148,6 +164,14 @@ export default {
         this.activeTrackIndex = -1;
       }.bind(this), 30000); //The value of this is different inside the setTimeout so bind(this) needed to be added
     },
+
+    /** Functions for track information modals */
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    }
   },
   created () {
     this.getTopTracks2();

@@ -2,21 +2,21 @@
   <div id="app">
     <!--openMenu and closeMenu are emitted from the Menu child component when the user opens
     or closes the menu. This component uses that to toggle the state of the menu for tabindexing-->
-    <Menu v-if="this.loggedIn" v-on:openMenu="toggleMenuState" v-on:closeMenu="toggleMenuState">
-      <a v-on:click="goHome()" @keyup.enter="goHome()" :tabindex=[isMenuOpen]>
-        <i class="fa fa-fw fa-star-o"></i>
+    <Menu v-if='this.loggedIn' v-on:openMenu='toggleMenuState' v-on:closeMenu='toggleMenuState'>
+      <a v-on:click='goHome()' @keyup.enter='goHome()' :tabindex=[isMenuOpen]>
+        <i class='fa fa-fw fa-star-o'></i>
         <span>Home</span>
       </a>
-      <a v-on:click="goTopArtists()" @keyup.enter="goTopArtists()" :tabindex=[this.isMenuOpen]>
-        <i class="fa fa-fw fa-bell-o"></i>
+      <a v-on:click='goTopArtists()' @keyup.enter='goTopArtists()' :tabindex=[this.isMenuOpen]>
+        <i class='fa fa-fw fa-bell-o'></i>
         <span>Top Artists</span>
       </a>
-      <a v-on:click="goTopTracks()" @keyup.enter="goTopTracks()" :tabindex=[this.isMenuOpen]>
-        <i class="fa fa-fw fa-envelope-o"></i>
+      <a v-on:click='goTopTracks()' @keyup.enter='goTopTracks()' :tabindex=[this.isMenuOpen]>
+        <i class='fa fa-fw fa-envelope-o'></i>
         <span>Top Tracks</span>
       </a>
-      <a v-on:click="logOut()" @keyup.enter="logOut()" :tabindex=[this.isMenuOpen]>
-        <i class="fa fa-fw fa-envelope-o"></i>
+      <a v-on:click='logOut()' @keyup.enter='logOut()' :tabindex=[this.isMenuOpen]>
+        <i class='fa fa-fw fa-envelope-o'></i>
         <span>Log Out</span>
       </a>
     </Menu>
@@ -29,8 +29,8 @@
 <script>
 /* import HellowWorld from "@/components/HelloWorld";
 import SpotifyLogin from "@/components/SpotifyLogin"; */
-import Menu from "./components/Menu.vue";
-import { logout as removeTokens } from "./services/spotifyApi";
+import Menu from './components/Menu.vue';
+import { logout as removeTokens } from './services/spotifyApi';
 export default {
   name: 'App',
   metaInfo: {
