@@ -1,15 +1,12 @@
 <template>
+  <transition name="modal-fade">
   <div class="modal-backdrop">
-    <div class="modal">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
       <header class="modal-header">
         <slot name="header">
           This is the default tile!
-
-          <button
-            type="button"
-            class="btn-close"
-            @click="close"
-          >
+          {{ this.trackNumber }}
+          <button type="button" class="btn-close" @click="close" aria-label="Close modal">
             x
           </button>
         </slot>
@@ -18,29 +15,27 @@
         <slot name="body">
           I'm the default body!
         </slot>
-       </section>
-       <footer class="modal-footer">
-          <slot name="footer">
-            I'm the default footer!
-
-            <button
-              type="button"
-              class="btn-green"
-              @click="close"
-            >
-              Close me!
+      </section>
+      <footer class="modal-footer">
+        <slot name="footer">
+          I'm the default footer!
+          <button type="button" class="btn-green" @click="close" aria-label="Close modal">
+            Close me!
           </button>
         </slot>
       </footer>
     </div>
   </div>
+  </transition>
 </template>
 <script>
 export default {
-  name: 'track-info',
+  name: 'TrackInfo',
+  props: ['trackNumber'],
   methods: {
     close() {
       this.$emit('close');
+      console.log("Haha what the fuck?");
     }
   }
 }
@@ -103,5 +98,15 @@ export default {
     background: #4AAE9B;
     border: 1px solid #4AAE9B;
     border-radius: 2px;
+  }
+
+  .modal-fade-enter,
+  .modal-fade-leave-active {
+    opacity: 0;
+  }
+
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity .5s ease
   }
 </style>>

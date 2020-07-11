@@ -22,7 +22,8 @@
         v-bind:class='{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'>
           <!--v-bind:class='{ activeTrack: activeTrack === n-1 }'-->
           <span>
-          <p class='track-number'>{{n}}</p>
+          <!--<p class='track-number'>{{n}}</p>-->
+          <p class='track-number' @click="showModal(n-1)">&#x1F6C8;</p>
           <img :src=getImage(n-1)>
           <div class = 'track-artist-text'>
             <p class='track-name'>{{ getTrackName(n-1) }}</p>
@@ -38,18 +39,11 @@
           </span>
         </div>
       </div>
-        <button
-          type="button"
-          class="btn"
-          @click="showModal"
-        >
-          Open Modal!
-        </button>
-
-        <modal
-          v-show="isModalVisible"
-          @close="closeModal"
-        />
+      <track-info
+        v-show='isModalVisible'
+        @close="closeModal"
+        :track-number='this.trackViewIndex'
+      />
     </template>
     <template v-else>
     <!--This is here because the data from spotify doesn't come fast enough
@@ -78,6 +72,7 @@ export default {
       audioElement: null,
       activeTrackIndex: -1,
       activeTrackPage: -1,
+      trackViewIndex: -1,
       timOut: null,
       isModalVisible: false
     }
@@ -166,7 +161,8 @@ export default {
     },
 
     /** Functions for track information modals */
-    showModal() {
+    showModal(index) {
+      this.trackViewIndex = index;
       this.isModalVisible = true;
     },
     closeModal() {
@@ -198,9 +194,10 @@ export default {
 
 .list-item .track-number {
   float: left;
-  line-height: 3em;
+  line-height: 10px;
   margin-left: 2%;
   color: #2f93c2;
+  font-size: 25px;
   -webkit-transition: color 0.5s;
   -moz-transition:    color 0.5s;
   -ms-transition:     color 0.5s;
@@ -347,10 +344,9 @@ export default {
   }
   .list-item .track-number {
     float: left;
-    line-height: 2.5em;
     margin-left: 2%;
-    font-size: .9em;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1em;
   }
   .list-item img {
     width: 3.609em;
