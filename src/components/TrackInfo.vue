@@ -3,13 +3,20 @@
   <div class="modal-backdrop">
     <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
       <header class="modal-header">
-        <slot name="header">
-          This is the default tile!
-          {{ this.trackNumber }}
-          <button type="button" class="btn-close" @click="close" aria-label="Close modal">
-            x
-          </button>
-        </slot>
+        <!--<slot name="header">-->
+          <div class='header-block'>
+            <img :src=getImage(this.trackNumber)>
+          </div>
+          <div class='header-block'>
+            <h2>{{ getTrackName(this.trackNumber) }}</h2>
+            <h2>{{ getArtistName(this.trackNumber) }}</h2>
+          </div>
+          <div class='header-block'>
+            <button type="button" class="btn-close" @click="close" aria-label="Close modal">
+              x
+            </button>
+          </div>
+        <!--</slot>-->
       </header>
       <section class="modal-body">
         <slot name="body">
@@ -17,12 +24,12 @@
         </slot>
       </section>
       <footer class="modal-footer">
-        <slot name="footer">
+        <!--<slot name="footer">
           I'm the default footer!
           <button type="button" class="btn-green" @click="close" aria-label="Close modal">
             Close me!
           </button>
-        </slot>
+        </slot>-->
       </footer>
     </div>
   </div>
@@ -36,7 +43,21 @@ export default {
     close() {
       this.$emit('close');
       console.log("Haha what the fuck?");
-    }
+    },
+    getImage (index) {
+      return this.$store.getters.getTopTracks.items[index].album.images[1].url;
+      //return this.$parent.getImage(index);
+    },
+    /** function get track name */
+    getTrackName (index) {
+      //return this.$store.getters.getTopTracks.items[index].name;
+      return this.$parent.getTrackName(index);
+    },
+    /** funciton to get artist name */
+    getArtistName (index) {
+      //return this.$store.getters.getTopTracks.items[index].artists[0].name;
+      return this.$parent.getArtistName(index);
+    },
   }
 }
 </script>>
@@ -54,11 +75,12 @@ export default {
   }
 
   .modal {
-    background: #FFFFFF;
-    box-shadow: 2px 2px 20px 1px;
+    background-color: #154e6e;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    height: 95vh;
+    width: 80%;
   }
 
   .modal-header,
@@ -73,6 +95,21 @@ export default {
     justify-content: space-between;
   }
 
+  .modal-header .header-block {
+    flex: 1 1 0;
+  }
+
+  .modal-header img {
+    float: left;
+    display: block;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: .3em solid #e42c6a;
+  }
+  .modal-header h2 {
+    display: block;
+  }
   .modal-footer {
     border-top: 1px solid #eeeeee;
     justify-content: flex-end;
@@ -84,6 +121,7 @@ export default {
   }
 
   .btn-close {
+    float: right;
     border: none;
     font-size: 20px;
     padding: 20px;
