@@ -70,9 +70,11 @@ export default {
         this.tempo = response.data.tempo;
       }).catch(err => console.log('something went wrong'));
     },
+    /** let parent component know that the close button was pressed */
     close () {
       this.$emit('close');
     },
+    /** function to get track's album image */
     getImage (index) {
       return this.$store.getters.getTopTracks.items[index].album.images[1].url;
       //return this.$parent.getImage(index);
@@ -82,14 +84,21 @@ export default {
       //return this.$store.getters.getTopTracks.items[index].name;
       return this.$parent.getTrackName(index);
     },
-    /** funciton to get artist name */
+    /** function to get artist name */
     getArtistName (index) {
       //return this.$store.getters.getTopTracks.items[index].artists[0].name;
       return this.$parent.getArtistName(index);
     },
   },
+  // gets info for track 0 by default on create (covers edge case when user first loads top tracks and 
+  // views track information for the first track in the list, since updated() won't detect that)
+  created () {
+    this.getTrackInfo2(this.trackNumber);
+  },
+  // when user picks a new track (this.trackNumber changes!)to view, component will call the spotify api 
+  // to get the right info. Created only runs once at the beginning of the component's creation, 
+  // and since the component isn't destroyed when user clicks close, we need this here
   updated () {
-    console.log("uh this got created?");
     this.getTrackInfo2(this.trackNumber);
   }
 }

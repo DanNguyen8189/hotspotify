@@ -72,7 +72,7 @@ export default {
       audioElement: null,
       activeTrackIndex: -1,
       activeTrackPage: -1,
-      trackViewIndex: -1,
+      trackViewIndex: 0,
       timOut: null,
       isModalVisible: false
     }
