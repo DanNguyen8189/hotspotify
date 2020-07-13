@@ -20,7 +20,7 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          I'm the default body!
+          {{ this.acousticness }}
         </slot>
       </section>
       <footer class="modal-footer">
@@ -36,13 +36,42 @@
   </transition>
 </template>
 <script>
+import { getTrackInfo } from '../services/spotifyApi';
 export default {
   name: 'TrackInfo',
   props: ['trackNumber'],
+  data () {
+    return {
+      acousticness: -1,
+      danceability: -1,
+      energy: -1,
+      instrumentalness: -1,
+      liveness: -1,
+      loudness: -1,
+      speechiness: -1,
+      valenece: -1,
+      tempo: -1
+    }
+  },
   methods: {
-    close() {
+    getTrackInfo2 (index) {
+      const id = this.$store.getters.getTopTracks.items[index].id;
+      console.log('id: ' + id);
+      console.log('it should be ' + 'https://api.spotify.com/v1/audio-features/{' + id + '}');
+      getTrackInfo(id).then((response) => {
+        console.log(response);
+        this.acousticness = response.data.acousticness;
+        this.danceability = response.data.danceability;
+        this.energy = response.data.energy;
+        this.instrumentalness = response.data.instrumentalness;
+        this.liveness = response.data.liveness;
+        this.loudness = response.data.loudness;
+        this.speechiness = response.data.valence;
+        this.tempo = response.data.tempo;
+      }).catch(err => console.log('something went wrong'));
+    },
+    close () {
       this.$emit('close');
-      console.log("Haha what the fuck?");
     },
     getImage (index) {
       return this.$store.getters.getTopTracks.items[index].album.images[1].url;
@@ -58,6 +87,10 @@ export default {
       //return this.$store.getters.getTopTracks.items[index].artists[0].name;
       return this.$parent.getArtistName(index);
     },
+  },
+  updated () {
+    console.log("uh this got created?");
+    this.getTrackInfo2(this.trackNumber);
   }
 }
 </script>>
