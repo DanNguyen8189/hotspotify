@@ -152,7 +152,6 @@ export const getTopTracks = () => {
 };
 
 export const getTrackInfo = (id) => { 
-  console.log('it should be ' + 'https://api.spotify.com/v1/audio-features/{' + id + '}');
   //return axios.get('https://api.spotify.com/v1/audio-features/{' + id + '}', { headers });
   return axios.get(`https://api.spotify.com/v1/audio-features/${id}`, { headers });
 }

@@ -39,11 +39,13 @@
           </span>
         </div>
       </div>
+      <div class = 'modal-wrapper'>
       <track-info
         v-show='isModalVisible'
         @close="closeModal"
         :track-number='this.trackViewIndex'
       />
+      </div>
     </template>
     <template v-else>
     <!--This is here because the data from spotify doesn't come fast enough
@@ -72,7 +74,7 @@ export default {
       audioElement: null,
       activeTrackIndex: -1,
       activeTrackPage: -1,
-      trackViewIndex: 0,
+      trackViewIndex: -1,
       timOut: null,
       isModalVisible: false
     }
@@ -335,6 +337,10 @@ export default {
     to {
         transform:rotate(360deg);
     }
+}
+
+.modal-wrapper {
+  height: 100vh;
 }
 
 @media screen and (max-width: 480px) {
