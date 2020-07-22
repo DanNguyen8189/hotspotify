@@ -7,7 +7,7 @@
           <div class='header-block'>
             <img :src=getImage(this.trackNumber)>
           </div>
-          <div class='header-block'>
+          <div class='header-block text'>
             <h2>{{ getTrackName(this.trackNumber) }}</h2>
             <h2>{{ getArtistName(this.trackNumber) }}</h2>
           </div>
@@ -21,7 +21,17 @@
       <section class="modal-body">
         <slot name="body">
           <div class='chart-wrapper'>
-          <pure-vue-chart
+          <!--<pure-vue-chart
+            :points="[{label: 'acousticness', value: this.acousticness},
+                      {label: 'danceability', value: this.danceability},
+                      {label: 'energy', value: this.energy},
+                      {label: 'speechiness', value: speechiness},
+                      {label: 'valence', value: this.valence}]"
+            :show-x-axis="true"
+            :width='this.parentWidth'
+            :height='this.parentHeight'
+          />-->
+          <bar-graph
             :points="[{label: 'acousticness', value: this.acousticness},
                       {label: 'danceability', value: this.danceability},
                       {label: 'energy', value: this.energy},
@@ -31,16 +41,6 @@
             :width='this.parentWidth'
             :height='this.parentHeight'
           />
-          <!--<pure-vue-chart
-            :points="[{label: 'acousticness', value: 0},
-                      {label: 'danceability', value: 0},
-                      {label: 'energy', value: 0},
-                      {label: 'speechiness', value: 0},
-                      {label: 'valence', value: 0}]"
-            :show-x-axis="true"
-            :width='this.parentWidth'
-            :height='this.parentHeight'
-          />-->
           </div>
         </slot>
       </section>
@@ -59,6 +59,7 @@
 <script>
 import { getTrackInfo } from '../services/spotifyApi';
 import PureVueChart from 'pure-vue-chart';
+import BarGraph from './BarGraph.vue';
 
 export default {
   name: 'TrackInfo',
@@ -83,6 +84,7 @@ export default {
   },
   components: {
     PureVueChart,
+    BarGraph
   },
   methods: {
     getTrackInfo2 (index) {
@@ -139,7 +141,7 @@ export default {
     this.getTrackInfo2(this.trackNumber);
     //this.parentHeight = Math.abs(this.$el.offsetHeight);
     //this.parentWidth = this.$parent.$el.offsetWidth;
-    this.parentHeight = this.$refs.potato.offsetHeight *.6;
+    this.parentHeight = this.$refs.potato.offsetHeight *.55;
     this.parentWidth = this.$refs.potato.offsetWidth *.9;
     console.log(this.$refs.potato.offsetHeight);
   },
@@ -184,7 +186,8 @@ export default {
   }
 
   .modal-header {
-    color: #4AAE9B;
+    background-color: #133d55;
+    color: rgb(103, 211, 191);
     justify-content: space-between;
   }
 
@@ -198,9 +201,12 @@ export default {
     width: 150px;
     border-radius: 50%;
     border: .3em solid #e42c6a;
+    margin: 10px;
+    padding: 5px;
   }
-  .modal-header h2 {
+  .modal-header h2:first-child {
     display: block;
+    margin-top: 1.5em;
   }
   .modal-footer {
     border-top: 1px solid #eeeeee;
@@ -213,6 +219,7 @@ export default {
   }
 
   .btn-close {
+    float: right;
     border: none;
     font-size: 20px;
     padding: 20px;
@@ -224,8 +231,8 @@ export default {
 
   .btn-green {
     color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
+    background: rgb(103, 211, 191);
+    border: 1px solid rgb(103, 211, 191);
     border-radius: 2px;
   }
 
@@ -238,19 +245,17 @@ export default {
   .modal-fade-leave-active {
     transition: opacity .5s ease
   }
-  .chart-wrapper .pure-vue-bar-chart text {
+  
+  /*.chart-wrapper .pure-vue-bar-chart text {
     display: block;
     font-size: 20px;
     fill: orange;
     margin: 3em;
     transform: translate(10px, 10px);
   }
-  /*.chart-wrapper .pure-vue-bar-chart rect {
-    width: 7em;
-  } */
   .chart-wrapper .pure-vue-bar-chart [style] {
     fill: #4AAE9B !important;
-  }
+  }*/
 
   @media screen and (max-width: 480px) {
     .modal {
