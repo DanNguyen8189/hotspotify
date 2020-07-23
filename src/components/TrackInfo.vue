@@ -4,14 +4,14 @@
     <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription"  ref='potato'>
       <header class="modal-header">
         <!--<slot name="header">-->
-          <div class='header-block'>
+          <div class='header-block img'>
             <img :src=getImage(this.trackNumber)>
           </div>
           <div class='header-block text'>
             <h2>{{ getTrackName(this.trackNumber) }}</h2>
             <h2>{{ getArtistName(this.trackNumber) }}</h2>
           </div>
-          <div class='header-block'>
+          <div class='header-block close-button'>
             <button type="button" class="btn-close" @click="close" aria-label="Close modal">
               x
             </button>
@@ -141,7 +141,7 @@ export default {
     this.getTrackInfo2(this.trackNumber);
     //this.parentHeight = Math.abs(this.$el.offsetHeight);
     //this.parentWidth = this.$parent.$el.offsetWidth;
-    this.parentHeight = this.$refs.potato.offsetHeight *.55;
+    this.parentHeight = this.$refs.potato.offsetHeight - 250;
     this.parentWidth = this.$refs.potato.offsetWidth *.9;
     console.log(this.$refs.potato.offsetHeight);
   },
@@ -179,8 +179,7 @@ export default {
     width: 80%;
   }
 
-  .modal-header,
-  .modal-footer {
+  .modal-header{
     padding: 15px;
     display: flex;
   }
@@ -189,10 +188,19 @@ export default {
     background-color: #133d55;
     color: rgb(103, 211, 191);
     justify-content: space-between;
+    align-items: center;
   }
 
-  .modal-header .header-block {
-    flex: 1 1 0;
+  .modal-header .img {
+    flex-basis: 15%;
+  }
+  .modal-header .text {
+    flex: 1 1 auto;
+    border: 5px solid red;
+  }
+  .modal-header .close-button {
+    flex-basis: 15%;
+    align-self: flex-start;
   }
 
   .modal-header img {
@@ -204,9 +212,15 @@ export default {
     margin: 10px;
     padding: 5px;
   }
+  .modal-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
   .modal-header h2:first-child {
     display: block;
-    margin-top: 1.5em;
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 2.5em;
+    color: white;
   }
   .modal-footer {
     border-top: 1px solid #eeeeee;
