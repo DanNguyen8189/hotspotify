@@ -352,7 +352,7 @@ export default {
   }
   @media screen and (max-width: 480px) {
     .bar-graph text {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 </style>

@@ -281,7 +281,7 @@ export default {
       font-size: 1em;
     }
     .modal-header h2:first-child {
-      font-size: 1.7em;
+      font-size: 1.5em;
     }
   }
 </style>>
