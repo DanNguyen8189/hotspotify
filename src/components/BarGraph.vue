@@ -350,4 +350,9 @@ export default {
   .bar-graph [style] {
     fill: #b33d64 !important;
   }
+  @media screen and (max-width: 480px) {
+    .bar-graph text {
+      font-size: 10px;
+    }
+  }
 </style>

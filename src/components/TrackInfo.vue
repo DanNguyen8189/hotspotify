@@ -195,8 +195,7 @@ export default {
     flex-basis: 15%;
   }
   .modal-header .text {
-    flex: 1 1 auto;
-    border: 5px solid red;
+    flex: 1 2 auto;
   }
   .modal-header .close-button {
     flex-basis: 15%;
@@ -205,8 +204,8 @@ export default {
 
   .modal-header img {
     display: block;
-    height: 150px;
-    width: 150px;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     border: .3em solid #e42c6a;
     margin: 10px;
@@ -274,6 +273,15 @@ export default {
   @media screen and (max-width: 480px) {
     .modal {
       width: 100%;
+    }
+    .modal-header .img {
+      flex-basis: 30%;
+    }
+    .modal-header h2 {
+      font-size: 1em;
+    }
+    .modal-header h2:first-child {
+      font-size: 1.7em;
     }
   }
 </style>>
