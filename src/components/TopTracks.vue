@@ -21,11 +21,11 @@
         <div v-for='n in getAmount()' :key='n' class='list-item'
         v-bind:class='{ activeTrack: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'>
           <!--v-bind:class='{ activeTrack: activeTrack === n-1 }'-->
-          <span>
+          <span class='flex-container'>
           <!--<p class='track-number'>{{n}}</p>-->
-          <p class='track-number' @click="showModal(n-1)">&#x1F6C8;</p>
+          <!--<p class='track-info' @click="showModal(n-1)">&#x1F6C8;</p>-->
           <img :src=getImage(n-1)>
-          <div class = 'track-artist-text'>
+          <div class = 'track-artist-text item-block'>
             <p class='track-name'>{{ getTrackName(n-1) }}</p>
             <p class='artist-name'>{{ getArtistName(n-1) }}</p>
           </div>
@@ -37,6 +37,7 @@
           </button>
           <p v-else class='play-button-area preview-na'>Preview N/A</p>
           </span>
+
         </div>
       </div>
       <div class = 'modal-wrapper'>
@@ -185,19 +186,24 @@ export default {
 .list-item {
   background-color: #154e6e; /* 155479 */
   margin: 0 5% .5em 5%;
-  height: 5em;
+  padding: 10px;
   border-radius: 5px;
   -webkit-transition: background-color 0.5s;
   -moz-transition:    background-color 0.5s;
   -ms-transition:     background-color 0.5s;
   -o-transition:      background-color 0.5s;
   transition:         background-color 0.5s;
-}
 
-.list-item .track-number {
-  float: left;
+}
+.list-item .flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-item .track-info {
+  /*float: left;
   line-height: 10px;
-  margin-left: 2%;
+  margin-left: 2%;*/
   color: #2f93c2;
   font-size: 25px;
   -webkit-transition: color 0.5s;
@@ -217,34 +223,34 @@ export default {
 
 .list-item img {
   border-radius: 50%;
-  float: left;
+  /*float: left;
   margin-left: 2%;
-  margin-top: 0.5em;
-  width: 4.01em;
+  margin-top: 0.5em;*/
+  /*width: 4.01em;*/
 }
 .track-artist-text {
   display: inline-block;
   overflow: hidden;
-  width: 40%;
+  /*width: 40%;*/
   font-weight: 700;
 }
 .track-name {
+  margin: 0;
   color: white;
-  display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden; /* need this for text-overflow property to work */
-  margin: 1.3em 0 0 0;
+  /* margin: 1.3em 0 0 0; */
 }
 .artist-name {
   color: rgba(255, 255, 255, 0.40);
-  display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   margin: 0 0 0 0;
 }
 .play-button-area {
+  /*display: inline-block;*/
   float: right;
   transition: 100ms all ease;
   will-change: border-width;
@@ -253,7 +259,7 @@ export default {
 .play {
   /* width: 0;
   height: 0; */
-  margin: 1.45em 1em 0 2em;
+  /* margin: 1.45em 1em 0 2em; */
   /*border-top: 20px solid transparent;
   border-left: 35px solid #0a2b5c;
   border-bottom: 20px solid transparent;
@@ -292,7 +298,7 @@ export default {
   -o-transition:      border-right 0.5s;
   transition:         border-right 0.5s;*/
   /* transition:         all 0.5s; */
-  margin: 1.45em 1.8em 0 2em;
+  /* margin: 1.45em 1.8em 0 2em; */
   width: 35px;
   height: 40px;
   border-style: double;
@@ -303,7 +309,6 @@ export default {
 
 .preview-na {
   width: 4em;
-  margin: 1.4em 1em 0 0.6em;
   color: #2da9e2;
   font-weight: 500;
 }
@@ -327,7 +332,7 @@ export default {
 .activeTrack .play {
   border-left: 35px solid #ff741e;
 }
-.activeTrack .track-number {
+.activeTrack .track-info {
   color: #f5d76e;
 }
 @keyframes spin {
@@ -348,7 +353,7 @@ export default {
     margin: .7em 5%;
     height: 4.5em;
   }
-  .list-item .track-number {
+  .list-item .track-info {
     float: left;
     margin-left: 2%;
     font-size: 1.2em;
@@ -407,7 +412,7 @@ export default {
   .list-item:hover .play {
     border-left: 35px solid #f5d76e;
   }
-  .list-item:hover .track-number {
+  .list-item:hover .track-info {
     color: #f5d76e;
   }
   .list-item:hover .track-name {
@@ -429,7 +434,7 @@ export default {
   .list-item:focus .play {
     border-color: transparent transparent transparent #f5d76e;
   }
-  .list-item:focus .track-number {
+  .list-item:focus .track-info {
     color: #f5d76e;
   }
   .list-item:focus .track-name {

@@ -182,9 +182,6 @@ export default {
   .modal-header{
     padding: 15px;
     display: flex;
-  }
-
-  .modal-header {
     background-color: #133d55;
     color: rgb(103, 211, 191);
     justify-content: space-between;
