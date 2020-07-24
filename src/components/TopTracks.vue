@@ -23,8 +23,11 @@
           <!--v-bind:class='{ activeTrack: activeTrack === n-1 }'-->
           <span class='flex-container'>
           <!--<p class='track-number'>{{n}}</p>-->
-          <!--<p class='track-info' @click="showModal(n-1)">&#x1F6C8;</p>-->
-          <img :src=getImage(n-1)>
+          <div class='left-block'>
+            <!--<p class='track-info' @click="showModal(n-1)">&#x1F6C8;</p>-->
+            <p class='track-info' @click="showModal(n-1)">&#9432;</p>
+            <img :src=getImage(n-1)>
+          </div>
           <div class = 'track-artist-text item-block'>
             <p class='track-name'>{{ getTrackName(n-1) }}</p>
             <p class='artist-name'>{{ getArtistName(n-1) }}</p>
@@ -200,12 +203,20 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.list-item .left-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+}
 .list-item .track-info {
   /*float: left;
   line-height: 10px;
   margin-left: 2%;*/
   color: #2f93c2;
-  font-size: 25px;
+  font-size: 20px;
+  margin: 0;
+  cursor: pointer;
   -webkit-transition: color 0.5s;
   -moz-transition:    color 0.5s;
   -ms-transition:     color 0.5s;
@@ -223,6 +234,7 @@ export default {
 
 .list-item img {
   border-radius: 50%;
+  margin-left: 5px;
   /*float: left;
   margin-left: 2%;
   margin-top: 0.5em;*/
@@ -251,7 +263,6 @@ export default {
 }
 .play-button-area {
   /*display: inline-block;*/
-  float: right;
   transition: 100ms all ease;
   will-change: border-width;
   cursor: pointer; /* changes the cursor to the hand cursor on hover */
@@ -349,15 +360,10 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
-  .list-item {
-    margin: .7em 5%;
-    height: 4.5em;
-  }
   .list-item .track-info {
     float: left;
     margin-left: 2%;
     font-size: 1.2em;
-    line-height: 1em;
   }
   .list-item img {
     width: 3.609em;
@@ -366,11 +372,8 @@ export default {
     font-size: .9em;
     font-weight: 700;
   }
-  .track-name {
-    margin: 1.2em 0 0 0; 
-  }
   .play {
-    margin: 1.5em 0.5em 0 1.8em;
+    /*margin: 1.5em 0.5em 0 1.8em;*/
     /*border-top: 15px solid transparent;
     border-left: 26.25px solid #0a2b5c;
     border-bottom: 15px solid transparent;*/
@@ -389,7 +392,7 @@ export default {
     border-right: 6px solid #f5d76e;
     border-left: 6px solid #f5d76e;
     margin: 1.35em 1.4em 0 1.8em;*/
-    margin: 1.5em 1em 0 1.8em;
+    /*margin: 1.5em 1em 0 1.8em;*/
     width: 18px;
     height: 30px;
     border-style: double;
@@ -400,7 +403,7 @@ export default {
   .preview-na {
     font-size: .7em;
     width: 3em;
-    margin: 1.7em 1.5em 0 1.2em;
+    /*margin: 1.7em 1.5em 0 1.2em;*/
   }
 }
 

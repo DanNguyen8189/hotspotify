@@ -31,6 +31,7 @@
 import SpotifyLogin from "@/components/SpotifyLogin"; */
 import Menu from './components/Menu.vue';
 import { logout as removeTokens } from './services/spotifyApi';
+
 export default {
   name: 'App',
   metaInfo: {
