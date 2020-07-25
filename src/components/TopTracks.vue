@@ -56,6 +56,7 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
         :track-number='this.trackViewIndex'
       />
       </div>
+      <p>Information icons from <a href='https://icons8.com/'>https://icons8.com</a></p>
     </template>
     <template v-else>
     <!--This is here because the data from spotify doesn't come fast enough
@@ -372,7 +373,12 @@ export default {
 .modal-wrapper {
   height: 100vh;
 }
-
+p a {
+  color: white;
+}
+p a:visited {
+  color: white;
+}
 @media screen and (max-width: 480px) {
   .list-item .track-info {
     float: left;
