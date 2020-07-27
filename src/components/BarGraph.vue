@@ -345,6 +345,7 @@ export default {
 <style scoped>
   .bar-graph text {
     font: 15px sans-serif;
+    font-weight: 700;
     fill: rgb(103, 211, 191);
   }
   .bar-graph [style] {
@@ -352,7 +353,12 @@ export default {
   }
   @media screen and (max-width: 480px) {
     .bar-graph text {
-      font-size: 12px;
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .bar-graph text {
+      font-size: 10px;
     }
   }
 </style>

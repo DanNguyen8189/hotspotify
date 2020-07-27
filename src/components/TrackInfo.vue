@@ -32,12 +32,13 @@
             :height='this.parentHeight'
           />-->
           <bar-graph
-            :points="[{label: 'acousticness', value: this.acousticness},
+            :points="[{label: 'acoustic', value: this.acousticness},
                       {label: 'danceability', value: this.danceability},
                       {label: 'energy', value: this.energy},
                       {label: 'speechiness', value: speechiness},
                       {label: 'valence', value: this.valence}]"
             :show-x-axis="true"
+            :show-y-axis="true"
             :width='this.parentWidth'
             :height='this.parentHeight'
           />
@@ -141,8 +142,8 @@ export default {
     this.getTrackInfo2(this.trackNumber);
     //this.parentHeight = Math.abs(this.$el.offsetHeight);
     //this.parentWidth = this.$parent.$el.offsetWidth;
-    this.parentHeight = this.$refs.potato.offsetHeight - 250;
-    this.parentWidth = this.$refs.potato.offsetWidth *.9;
+    this.parentHeight = this.$refs.potato.offsetHeight - 220;
+    this.parentWidth = this.$refs.potato.offsetWidth *.85;
     console.log(this.$refs.potato.offsetHeight);
   },
   mounted () {
@@ -175,7 +176,7 @@ export default {
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    height: 95vh;
+    height: 100vh;
     width: 80%;
   }
 
@@ -189,13 +190,13 @@ export default {
   }
 
   .modal-header .img {
-    flex-basis: 15%;
+    flex-basis: 12%;
   }
   .modal-header .text {
     flex: 1 2 auto;
   }
   .modal-header .close-button {
-    flex-basis: 15%;
+    flex-basis: 12%;
     align-self: flex-start;
   }
 
@@ -208,19 +209,17 @@ export default {
     margin: 10px;
     padding: 5px;
   }
+  .modal-header .text {
+    margin: 20px;
+  }
   .modal-header h2 {
     margin: 0;
     font-size: 1.2em;
   }
   .modal-header h2:first-child {
     display: block;
-    font-family: 'Nothing You Could Do', cursive;
-    font-size: 2.5em;
+    font-size: 1.7em;
     color: white;
-  }
-  .modal-footer {
-    border-top: 1px solid #eeeeee;
-    justify-content: flex-end;
   }
 
   .modal-body {
@@ -232,7 +231,7 @@ export default {
     float: right;
     border: none;
     font-size: 20px;
-    padding: 20px;
+    padding: 5px;
     cursor: pointer;
     font-weight: bold;
     color: #4AAE9B;
@@ -266,7 +265,9 @@ export default {
   .chart-wrapper .pure-vue-bar-chart [style] {
     fill: #4AAE9B !important;
   }*/
-
+  .chart-wrapper {
+    margin-top: 10px;
+  }
   @media screen and (max-width: 480px) {
     .modal {
       width: 100%;
@@ -275,10 +276,13 @@ export default {
       flex-basis: 30%;
     }
     .modal-header h2 {
-      font-size: 1em;
+      font-size: .8em;
     }
     .modal-header h2:first-child {
-      font-size: 1.5em;
+      font-size: 1.3em;
+    }
+    .modal-header .close-button {
+      flex-basis: 5%;
     }
   }
 </style>>
