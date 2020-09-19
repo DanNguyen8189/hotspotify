@@ -223,6 +223,7 @@ html {
   height: 100%;
 }
 .bm-burger-button {
+  z-index: 10;
   position: fixed;
   width: 36px;
   height: 30px;

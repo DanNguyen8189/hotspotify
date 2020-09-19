@@ -194,8 +194,9 @@ export default {
 }
 
 .list-item {
-  background-color: #154e6e; /* 155479 */
-  margin: 0 5% .5em 5%;
+  /*background-color: #154e6e;*/ /* 155479 */
+  background-color: #113b59;
+  margin: 0 5% .2em 5%;
   padding: 10px;
   border-radius: 5px;
   -webkit-transition: background-color 0.5s;
@@ -303,7 +304,8 @@ export default {
   height: 35px;
   border-style: solid;
   border-width: 20px 0 20px 35px;
-  border-color: transparent transparent transparent #0a2b5c;
+  /*border-color: transparent transparent transparent #0a2b5c;*/
+  border-color: transparent transparent transparent #437ba3;
   background-color: transparent;
 }
 .pause {
