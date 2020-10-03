@@ -13,13 +13,13 @@
 require('dotenv').config();
 
 const express = require('express');
-const path = require('path');
+//const path = require('path');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const request = require("request"); // request library
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
-const serveStatic = require('serve-static');
+//const serveStatic = require('serve-static');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -54,7 +54,7 @@ app
     .use(bodyParser.json())
     .use(cors())
     .use(cookieParser())
-    .use(serveStatic(__dirname + "/dist"));
+    //.use(serveStatic(__dirname + "/dist"));
 
 /*get request to status endpoint. If you go to /status in the browser you'll see the message in JSON format*/
 app.get("/status", (req, res) => {

@@ -144,7 +144,7 @@ export default {
     //this.parentWidth = this.$parent.$el.offsetWidth;
     this.parentHeight = this.$refs.potato.offsetHeight - 220;
     this.parentWidth = this.$refs.potato.offsetWidth *.85;
-    console.log(this.$refs.potato.offsetHeight);
+    //console.log(this.$refs.potato.offsetHeight);
   },
   mounted () {
     //this.parentHeight = Math.abs(this.$el.offsetHeight);
@@ -154,10 +154,10 @@ export default {
     console.log(this.$el.offsetWidth);
     console.log(this.$parent.$el.offsetWidth);
     console.log(this.$refs.potato.offsetHeight);*/
-    console.log("mounted " + this.$refs.potato.offsetHeight);
+    // console.log("mounted " + this.$refs.potato.offsetHeight);
   }
 }
-</script>>
+</script>
 <style>
   .modal-backdrop {
     position: fixed;
