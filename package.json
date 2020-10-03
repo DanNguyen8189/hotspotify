@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "pure-vue-chart": "^0.4.0",
     "request": "^2.88.2",
+    "serve-static": "^1.14.1",
     "vue": "^2.5.2",
     "vue-meta": "^2.4.0",
     "vue-router": "^3.0.1",
