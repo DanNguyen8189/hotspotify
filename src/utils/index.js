@@ -1,6 +1,6 @@
 /**
-    * Obtains parameters from the hash of the URL
-    * @return Object
+  * Obtains parameters from the hash of the URL
+  * @return Object
 */
 export const getHashParams = () => {
   const hashParams = {};
