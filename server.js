@@ -9,7 +9,7 @@
  * https://github.com/spotify/web-api-auth-examples/tree/master/authorization_code
  */
 
-// for reading environment variables from .env file ~ doesn't work in production with heroku?
+// for reading environment variables from .env file ~ note: that file doesn't work in production
 // require('dotenv').config();
 if (process.env.NODE_ENV !== 'production') { 
     require('dotenv').config();
