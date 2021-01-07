@@ -9,7 +9,7 @@
  * https://github.com/spotify/web-api-auth-examples/tree/master/authorization_code
  */
 
-// for reading environment variables from .env file ~ note: that file doesn't work in production
+// for reading environment variables from .env file ~ note: that file isn't pushed to production
 // require('dotenv').config();
 if (process.env.NODE_ENV !== 'production') { 
     require('dotenv').config();

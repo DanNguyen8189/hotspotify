@@ -19,8 +19,7 @@
         <!--</slot>-->
       </header>
       <section class="modal-body">
-        <slot name="body">
-          <div class='chart-wrapper'>
+
           <!--<pure-vue-chart
             :points="[{label: 'acousticness', value: this.acousticness},
                       {label: 'danceability', value: this.danceability},
@@ -42,8 +41,7 @@
             :width='this.parentWidth'
             :height='this.parentHeight'
           />
-          </div>
-        </slot>
+
       </section>
       <!--<footer class="modal-footer">-->
         <!--<slot name="footer">
@@ -223,8 +221,10 @@ export default {
   }
 
   .modal-body {
+    /*overflow: hidden;*/ /** hide the scrollbar that might show up*/
+    background: #133d55;
     position: relative;
-    padding: 20px 10px;
+    height: 100%;
   }
 
   .btn-close {
@@ -265,9 +265,6 @@ export default {
   .chart-wrapper .pure-vue-bar-chart [style] {
     fill: #4AAE9B !important;
   }*/
-  .chart-wrapper {
-    margin-top: 10px;
-  }
   @media screen and (max-width: 480px) {
     .modal {
       width: 100%;
@@ -284,5 +281,9 @@ export default {
     .modal-header .close-button {
       flex-basis: 5%;
     }
+    /*.modal-body {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }*/
   }
 </style>>

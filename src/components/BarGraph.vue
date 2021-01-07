@@ -2,8 +2,8 @@
 <template>
   <svg
     class="bar-graph"
-    :width="fullSvgWidth"
-    :height="fullSvgHeight"
+    width="100%"
+    height="100%"
     aria-labelledby="title"
     role="img"
   >
@@ -11,7 +11,10 @@
       v-if="title"
       id="title"
     >{{ title }}</title>
-    <g :transform="`translate(0,${showYAxis ? extraTopHeightForYAxisLabel : 0})`">
+    <!--<g :transform="`translate(30,${showYAxis ? extraTopHeightForYAxisLabel : 0})`">-->
+    <svg x="7%" y="7%"> <!--This extra svg lets us translate the inside group w/ percents-->
+    <g :transform="`translate(10,${showYAxis ? extraTopHeightForYAxisLabel : 0})`"> <!--Extra 
+    translation here to unhide some of the chart-->
       <g
         :transform="`translate(${showYAxis ? yAxisWidth : 0},0)`"
         :width="innerChartWidth"
@@ -45,7 +48,7 @@
             :dy="`${height < 22 ? '-5px' : '15px'}`"
             text-anchor="middle"
           >{{ staticValue }}</text>
-          <g v-if="showXAxis">
+          <g v-if="showXAxis" class="graph-labels">
             <slot
               name="label"
               :bar-index="index"
@@ -100,7 +103,8 @@
           stroke="#555555"
           stroke-width="1"
         />
-        <g v-for="tick in getTicks()" :key=tick>
+        <g v-for="tick in getTicks()" :key=tick.text> <!-- used to be :key=tick 
+        but this gave the warning Avoid using non-primitive value as key, use string/number value instead.-->
           <line
             :x1="tick.x1"
             :y1="tick.y1"
@@ -119,6 +123,7 @@
         </g>
       </g>
     </g>
+    </svg>
   </svg>
 </template>
 
@@ -148,8 +153,8 @@ export default {
       months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       dynamicPoints: [],
       staticPoints: [],
-      extraTopHeightForYAxisLabel: 4,
-      extraBottomHeightForYAxisLabel: 4,
+      extraTopHeightForYAxisLabel: 30,
+      extraBottomHeightForYAxisLabel: 10,
       digitsUsedInYAxis: 0,
     };
   },
@@ -343,6 +348,10 @@ export default {
 </script>
 
 <style scoped>
+  /*svg {
+    background: green;
+  }*/
+
   .bar-graph text {
     font: 15px sans-serif;
     font-weight: 700;
@@ -351,14 +360,16 @@ export default {
   .bar-graph [style] {
     fill: #b33d64 !important;
   }
+  #test {
+    background: green;
+  }
   @media screen and (max-width: 480px) {
     .bar-graph text {
       font-size: 11px;
     }
-  }
-  @media screen and (max-width: 480px) {
-    .bar-graph text {
-      font-size: 10px;
+    .graph-labels {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
     }
   }
 </style>
