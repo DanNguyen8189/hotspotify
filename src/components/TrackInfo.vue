@@ -156,7 +156,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .modal-backdrop {
     position: fixed;
     top: 0;
@@ -213,6 +213,9 @@ export default {
   .modal-header h2 {
     margin: 0;
     font-size: 1.2em;
+    @media screen and (min-width: 480px){
+      color: orange;
+    }
   }
   .modal-header h2:first-child {
     display: block;
