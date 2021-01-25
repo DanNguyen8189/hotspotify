@@ -30,7 +30,7 @@
             :width='this.parentWidth'
             :height='this.parentHeight'
           />-->
-          <bar-graph
+          <!--<bar-graph
             :points="[{label: 'acoustic', value: this.acousticness},
                       {label: 'danceability', value: this.danceability},
                       {label: 'energy', value: this.energy},
@@ -40,8 +40,14 @@
             :show-y-axis="true"
             :width='this.parentWidth'
             :height='this.parentHeight'
-          />
-
+          />-->
+          <bar-graph-second
+            :datapoints="[this.acousticness,
+                      this.danceability,
+                      this.energy,
+                      this.speechiness,
+                      this.valence]"
+            />
       </section>
       <!--<footer class="modal-footer">-->
         <!--<slot name="footer">
@@ -59,31 +65,32 @@
 import { getTrackInfo } from '../services/spotifyApi';
 import PureVueChart from 'pure-vue-chart';
 import BarGraph from './BarGraph.vue';
-
+import BarGraphSecond from './BarGraphSecond.vue';
 export default {
   name: 'TrackInfo',
   props: ['trackNumber'],
   data () {
     return {
-      // these initial values are nonzero or else errors like 
-      // "<rect> attribute height: Expected length, "NaN"." appear on the console
-      acousticness: .5,
-      danceability: .5,
-      energy: .5,
-      instrumentalness: .5,
-      liveness: .5,
-      loudness: .5,
-      speechiness: .5,
-      valence: .5,
-      tempo: .5,
-      parentHeight: 100,
-      parentWidth: 100,
-      dummy: 200,
+      // these initial values were nonzero for the first bar graph attempt or else errors like 
+      // "<rect> attribute height: Expected length, "NaN"." appear on the console. New way 0 is fine!
+      acousticness: 0,
+      danceability: 0,
+      energy: 0,
+      instrumentalness: 0,
+      liveness: 0,
+      loudness: 0,
+      speechiness: 0,
+      valence: 0,
+      tempo: 0,
+      //parentHeight: 100,
+      //parentWidth: 100,
+      //dummy: 200,
     }
   },
   components: {
     PureVueChart,
-    BarGraph
+    BarGraph,
+    BarGraphSecond
   },
   methods: {
     getTrackInfo2 (index) {
@@ -92,15 +99,15 @@ export default {
       }
       const id = this.$store.getters.getTopTracks.items[index].id;
       getTrackInfo(id).then((response) => {
-        this.acousticness = response.data.acousticness;
-        this.danceability = response.data.danceability;
-        this.energy = response.data.energy;
-        this.instrumentalness = response.data.instrumentalness;
-        this.liveness = response.data.liveness;
-        this.loudness = response.data.loudness;
-        this.speechiness = response.data.speechiness;
-        this.valence = response.data.valence;
-        this.tempo = response.data.tempo;
+        this.acousticness = response.data.acousticness * 10;
+        this.danceability = response.data.danceability * 10;
+        this.energy = response.data.energy * 10;
+        this.instrumentalness = response.data.instrumentalness * 10;
+        this.liveness = response.data.liveness * 10;
+        this.loudness = response.data.loudness * 10;
+        this.speechiness = response.data.speechiness * 10;
+        this.valence = response.data.valence * 10;
+        this.tempo = response.data.tempo * 10;
       }).catch(err => console.log('something went wrong'));
     },
     /** let parent component know that the close button was pressed */

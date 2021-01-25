@@ -42,6 +42,7 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
+      { name: 'description', name: 'description', content: 'An app to view your spotify top artists and tracks!' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ]
   },
