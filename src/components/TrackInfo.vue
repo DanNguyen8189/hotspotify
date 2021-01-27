@@ -19,33 +19,10 @@
         <!--</slot>-->
       </header>
       <section class="modal-body">
-
-          <!--<pure-vue-chart
-            :points="[{label: 'acousticness', value: this.acousticness},
-                      {label: 'danceability', value: this.danceability},
-                      {label: 'energy', value: this.energy},
-                      {label: 'speechiness', value: speechiness},
-                      {label: 'valence', value: this.valence}]"
-            :show-x-axis="true"
-            :width='this.parentWidth'
-            :height='this.parentHeight'
-          />-->
-          <!--<bar-graph
-            :points="[{label: 'acoustic', value: this.acousticness},
-                      {label: 'danceability', value: this.danceability},
-                      {label: 'energy', value: this.energy},
-                      {label: 'speechiness', value: speechiness},
-                      {label: 'valence', value: this.valence}]"
-            :show-x-axis="true"
-            :show-y-axis="true"
-            :width='this.parentWidth'
-            :height='this.parentHeight'
-          />-->
-          <bar-graph-second
+          <track-info-chart
             :datapoints="[this.acousticness,
                       this.danceability,
                       this.energy,
-                      this.speechiness,
                       this.valence]"
             />
       </section>
@@ -63,16 +40,14 @@
 </template>
 <script>
 import { getTrackInfo } from '../services/spotifyApi';
-import PureVueChart from 'pure-vue-chart';
-import BarGraph from './BarGraph.vue';
-import BarGraphSecond from './BarGraphSecond.vue';
+import TrackInfoChart from './TrackInfoChart.vue';
 export default {
   name: 'TrackInfo',
-  props: ['trackNumber'],
+  props: ['trackNumber'], //the specific track selected, passed down from TopTracks.vue
   data () {
     return {
-      // these initial values were nonzero for the first bar graph attempt or else errors like 
-      // "<rect> attribute height: Expected length, "NaN"." appear on the console. New way 0 is fine!
+      // Stats for currently selected song for track info chart
+      // These get passed down to TrackInfoChart.vue so they can be displayed in a graph
       acousticness: 0,
       danceability: 0,
       energy: 0,
@@ -82,32 +57,28 @@ export default {
       speechiness: 0,
       valence: 0,
       tempo: 0,
-      //parentHeight: 100,
-      //parentWidth: 100,
-      //dummy: 200,
     }
   },
   components: {
-    PureVueChart,
-    BarGraph,
-    BarGraphSecond
+    TrackInfoChart
   },
   methods: {
+    /** Set the song's stats*/
     getTrackInfo2 (index) {
       if (index < 0) {
         return;
       }
       const id = this.$store.getters.getTopTracks.items[index].id;
       getTrackInfo(id).then((response) => {
-        this.acousticness = response.data.acousticness * 10;
-        this.danceability = response.data.danceability * 10;
-        this.energy = response.data.energy * 10;
-        this.instrumentalness = response.data.instrumentalness * 10;
-        this.liveness = response.data.liveness * 10;
-        this.loudness = response.data.loudness * 10;
-        this.speechiness = response.data.speechiness * 10;
-        this.valence = response.data.valence * 10;
-        this.tempo = response.data.tempo * 10;
+        this.acousticness = +((response.data.acousticness * 10).toFixed(1));
+        this.danceability = +((response.data.danceability * 10).toFixed(1));
+        this.energy = +((response.data.energy * 10).toFixed(1));
+        this.instrumentalness = +((response.data.instrumentalness * 10).toFixed(1));
+        this.liveness = +((response.data.liveness * 10).toFixed(1));
+        this.loudness = +((response.data.loudness * 10).toFixed(1));
+        this.speechiness = +((response.data.speechiness * 10).toFixed(1));
+        this.valence = +((response.data.valence * 10).toFixed(1));
+        this.tempo = +((response.data.tempo * 10).toFixed(1));
       }).catch(err => console.log('something went wrong'));
     },
     /** let parent component know that the close button was pressed */
@@ -137,30 +108,13 @@ export default {
   // views track information for the first track in the list, since updated() won't detect that)
   created () {
     this.getTrackInfo2(this.trackNumber);
-    //this.parentHeight = Math.abs(this.$el.offsetHeight);
-    //this.parentWidth = this.$parent.$el.offsetWidth;
   },
   // when user picks a new track (this.trackNumber changes!)to view, component will call the spotify api 
   // to get the right info. Created only runs once at the beginning of the component's creation, 
   // and since the component isn't destroyed when user clicks close, we need this here
   updated () {
     this.getTrackInfo2(this.trackNumber);
-    //this.parentHeight = Math.abs(this.$el.offsetHeight);
-    //this.parentWidth = this.$parent.$el.offsetWidth;
-    this.parentHeight = this.$refs.potato.offsetHeight - 220;
-    this.parentWidth = this.$refs.potato.offsetWidth *.85;
-    //console.log(this.$refs.potato.offsetHeight);
   },
-  mounted () {
-    //this.parentHeight = Math.abs(this.$el.offsetHeight);
-    //this.parentWidth = this.$parent.$el.offsetWidth;
-    /*console.log("aight what the fuck?");
-    console.log(this.$el.offsetHeight);
-    console.log(this.$el.offsetWidth);
-    console.log(this.$parent.$el.offsetWidth);
-    console.log(this.$refs.potato.offsetHeight);*/
-    // console.log("mounted " + this.$refs.potato.offsetHeight);
-  }
 }
 </script>
 <style scoped>
@@ -190,21 +144,22 @@ export default {
     display: flex;
     background-color: #133d55;
     color: rgb(103, 211, 191);
+    /*flex-wrap: wrap-reverse;*/
     justify-content: space-between;
     align-items: center;
+    
   }
 
-  .modal-header .img {
-    flex-basis: 12%;
-  }
   .modal-header .text {
     flex: 1 2 auto;
   }
   .modal-header .close-button {
-    flex-basis: 12%;
+    flex-basis: 7em;
     align-self: flex-start;
   }
-
+  .modal-header .img {
+    flex-basis: 7em;
+  }
   .modal-header img {
     display: block;
     height: 100%;
@@ -235,6 +190,7 @@ export default {
     background: #133d55;
     position: relative;
     height: 100%;
+    padding: 0 5em;
   }
 
   .btn-close {
@@ -265,23 +221,13 @@ export default {
     transition: opacity .5s ease
   }
   
-  /*.chart-wrapper .pure-vue-bar-chart text {
-    display: block;
-    font-size: 20px;
-    fill: orange;
-    margin: 3em;
-    transform: translate(10px, 10px);
-  }
-  .chart-wrapper .pure-vue-bar-chart [style] {
-    fill: #4AAE9B !important;
-  }*/
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     .modal {
       width: 100%;
     }
-    .modal-header .img {
+    /*.modal-header .img {
       flex-basis: 30%;
-    }
+    }*/
     .modal-header h2 {
       font-size: .8em;
     }
@@ -291,9 +237,8 @@ export default {
     .modal-header .close-button {
       flex-basis: 5%;
     }
-    /*.modal-body {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-    }*/
+    .modal-body {
+      padding: 0;
+    }
   }
 </style>>

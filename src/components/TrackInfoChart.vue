@@ -1,19 +1,22 @@
 <template>
     <div id="graph-container">
-        <canvas id="chart"></canvas>
+        <!--Chart gets rendered here-->
+        <canvas id="chart" aria-label="Track info chart" role="img">
+            <p>Track info chart</p>
+        </canvas>
     </div>
 </template>
 
 <script>
 import Chart from 'chart.js';
-//import planetChartData from './chart-data.js';
 
 export default {
     props: {
-        // data for the chart, passed down from parent (TrackInfo)
+        // data for the chart, passed down from parent (TrackInfo.vue)
         datapoints: { type: Array, default: () => [] },
     },
     methods: {
+        /** Function to create the chart */
         createChart(chartId, chartData) {
             const ctx = document.getElementById(chartId);
             const myChart = new Chart(ctx, {
@@ -26,29 +29,40 @@ export default {
     data() {
         return {
             chart: null, // holds the chart object
+            // chart data to use to create the chart
             chartData : {
                 type: 'bar',
                 data: {
-                    labels: ['Acoustic', 'Danceability', 'Energy', 'Speechiness', 'Valence'],
+                    labels: ['Acoustic', 'Danceability', 'Energy', 'Valence'],
                     datasets: [
                         { // one line graph
                             label: 'Rating',
                             data: this.datapoints,
                             backgroundColor: [
-                                'rgba(228, 44, 106, 0.6)', // Blue
                                 'rgba(228, 44, 106, 0.6)',
                                 'rgba(228, 44, 106, 0.6)',
                                 'rgba(228, 44, 106, 0.6)',
                                 'rgba(228, 44, 106, 0.6)',
+                            ],
+                            hoverBackgroundColor: [
+                                '#e42c6a',
+                                '#e42c6a',
+                                '#e42c6a',
+                                '#e42c6a',
                             ],
                             borderColor: [
-                                '#e42c6a',
-                                '#e42c6a',
-                                '#e42c6a',
-                                '#e42c6a',
-                                '#e42c6a',
+                                'rgba(228, 44, 106, 0.6)',
+                                'rgba(228, 44, 106, 0.6)',
+                                'rgba(228, 44, 106, 0.6)',
+                                'rgba(228, 44, 106, 0.6)',
                             ],
-                            borderWidth: 3
+                            hoverBorderColor: [
+                                '#e42c6a',
+                                '#e42c6a',
+                                '#e42c6a',
+                                '#e42c6a',                                
+                            ],
+                            borderWidth: 2.8
                         },
                     ]
                 },
@@ -76,6 +90,8 @@ export default {
                                 fontColor: "rgb(103, 211, 191)",
                             },
                             gridLines: {
+                                /*drawOnChartArea: false,
+                                color: "rgba(103, 211, 191, .3)",*/
                                 display: false,
                             },
                         }],
@@ -97,9 +113,8 @@ export default {
                         },
                         callbacks: {
                             label: function(tooltipItem) {
-                                //return "$" + tooltipItem.xLabel + " and so worth it !";
                                 var tooltip = "";
-                                console.log(tooltipItem.xLabel);
+                                //console.log(tooltipItem.xLabel);
                                 switch(tooltipItem.xLabel){
                                     case "Acoustic":
                                         tooltip += "how acoustic the track is";
@@ -117,7 +132,7 @@ export default {
                                         tooltip += "how cheerful the track is";
                                         break;
                                 }
-                                return [Number(tooltipItem.yLabel), tooltip];
+                                return [Number(tooltipItem.yLabel), tooltip]; //returning like this displays the 2 items on 2 separate lines
                             },
                         }
                     },
@@ -129,7 +144,7 @@ export default {
         //create the chart using Chart.js. Info can be found here: https://www.chartjs.org/docs/latest/
         var ctx = document.getElementById('chart').getContext('2d');
         this.chart = new Chart(ctx, this.chartData);
-        console.log(this.chart);
+        //console.log(this.chart);
     },
     watch: {
         datapoints(){
