@@ -131,7 +131,8 @@ export default {
   }
 
   .modal {
-    background-color: #154e6e;
+    /*background-color: #154e6e;*/
+    background-color: #133d55;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -189,7 +190,7 @@ export default {
     /*overflow: hidden;*/ /** hide the scrollbar that might show up*/
     background: #133d55;
     position: relative;
-    height: 100%;
+    height: 70%;
     padding: 0 5em;
   }
 
