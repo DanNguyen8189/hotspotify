@@ -119,6 +119,7 @@ export default {
 </script>
 <style scoped>
   .modal-backdrop {
+    z-index: 2;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -229,6 +230,9 @@ export default {
     /*.modal-header .img {
       flex-basis: 30%;
     }*/
+    .modal-header .img {
+      flex-basis: 5em;
+    }
     .modal-header h2 {
       font-size: .8em;
     }
