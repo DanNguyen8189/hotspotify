@@ -7,16 +7,16 @@ import store from './services/store'
 import VueMeta from 'vue-meta'
 
 Vue.use(VueMeta, {
-  keyName: 'head'
+    keyName: 'head'
 });
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
 })

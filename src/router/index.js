@@ -7,72 +7,72 @@ import TopTracks from "@/components/TopTracks";
 
 Vue.use(Router);
 Vue.use(VueMeta, {
-  keyName: 'metaInfo',
-  attribute: 'data-vue-meta',
-  ssrAttribute: 'data-vue-meta-server-rendered',
-  tagIDKeyName: 'vmid',
-  refreshOnceOnNavigation: true
+    keyName: 'metaInfo',
+    attribute: 'data-vue-meta',
+    ssrAttribute: 'data-vue-meta-server-rendered',
+    tagIDKeyName: 'vmid',
+    refreshOnceOnNavigation: true
 });
 
 const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-      /* meta: {
-        metaTags: [
-          {
-            name: 'description',
-            content: 'Hotspotify home'
-          },
-          {
-            property: 'og:description',
-            content: 'Hotspotify home'
-          }
-        ]
-      } */
-    },
-    {
-      path: '/topartists',
-      name: 'TopArtists',
-      component: TopArtists,
-      /* meta: {
-        metaTags: [
-          {
-            name: 'description',
-            content: 'your top artists on Spotify'
-          },
-          {
-            property: 'og:description',
-            content: 'your top artists on Spotify'
-          }
-        ]
-      } */
-    },
-    {
-      path: '/toptracks',
-      name: 'TopTracks',
-      component: TopTracks,
-      /* meta: {
-        metaTags: [
-          {
-            name: 'description',
-            content: 'your top tracks on Spotify'
-          },
-          {
-            property: 'og:description',
-            content: 'your top tracks on Spotify'
-          }
-        ]
-      } */
-    },
-    {
-      path: '/:tokens',
-      name: 'Home',
-      component: Home,
-    }
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'Home',
+            component: Home,
+            /* meta: {
+                metaTags: [
+                {
+                    name: 'description',
+                    content: 'Hotspotify home'
+                },
+                {
+                    property: 'og:description',
+                    content: 'Hotspotify home'
+                }
+                ]
+            } */
+        },
+        {
+            path: '/topartists',
+            name: 'TopArtists',
+            component: TopArtists,
+            /* meta: {
+                metaTags: [
+                {
+                    name: 'description',
+                    content: 'your top artists on Spotify'
+                },
+                {
+                    property: 'og:description',
+                    content: 'your top artists on Spotify'
+                }
+                ]
+            } */
+        },
+        {
+            path: '/toptracks',
+            name: 'TopTracks',
+            component: TopTracks,
+            /* meta: {
+                metaTags: [
+                {
+                    name: 'description',
+                    content: 'your top tracks on Spotify'
+                },
+                {
+                    property: 'og:description',
+                    content: 'your top tracks on Spotify'
+                }
+                ]
+            } */
+        },
+        {
+            path: '/:tokens',
+            name: 'Home',
+            component: Home,
+        }
+    ]
 });
 
 // This callback runs before every route change, including on page load.
