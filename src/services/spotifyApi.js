@@ -13,57 +13,57 @@ const getLocalAccessToken = () => window.localStorage.getItem('spotify_access_to
 
 // called on app start
 export const getAccessToken = () => {
-// console.log("getAccessToken called");
-/* window.localStorage.removeItem('spotify_token_timestamp');
-window.localStorage.removeItem('spotify_access_token');
-window.localStorage.removeItem('spotify_refresh_token');
-return; */
-// const { error, accessToken, refreshToken } = getHashParams();
-// TODO not too sure about this
-const hashParams = getHashParams();
-const error = hashParams.error;
-const accessToken = hashParams.access_token;
+    // console.log("getAccessToken called");
+    /* window.localStorage.removeItem('spotify_token_timestamp');
+    window.localStorage.removeItem('spotify_access_token');
+    window.localStorage.removeItem('spotify_refresh_token');
+    return; */
+    // const { error, accessToken, refreshToken } = getHashParams();
+    // TODO not too sure about this
+    const hashParams = getHashParams();
+    const error = hashParams.error;
+    const accessToken = hashParams.access_token;
 
-if (getLocalAccessToken() && Date.now() - getTokenTimestamp() > EXPIRATION_TIME) {
-    console.warn('Access token has expired');
-    if (accessToken){
-    setLocalAccessToken(accessToken);
+    if (getLocalAccessToken() && Date.now() - getTokenTimestamp() > EXPIRATION_TIME) {
+        console.warn('Access token has expired');
+        if (accessToken){
+            setLocalAccessToken(accessToken);
+        }
+    } 
+    else if (getLocalAccessToken() !== null) {
+        /* console.log("getting local access token");
+        console.log(getLocalAccessToken()); */
+        return getLocalAccessToken();
     }
-} 
-else if (getLocalAccessToken() !== null) {
-    /* console.log("getting local access token");
-    console.log(getLocalAccessToken()); */
-    return getLocalAccessToken();
-}
-else if (accessToken){
-    // console.log("setting local access token to hashparam: " + accessToken);
-    setLocalAccessToken(accessToken);
-}
-// return localAccessToken;
-return accessToken;
+    else if (accessToken){
+        // console.log("setting local access token to hashparam: " + accessToken);
+        setLocalAccessToken(accessToken);
+    }
+    // return localAccessToken;
+    return accessToken;
 }
 export const token = getAccessToken();
 
 export const logout = () => {
-// console.log("removing tokens from local storage");
-window.localStorage.removeItem('spotify_token_timestamp');
-window.localStorage.removeItem('spotify_access_token');
-window.localStorage.removeItem('spotify_refresh_token');
-// window.location.href("http://localhost:8080");
-if (process.env.NODE_ENV === "development") {
-    window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
-} else {
-    window.location.assign("https://hotspotify.herokuapp.com/");
-} 
-// window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
-// window.location.reload(); // all access token info is removed from the server and page is reloaded
+    // console.log("removing tokens from local storage");
+    window.localStorage.removeItem('spotify_token_timestamp');
+    window.localStorage.removeItem('spotify_access_token');
+    window.localStorage.removeItem('spotify_refresh_token');
+    // window.location.href("http://localhost:8080");
+    if (process.env.NODE_ENV === "development") {
+        window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
+    } else {
+        window.location.assign("https://hotspotify.herokuapp.com/");
+    } 
+    // window.location.assign("http://localhost:8080"); // Go back to home page without the hash params
+    // window.location.reload(); // all access token info is removed from the server and page is reloaded
 };
 
 // Spotify API calls--------------------------------------
 
 const headers = {
-Authorization: `Bearer ${token}`,
-'Content-Type': 'application/json'
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json'
 };
 
 /**
@@ -71,8 +71,20 @@ Authorization: `Bearer ${token}`,
  * https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
  */
 // export const getUser = () => axios.get('https://api.spotify.com/v1/me', { headers });
-export const getUser = () =>
-axios.get('https://api.spotify.com/v1/me', { headers });
+/*export const getUser = () =>
+axios.get('https://api.spotify.com/v1/me', { headers });*/
+
+export const getUser = () => {
+    if (token === undefined){
+        // return an empty promise if we don't have an access token. We do this because the function calls 
+        // this (getUser) expects a promise and we'd rather not call the spotify api with an undefned token 
+        const emptyPromise = new Promise((resolve) => { resolve(val); });
+        return emptyPromise;
+    }
+    else{
+        return axios.get('https://api.spotify.com/v1/me', { headers });
+    }
+}
 
 /**
  * Get Current User's Recently Played Tracks

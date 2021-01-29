@@ -63,6 +63,7 @@ export default {
         getUserInfo () {
         getUser().then((response) => {
             // this.$store.commit('setUser', response.user);
+            // console.log(response);
             this.$store.commit('setUser', response.data);
             // console.log(response.data);
         }).catch(err => console.log("user not logged in"));

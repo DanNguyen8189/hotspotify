@@ -34,7 +34,7 @@
             viewBox="0 0 226 226"
             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#ffffff"><path d="M113,9.04c-57.41756,0 -103.96,46.54244 -103.96,103.96c0,57.41756 46.54244,103.96 103.96,103.96c57.41756,0 103.96,-46.54244 103.96,-103.96c0,-57.41756 -46.54244,-103.96 -103.96,-103.96zM113,49.72c7.48964,0 13.56,6.07036 13.56,13.56c0,7.48964 -6.07036,13.56 -13.56,13.56c-7.48964,0 -13.56,-6.07036 -13.56,-13.56c0,-7.48964 6.07036,-13.56 13.56,-13.56zM131.08,171.76h-9.04h-18.08h-9.04v-9.04h9.04v-58.76h-9.04v-9.04h9.04h18.08v9.04v58.76h9.04z"></path></g></g></svg>
                     </div>
-                    <div class = 'track-artist-text item-block'>
+                    <div class = 'middle-block'>
                         <p class='track-name'>{{ getTrackName(n-1) }}</p>
                         <p class='artist-name'>{{ getArtistName(n-1) }}</p>
                     </div>
@@ -210,7 +210,7 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-.list-item .left-block {
+.left-block {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,9 +218,10 @@ export default {
     height: 4em;
     padding: 0;
     position: relative;
+    flex-shrink: 0; 
 }
 
-.list-item .track-image{
+.track-image {
     border-radius: 50%;
     width: 100%;
     height: auto;
@@ -232,7 +233,7 @@ export default {
     margin-top: 0.5em;*/
     /*width: 4.01em;*/
 }
-.list-item .track-info {
+.track-info {
     /*float: left;
     line-height: 10px;
     margin-left: 2%;*/
@@ -247,16 +248,17 @@ export default {
     transition:         color 0.5s;
 }
 
-.list-item .track-name, .list-item .artist-name {
+.track-name, .artist-name {
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
     -ms-transition:     color 0.5s;
     -o-transition:      color 0.5s;
     transition:         color 0.5s;
 }
-.track-artist-text {
+.middle-block {
     display: inline-block;
     overflow: hidden;
+    padding: 0 .8em;
     /*width: 40%;*/
     font-weight: 700;
 }
@@ -380,15 +382,15 @@ p a:visited {
     color: white;
 }
 @media screen and (max-width: 480px) {
-    .list-item .track-info {
+    .track-info {
         float: left;
         margin-left: 2%;
         font-size: 2em;
     }
-    .list-item img {
+    .track-image {
         width: 3.609em;
     }
-    .track-artist-text {
+    .middle-block {
         font-size: .9em;
         font-weight: 700;
     }

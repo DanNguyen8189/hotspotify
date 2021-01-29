@@ -16,23 +16,11 @@ Vue.use(VueMeta, {
 
 const router = new Router({
     routes: [
-        {
+        /*{
             path: '/',
             name: 'Home',
             component: Home,
-            /* meta: {
-                metaTags: [
-                {
-                    name: 'description',
-                    content: 'Hotspotify home'
-                },
-                {
-                    property: 'og:description',
-                    content: 'Hotspotify home'
-                }
-                ]
-            } */
-        },
+        },*/
         {
             path: '/topartists',
             name: 'TopArtists',
@@ -68,10 +56,11 @@ const router = new Router({
             } */
         },
         {
-            path: '/:tokens',
+            // home page route
+            path: '/:tokens?',
             name: 'Home',
             component: Home,
-        }
+        },
     ]
 });
 
