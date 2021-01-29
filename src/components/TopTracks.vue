@@ -109,13 +109,18 @@ export default {
     methods: {
         /** function to get the top tracks and set them to the vuex store. Response from Spotify is in JSON format */
         getTopTracks2 () {
-        getTopTracks().then((response) => {
-            // this.$store.commit('setUser', response.user);
-            /* console.log('Tracks response data:');
-            console.log(response) */
-            this.$store.commit('setTopTracks', response);
-            // this.$store.commit('setTimePeriod', 'short');
-        }).catch(err => console.log('user not logged in'));
+            if (this.$store.getters.getTopTracks) {
+                // console.log("already have it!!!");
+                // getTopTracks already called before
+                return;
+            }
+            getTopTracks().then((response) => {
+                // this.$store.commit('setUser', response.user);
+                /* console.log('Tracks response data:');
+                console.log(response) */
+                this.$store.commit('setTopTracks', response);
+                // this.$store.commit('setTimePeriod', 'short');
+            }).catch(err => console.log('user not logged in'));
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {
@@ -143,34 +148,34 @@ export default {
         /** function to load currently selected track to play (and pause if it's the same as
          * the currently playing track) */
         playTrack (index) {
-        // remove previous playing track's stuff if still playing
-        if (this.audioElement) {
-            this.audioElement.pause();
+            // remove previous playing track's stuff if still playing
+            if (this.audioElement) {
+                this.audioElement.pause();
 
-            // don't play the same track again, user wanted to pause
-            if (this.activeTrackIndex === index && this.activeTrackPage === this.$store.state.timePeriod) {
-            this.activeTrackIndex = -1;
-            if (this.timeOut) clearTimeout(this.timeOut);
-            return;        
+                // don't play the same track again, user wanted to pause
+                if (this.activeTrackIndex === index && this.activeTrackPage === this.$store.state.timePeriod) {
+                    this.activeTrackIndex = -1;
+                    if (this.timeOut) clearTimeout(this.timeOut);
+                    return;        
+                }
             }
-        }
-        if (this.timeOut) clearTimeout(this.timeOut);
+            if (this.timeOut) clearTimeout(this.timeOut);
 
-        const trackURL = this.getTrackURL(index);
-        if (trackURL === null) {
-            this.activeTrackIndex = -1; // needed if user clicks a track with no available preview
-            return;
-        }
-        this.audioElement = new Audio(trackURL);
-        // this.audioElement.addEventListener('ended', this.stop());
-        this.audioElement.play();
-        this.activeTrackIndex = index;
-        this.activeTrackPage = this.$store.state.timePeriod;
+            const trackURL = this.getTrackURL(index);
+            if (trackURL === null) {
+                this.activeTrackIndex = -1; // needed if user clicks a track with no available preview
+                return;
+            }
+            this.audioElement = new Audio(trackURL);
+            // this.audioElement.addEventListener('ended', this.stop());
+            this.audioElement.play();
+            this.activeTrackIndex = index;
+            this.activeTrackPage = this.$store.state.timePeriod;
 
-        // set prop so that the activeTrack class is removed from the currently playing track after it ends 
-        this.timeOut = setTimeout(function () {
-            this.activeTrackIndex = -1;
-        }.bind(this), 30000); //The value of this is different inside the setTimeout so bind(this) needed to be added
+            // set prop so that the activeTrack class is removed from the currently playing track after it ends 
+            this.timeOut = setTimeout(function () {
+                this.activeTrackIndex = -1;
+            }.bind(this), 30000); //The value of this is different inside the setTimeout so bind(this) needed to be added
         },
 
         /** Functions for track information modals */

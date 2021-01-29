@@ -73,12 +73,17 @@ export default {
     methods: {
         /** function to get the top artists and set them to the vuex store. Response from Spotify is in JSON format */
         getTopArtists2 () {
-        getTopArtists().then((response) => {
-            /* console.log("artists response data:");
-            console.log(response) */
-            this.$store.commit('setTopArtists', response);
-            // this.$store.commit('setTimePeriod', 'short');
-        }).catch(err => console.log("user not logged in"));
+            if (this.$store.getters.getTopArtists) {
+                // console.log("already have it!!!");
+                // getTopArtist already called before
+                return;
+            }
+            getTopArtists().then((response) => {
+                /* console.log("artists response data:");
+                console.log(response) */
+                this.$store.commit('setTopArtists', response);
+                // this.$store.commit('setTimePeriod', 'short');
+            }).catch(err => console.log("user not logged in"));
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {
