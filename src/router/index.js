@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import VueMeta from 'vue-meta';
 import Home from "@/components/Home";
+import Profile from "@/components/Profile";
 import TopArtists from "@/components/TopArtists";
 import TopTracks from "@/components/TopTracks";
 
@@ -22,7 +23,12 @@ const router = new Router({
             component: Home,
         },*/
         {
-            path: '/topartists',
+            path: '/profile/:sample?',
+            name: 'Profile',
+            component: Profile,
+        },
+        {
+            path: '/topartists/:sample?',
             name: 'TopArtists',
             component: TopArtists,
             /* meta: {
@@ -39,7 +45,7 @@ const router = new Router({
             } */
         },
         {
-            path: '/toptracks',
+            path: '/toptracks/:sample?',
             name: 'TopTracks',
             component: TopTracks,
             /* meta: {

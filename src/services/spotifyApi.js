@@ -78,7 +78,7 @@ export const getUser = () => {
     if (token === undefined){
         // return an empty promise if we don't have an access token. We do this because the function calls 
         // this (getUser) expects a promise and we'd rather not call the spotify api with an undefned token 
-        const emptyPromise = new Promise((resolve) => { resolve(val); });
+        const emptyPromise = new Promise((resolve) => { resolve(null); });
         return emptyPromise;
     }
     else{
@@ -136,31 +136,43 @@ return axios
 };
 
 export const getTopArtists = () => {
-return axios
-    .all([getTopArtistsShort(), getTopArtistsMedium(), getTopArtistsLong()])
-    .then(
-    axios.spread((topArtistsShort, topArtistsMedium, topArtistsLong) => {
-        return {
-        topArtistsShort: topArtistsShort.data,
-        topArtistsMedium: topArtistsMedium.data,
-        topArtistsLong: topArtistsLong.data
-        };
-    })
-    );
+    if (token === undefined){
+        // return an empty promise if we don't have an access token. We do this because the function calls 
+        // this (getTopArtists) expects a promise and we'd rather not call the spotify api with an undefned token 
+        const emptyPromise = new Promise((resolve) => { resolve(null); });
+        return emptyPromise;
+    }
+    return axios
+        .all([getTopArtistsShort(), getTopArtistsMedium(), getTopArtistsLong()])
+            .then(
+            axios.spread((topArtistsShort, topArtistsMedium, topArtistsLong) => {
+                return {
+                topArtistsShort: topArtistsShort.data,
+                topArtistsMedium: topArtistsMedium.data,
+                topArtistsLong: topArtistsLong.data
+                };
+            })
+        );
 };
 
 export const getTopTracks = () => {
-return axios
-    .all([getTopTracksShort(), getTopTracksMedium(), getTopTracksLong()])
-    .then(
-    axios.spread((topTracksShort, topTracksMedium, topTracksLong) => {
-        return {
-        topTracksShort: topTracksShort.data,
-        topTracksMedium: topTracksMedium.data,
-        topTracksLong: topTracksLong.data
-        };
-    })
-    );
+    if (token === undefined){
+        // return an empty promise if we don't have an access token. We do this because the function calls 
+        // this (getTopTracks) expects a promise and we'd rather not call the spotify api with an undefned token 
+        const emptyPromise = new Promise((resolve) => { resolve(null); });
+        return emptyPromise;
+    }
+    return axios
+        .all([getTopTracksShort(), getTopTracksMedium(), getTopTracksLong()])
+            .then(
+            axios.spread((topTracksShort, topTracksMedium, topTracksLong) => {
+                return {
+                topTracksShort: topTracksShort.data,
+                topTracksMedium: topTracksMedium.data,
+                topTracksLong: topTracksLong.data
+                };
+            })
+        );
 };
 
 export const getTrackInfo = (id) => { 

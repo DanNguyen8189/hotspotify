@@ -19,6 +19,7 @@
             <!--</slot>-->
         </header>
         <section class="modal-body">
+            <h3 v-if="this.$route.params.sample">You must be logged in to view this</h3>
             <track-info-chart
                 :datapoints="[this.acousticness,
                         this.danceability,
@@ -65,21 +66,25 @@
     methods: {
         /** Set the song's stats*/
         getTrackInfo2 (index) {
-        if (index < 0) {
-            return;
-        }
-        const id = this.$store.getters.getTopTracks.items[index].id;
-        getTrackInfo(id).then((response) => {
-            this.acousticness = +((response.data.acousticness * 10).toFixed(1));
-            this.danceability = +((response.data.danceability * 10).toFixed(1));
-            this.energy = +((response.data.energy * 10).toFixed(1));
-            this.instrumentalness = +((response.data.instrumentalness * 10).toFixed(1));
-            this.liveness = +((response.data.liveness * 10).toFixed(1));
-            this.loudness = +((response.data.loudness * 10).toFixed(1));
-            this.speechiness = +((response.data.speechiness * 10).toFixed(1));
-            this.valence = +((response.data.valence * 10).toFixed(1));
-            this.tempo = +((response.data.tempo * 10).toFixed(1));
-        }).catch(err => console.log('something went wrong'));
+            if (this.$route.params.sample){ 
+                // sample viewers can't see this unfortunately
+                return;
+            }
+            if (index < 0) {
+                return;
+            }
+            const id = this.$store.getters.getTopTracks.items[index].id;
+            getTrackInfo(id).then((response) => {
+                this.acousticness = +((response.data.acousticness * 10).toFixed(1));
+                this.danceability = +((response.data.danceability * 10).toFixed(1));
+                this.energy = +((response.data.energy * 10).toFixed(1));
+                this.instrumentalness = +((response.data.instrumentalness * 10).toFixed(1));
+                this.liveness = +((response.data.liveness * 10).toFixed(1));
+                this.loudness = +((response.data.loudness * 10).toFixed(1));
+                this.speechiness = +((response.data.speechiness * 10).toFixed(1));
+                this.valence = +((response.data.valence * 10).toFixed(1));
+                this.tempo = +((response.data.tempo * 10).toFixed(1));
+            }).catch(err => console.log('something went wrong'));
         },
         /** let parent component know that the close button was pressed */
         close () {
@@ -194,7 +199,9 @@
     height: 70%;
     padding: 0 5em;
 }
-
+.modal-body h3{
+    margin: 1em 1em;
+}
 .btn-close {
     float: right;
     border: none;

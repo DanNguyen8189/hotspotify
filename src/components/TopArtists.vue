@@ -41,6 +41,7 @@
 <script>
 import { getTopArtists } from '../services/spotifyApi';
 import FireAnimation from './FireAnimation.vue';
+const sampleUser = require( "../assets/sampleUser.json");
 
 export default {
     name: 'TopArtists',
@@ -78,12 +79,24 @@ export default {
                 // getTopArtist already called before
                 return;
             }
-            getTopArtists().then((response) => {
-                /* console.log("artists response data:");
-                console.log(response) */
-                this.$store.commit('setTopArtists', response);
-                // this.$store.commit('setTimePeriod', 'short');
-            }).catch(err => console.log("user not logged in"));
+            if (this.$route.params.sample){ 
+                console.log("viewing sample");
+                var topArtistsData = {                 
+                    topArtistsShort: sampleUser.topArtistsShort,
+                    topArtistsMedium: sampleUser.topArtistsMedium,
+                    topArtistsLong: sampleUser.topArtistsLong
+                }
+                //console.log(topArtistsData);
+                this.$store.commit('setTopArtists', topArtistsData);
+            } else {
+                getTopArtists().then((response) => {
+                    /* console.log("artists response data:");
+                    console.log(response) */
+                    this.$store.commit('setTopArtists', response);
+                    // this.$store.commit('setTimePeriod', 'short');
+                }).catch(err => console.log("what?"),
+                );
+            }
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {

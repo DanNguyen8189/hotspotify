@@ -3,25 +3,26 @@
     <!--openMenu and closeMenu are emitted from the Menu child component when the user opens
     or closes the menu. This component uses that to toggle the state of the menu for tabindexing-->
     <Menu v-if='this.loggedIn' v-on:openMenu='toggleMenuState' v-on:closeMenu='toggleMenuState'>
-    <a v-on:click='goHome()' @keyup.enter='goHome()' :tabindex=[isMenuOpen]>
-        <i class='fa fa-fw fa-star-o'></i>
-        <span>Home</span>
-    </a>
-    <a v-on:click='goTopArtists()' @keyup.enter='goTopArtists()' :tabindex=[this.isMenuOpen]>
-        <i class='fa fa-fw fa-bell-o'></i>
-        <span>Top Artists</span>
-    </a>
-    <a v-on:click='goTopTracks()' @keyup.enter='goTopTracks()' :tabindex=[this.isMenuOpen]>
-        <i class='fa fa-fw fa-envelope-o'></i>
-        <span>Top Tracks</span>
-    </a>
-    <a v-on:click='logOut()' @keyup.enter='logOut()' :tabindex=[this.isMenuOpen]>
-        <i class='fa fa-fw fa-envelope-o'></i>
-        <span>Log Out</span>
-    </a>
+        <a v-on:click='goProfile()' @keyup.enter='goHome()' :tabindex=[isMenuOpen]>
+            <i class='fa fa-fw fa-star-o'></i>
+            <span>Profile</span>
+        </a>
+        <a v-on:click='goTopArtists()' @keyup.enter='goTopArtists()' :tabindex=[this.isMenuOpen]>
+            <i class='fa fa-fw fa-bell-o'></i>
+            <span>Top Artists</span>
+        </a>
+        <a v-on:click='goTopTracks()' @keyup.enter='goTopTracks()' :tabindex=[this.isMenuOpen]>
+            <i class='fa fa-fw fa-envelope-o'></i>
+            <span>Top Tracks</span>
+        </a>
+        <a v-on:click='logOut()' @keyup.enter='logOut()' :tabindex=[this.isMenuOpen]>
+            <i class='fa fa-fw fa-envelope-o'></i>
+            <span v-if="this.$route.params.sample">Go back home</span>
+            <span v-else>Log Out</span>
+        </a>
     </Menu>
     <transition name = 'fade' mode='out-in'>
-    <router-view/>
+        <router-view/>
     </transition>
 </div>
 </template>
@@ -60,19 +61,32 @@ export default {
         }
     },
     methods: {
-        goHome () {
-            this.$router.push('/');
+        goProfile () {
+            if (this.$route.params.sample){
+                this.$router.push('/profile/sample');
+            } else {
+                this.$router.push('/profile');
+            }
         },
         goTopArtists () {
-            this.$router.push('/topartists');
+            if (this.$route.params.sample){
+                this.$router.push('/topartists/sample');
+            } else {
+                this.$router.push('/topartists');
+            }
+            //console.log(this.$router.currentRoute.path); 
         },
         goTopTracks () {
-            this.$router.push('/toptracks');
+            if (this.$route.params.sample){
+                this.$router.push('/toptracks/sample');
+            } else {
+                this.$router.push('/toptracks');
+            }
         },
         /** logs user out by removing them from the store and removing the locally stored tokens */
         logOut () {
             this.$store.commit('clearAll');
-        removeTokens();
+            removeTokens();
         // console.log("removed tokens");
         // window.alert("logged out");
         // this.$router.push({name: 'Home'});
@@ -163,21 +177,21 @@ border-bottom: 1px solid white;
 box-sizing: border-box;
 }
 @media screen and (max-width: 480px) {
-body {
-    /* background-attachment doesn't work on mobile devices */
-    background-size: 100% auto;
-    background-position: left top;
-    background-attachment: scroll;
-}
-h1 {
-    font-size: 2.5em;
-}
-.fire {
-    top: calc(50% - 50px);
-}
-.timeperiod-button-container button span {
-font-size: 1em;
-}
+    body {
+        /* background-attachment doesn't work on mobile devices */
+        background-size: 100% auto;
+        background-position: left top;
+        background-attachment: scroll;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .fire {
+        top: calc(50% - 50px);
+    }
+    .timeperiod-button-container button span {
+        font-size: 1em;
+    }
 }
 
 /*Router animation properties*/

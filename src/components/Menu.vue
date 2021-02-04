@@ -96,56 +96,56 @@ export default {
     },
     methods: {
         openMenu () {
-        this.$emit("openMenu");
-        this.isSideBarOpen = true;
-        /* if (!this.noOverlay) {
-            document.body.classList.add("bm-overlay");
-        } */
-        if (this.right) {
-            this.$refs.sideNav.style.left = "auto";
-            this.$refs.sideNav.style.right = "0px";
-        }
-        this.$nextTick(function () {
-            this.$refs.sideNav.style.width = this.width
-            ? this.width + "px"
-            : "300px";
-        });
+            this.$emit("openMenu");
+            this.isSideBarOpen = true;
+            /* if (!this.noOverlay) {
+                document.body.classList.add("bm-overlay");
+            } */
+            if (this.right) {
+                this.$refs.sideNav.style.left = "auto";
+                this.$refs.sideNav.style.right = "0px";
+            }
+            this.$nextTick(function () {
+                this.$refs.sideNav.style.width = this.width
+                ? this.width + "px"
+                : "300px";
+            });
         },
         closeMenu () {
-        this.$emit("closeMenu");
-        this.isSideBarOpen = false;
-        // document.body.classList.remove("bm-overlay");
-        this.$refs.sideNav.style.width = "0px";
+            this.$emit("closeMenu");
+            this.isSideBarOpen = false;
+            // document.body.classList.remove("bm-overlay");
+            this.$refs.sideNav.style.width = "0px";
         },
         closeMenuOnEsc (e) {
-        e = e || window.event;
-        if (e.key === "Escape" || e.keyCode === 27) {
-            this.closeMenu();
-        }
+            e = e || window.event;
+            if (e.key === "Escape" || e.keyCode === 27) {
+                this.closeMenu();
+            }
         },
         documentClick (e) {
-        let element = this.$refs.bmBurgerButton;
-        let target = null;
-        if (e && e.target) {
-            target = e.target;
-        }
-        if (
-            element &&
-            element !== target &&
-            !element.contains(target) &&
-            !this.hasClass(target, "bm-menu") &&
-            this.isSideBarOpen &&
-            !this.disableOutsideClick
-        ) {
-            this.closeMenu();
-        } else if (
-            element &&
-            this.hasClass(target, "bm-menu") &&
-            this.isSideBarOpen &&
-            this.closeOnNavigation
-        ) {
-            this.closeMenu();
-        }
+            let element = this.$refs.bmBurgerButton;
+            let target = null;
+            if (e && e.target) {
+                target = e.target;
+            }
+            if (
+                element &&
+                element !== target &&
+                !element.contains(target) &&
+                !this.hasClass(target, "bm-menu") &&
+                this.isSideBarOpen &&
+                !this.disableOutsideClick
+            ) {
+                this.closeMenu();
+            } else if (
+                element &&
+                this.hasClass(target, "bm-menu") &&
+                this.isSideBarOpen &&
+                this.closeOnNavigation
+            ) {
+                this.closeMenu();
+            }
         },
         hasClass (element, className) {
         do {

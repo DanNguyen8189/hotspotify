@@ -30,9 +30,9 @@
                         <!--<img src="https://img.icons8.com/office/30/000000/info.png"
                         @click="showModal(n-1)" class='track-info'/>-->
                         <svg @click="showModal(n-1)" class='track-info' opacity='0.75' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="50" height="50"
-            viewBox="0 0 226 226"
-            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#ffffff"><path d="M113,9.04c-57.41756,0 -103.96,46.54244 -103.96,103.96c0,57.41756 46.54244,103.96 103.96,103.96c57.41756,0 103.96,-46.54244 103.96,-103.96c0,-57.41756 -46.54244,-103.96 -103.96,-103.96zM113,49.72c7.48964,0 13.56,6.07036 13.56,13.56c0,7.48964 -6.07036,13.56 -13.56,13.56c-7.48964,0 -13.56,-6.07036 -13.56,-13.56c0,-7.48964 6.07036,-13.56 13.56,-13.56zM131.08,171.76h-9.04h-18.08h-9.04v-9.04h9.04v-58.76h-9.04v-9.04h9.04h18.08v9.04v58.76h9.04z"></path></g></g></svg>
+                            width="50" height="50"
+                            viewBox="0 0 226 226"
+                            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#ffffff"><path d="M113,9.04c-57.41756,0 -103.96,46.54244 -103.96,103.96c0,57.41756 46.54244,103.96 103.96,103.96c57.41756,0 103.96,-46.54244 103.96,-103.96c0,-57.41756 -46.54244,-103.96 -103.96,-103.96zM113,49.72c7.48964,0 13.56,6.07036 13.56,13.56c0,7.48964 -6.07036,13.56 -13.56,13.56c-7.48964,0 -13.56,-6.07036 -13.56,-13.56c0,-7.48964 6.07036,-13.56 13.56,-13.56zM131.08,171.76h-9.04h-18.08h-9.04v-9.04h9.04v-58.76h-9.04v-9.04h9.04h18.08v9.04v58.76h9.04z"></path></g></g></svg>
                     </div>
                     <div class = 'middle-block'>
                         <p class='track-name'>{{ getTrackName(n-1) }}</p>
@@ -70,24 +70,25 @@
 import { getTopTracks } from '../services/spotifyApi';
 import FireAnimation from './FireAnimation.vue';
 import TrackInfo from './TrackInfo.vue';
+const sampleUser = require( "../assets/sampleUser.json");
 
 export default {
     name: 'TopTracks',
     metaInfo: {
         title: 'Top tracks',
         meta: [
-        { name: 'description', content: 'your top tracks on spotify' }
+            { name: 'description', content: 'your top tracks on spotify' }
         ]
     },
     data () {
         return {
-        msg: 'Top tracks page',
-        audioElement: null,
-        activeTrackIndex: -1,
-        activeTrackPage: -1,
-        trackViewIndex: -1,
-        timOut: null,
-        isModalVisible: false
+            msg: 'Top tracks page',
+            audioElement: null,
+            activeTrackIndex: -1,
+            activeTrackPage: -1,
+            trackViewIndex: -1,
+            timOut: null,
+            isModalVisible: false
         }
     },
     components :{
@@ -97,13 +98,13 @@ export default {
     // might not need this
     computed: {
         userTracksShort () {
-        return this.$store.getters.getTopTracksShort
+            return this.$store.getters.getTopTracksShort
         },
         userTracksMedium () {
-        return this.$store.getters.getTopTracksMedium
+            return this.$store.getters.getTopTracksMedium
         },
         userTracksLong () {
-        return this.$store.getters.topTracksLong
+            return this.$store.getters.topTracksLong
         }
     },
     methods: {
@@ -114,13 +115,23 @@ export default {
                 // getTopTracks already called before
                 return;
             }
-            getTopTracks().then((response) => {
-                // this.$store.commit('setUser', response.user);
-                /* console.log('Tracks response data:');
-                console.log(response) */
-                this.$store.commit('setTopTracks', response);
-                // this.$store.commit('setTimePeriod', 'short');
-            }).catch(err => console.log('user not logged in'));
+            if (this.$route.params.sample){ 
+                // console.log("viewing sample");
+                var topTracksData = {                 
+                    topTracksShort: sampleUser.topTracksShort,
+                    topTracksMedium: sampleUser.topTracksMedium,
+                    topTracksLong: sampleUser.topTracksLong
+                }
+                this.$store.commit('setTopTracks', topTracksData);
+            } else {
+                getTopTracks().then((response) => {
+                    // this.$store.commit('setUser', response.user);
+                    /* console.log('Tracks response data:');
+                    console.log(response) */
+                    this.$store.commit('setTopTracks', response);
+                    // this.$store.commit('setTimePeriod', 'short');
+                }).catch(err => console.log('user not logged in'));
+            }
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {
