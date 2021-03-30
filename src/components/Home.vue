@@ -1,5 +1,5 @@
 <template>
-    <div class='home'>
+    <div id='home'>
         <!--<template v-if="this.user">
             <div id="profile-page">
             <h1>Hi,</h1>
@@ -14,12 +14,16 @@
             <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a><br>
             </div>
         </template>-->
-        <div id="login-page">
+        <!--<div id="login-page">
             <h1>Hotspotify</h1>
             <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a>
             <br>
             <button class="btn btn-primary" v-on:click="goSampleProfile()">View Sample</button>
-        </div>
+        </div>-->
+        <h1>Hotspotify</h1>
+        <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a>
+        <br>
+        <button class="btn btn-primary" v-on:click="goSampleProfile()" id="sample-button">View Sample</button>
     </div>
 </template>
 
@@ -80,7 +84,10 @@ export default {
             this.$router.push('/profile/sample');
         }
     },
-    created () {
+    /*created () {
+        // reset state when navigating home (this is so the hamburger menu doesn't show up after 
+        // navigating back from another page while looking at the sample view)
+        this.$store.commit('clearAll');
         // redirect to profile page if user just logged in (check for tokens passed in the url)
         var hashParams = getHashParams();
         // console.log(hashParams.refresh_token);
@@ -90,23 +97,36 @@ export default {
             this.$router.push({name: 'Profile'});
         }
         //this.getUserInfo();
+    },*/
+    mounted () {
+        // reset state when navigating home (this is so the hamburger menu doesn't show up after 
+        // navigating back from another page while looking at the sample view)
+        this.$store.commit('clearAll');
+        // redirect to profile page if user just logged in (check for tokens passed in the url)
+        var hashParams = getHashParams();
+        // console.log(hashParams.refresh_token);
+        // Checking for the refresh_token here because the access_token field of what getHashParams returns
+        // looks like "/access_token" and I can't do hashParams./access_token
+        if (hashParams.refresh_token){
+            this.$router.push({name: 'Profile'});
+        }
     }
 }
 </script>
 
 <style scoped>
-.home {
+#home {
     height: 100%;
 }
-#login-page {
+#home {
     transform: translateY(50%); /*vertically center*/
 }
-#login-page h1 {
+#home h1 {
     margin: 0;
 }
-#profile-page {
+/*#profile-page {
     width: 100%;
-    transform: translateY(5%); /*vertically center*/
+    transform: translateY(5%); 
 }
 #profile-page h1 {
     font-size: 2.5em;
@@ -117,7 +137,7 @@ export default {
 }
 #profile-page h1:nth-child(2) {
     margin-top: 0;
-}
+}*/
 img {
     border-radius: 50%;
     width: 14em;
@@ -145,9 +165,9 @@ img {
 .btn-primary:focus, .btn-primary:hover {
     background-color: #ff741e;
 }
-@media screen and (min-width: 480px) {
+/*@media screen and (min-width: 480px) {
     #profile-page {
-        transform: translateY(0%); /*vertically center*/
+        transform: translateY(0%);
     }
     #profile-page h1 {
         display: inline-block;
@@ -155,5 +175,5 @@ img {
     #profile-page h1:nth-child(2) {
         margin-left: .5em;
     }
-}
+}*/
 </style>
