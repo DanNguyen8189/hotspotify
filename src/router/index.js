@@ -5,6 +5,7 @@ import Home from "@/components/Home";
 import Profile from "@/components/Profile";
 import TopArtists from "@/components/TopArtists";
 import TopTracks from "@/components/TopTracks";
+import TrackSearch from "@/components/TrackSearch";
 
 Vue.use(Router);
 Vue.use(VueMeta, {
@@ -60,6 +61,11 @@ const router = new Router({
                 }
                 ]
             } */
+        },
+        {
+            path: '/tracksearch',
+            name: 'TrackSearch',
+            component: TrackSearch,
         },
         {
             // home page route
