@@ -3,6 +3,10 @@ import Vue from 'vue';
 
 Vue.use(Vuex);
 
+import router from '../router/index.js'
+const sampleUser = require( "../assets/sampleUser.json");
+import { getUser, getTopArtists, getTopTracks } from '../services/spotifyApi';
+
 export default new Vuex.Store({
     state: {
         loggedIn: false,
@@ -126,8 +130,65 @@ export default new Vuex.Store({
                 return state.topTracksShort;
             }
         }
+    },
+    /** the components call these to access/populate the state */
+    actions: {
+        getUser (context) {
+            if (router.currentRoute.params.sample){ 
+                //console.log("viewing sample");
+                //console.log(sampleUser);
+                context.commit('setUser', sampleUser.user);
+            } else {
+                getUser().then((response) => {
+                    // this.$store.commit('setUser', response.user);
+                    // console.log("why the fuck is this executing");
+                    context.commit('setUser', response.data);
+                    // console.log(response.data);
+                }).catch(err => console.log("user not logged in"));
+            }
+        },
+        getTopArtists (context) {
+            if (context.getters.getTopArtists) {
+                console.log("skipped!");
+                return;
+            }
+            if (router.currentRoute.params.sample){ 
+                console.log("viewing sample");
+                var topArtistsData = {                 
+                    topArtistsShort: sampleUser.topArtistsShort,
+                    topArtistsMedium: sampleUser.topArtistsMedium,
+                    topArtistsLong: sampleUser.topArtistsLong
+                }
+                context.commit('setTopArtists', topArtistsData);
+            } else {
+                getTopArtists().then((response) => {
+                    context.commit('setTopArtists', response);
+                    // this.$store.commit('setTimePeriod', 'short');
+                }).catch(err => console.log("what?"),
+                );
+            }
+        },
+        getTopTracks (context) {
+            if (context.getters.getTopTracks) {
+                return;
+            }
+            if (router.currentRoute.params.sample){ 
+                // console.log("viewing sample");
+                var topTracksData = {                 
+                    topTracksShort: sampleUser.topTracksShort,
+                    topTracksMedium: sampleUser.topTracksMedium,
+                    topTracksLong: sampleUser.topTracksLong
+                }
+                context.commit('setTopTracks', topTracksData);
+            } else {
+                getTopTracks().then((response) => {
+                    // this.$store.commit('setUser', response.user);
+                    /* console.log('Tracks response data:');
+                    console.log(response) */
+                    context.commit('setTopTracks', response);
+                    // this.$store.commit('setTimePeriod', 'short');
+                }).catch(err => console.log('user not logged in'));
+            }
+        }
     }
-    /* modules: {
-        HelloWorld
-    }, */
 });

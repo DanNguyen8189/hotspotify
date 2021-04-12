@@ -109,14 +109,11 @@ export default {
     },
     methods: {
         /** function to get the top tracks and set them to the vuex store. Response from Spotify is in JSON format */
-        getTopTracks2 () {
-            if (this.$store.getters.getTopTracks) {
-                // console.log("already have it!!!");
-                // getTopTracks already called before
+        getTopTracks () {
+            /*if (this.$store.getters.getTopTracks) {
                 return;
             }
             if (this.$route.params.sample){ 
-                // console.log("viewing sample");
                 var topTracksData = {                 
                     topTracksShort: sampleUser.topTracksShort,
                     topTracksMedium: sampleUser.topTracksMedium,
@@ -125,13 +122,14 @@ export default {
                 this.$store.commit('setTopTracks', topTracksData);
             } else {
                 getTopTracks().then((response) => {
-                    // this.$store.commit('setUser', response.user);
-                    /* console.log('Tracks response data:');
-                    console.log(response) */
                     this.$store.commit('setTopTracks', response);
-                    // this.$store.commit('setTimePeriod', 'short');
                 }).catch(err => console.log('user not logged in'));
-            }
+            }*/
+            this.$store.dispatch('getTopTracks').then(response =>{
+                console.log("vuex action worked!")
+            }, (err) =>{
+                console.log("vuex action bombed")
+            })
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {
@@ -199,7 +197,7 @@ export default {
         }
     },
     created () {
-        this.getTopTracks2();
+        this.getTopTracks();
     }
 }
 </script>

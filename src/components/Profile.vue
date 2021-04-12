@@ -44,9 +44,7 @@ export default {
 
         /** Gets the user - calls the getUser method from spotifyApi.js if user logged in*/
         getUserInfo () {
-            if (this.$route.params.sample){ 
-                //console.log("viewing sample");
-                //console.log(sampleUser);
+            /*if (this.$route.params.sample){ 
                 this.$store.commit('setUser', sampleUser.user);
             } else {
                 getUser().then((response) => {
@@ -55,7 +53,13 @@ export default {
                     this.$store.commit('setUser', response.data);
                     // console.log(response.data);
                 }).catch(err => console.log("user not logged in"));
-            }
+            }*/
+
+            this.$store.dispatch('getUser').then(response =>{
+                console.log("vuex action worked!")
+            }, (err) =>{
+                console.log("vuex action bombed")
+            })
         },
 
         /** Sets the button target url based on whether the app is in production or not */

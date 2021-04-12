@@ -73,10 +73,8 @@ export default {
     },
     methods: {
         /** function to get the top artists and set them to the vuex store. Response from Spotify is in JSON format */
-        getTopArtists2 () {
-            if (this.$store.getters.getTopArtists) {
-                // console.log("already have it!!!");
-                // getTopArtist already called before
+        getTopArtists () {
+            /*if (this.$store.getters.getTopArtists) {
                 return;
             }
             if (this.$route.params.sample){ 
@@ -86,17 +84,18 @@ export default {
                     topArtistsMedium: sampleUser.topArtistsMedium,
                     topArtistsLong: sampleUser.topArtistsLong
                 }
-                //console.log(topArtistsData);
                 this.$store.commit('setTopArtists', topArtistsData);
             } else {
                 getTopArtists().then((response) => {
-                    /* console.log("artists response data:");
-                    console.log(response) */
                     this.$store.commit('setTopArtists', response);
-                    // this.$store.commit('setTimePeriod', 'short');
                 }).catch(err => console.log("what?"),
                 );
-            }
+            }*/
+            this.$store.dispatch('getTopArtists').then(response =>{
+                console.log("vuex action worked!")
+            }, (err) =>{
+                console.log("vuex action bombed")
+            })
         },
         /** function to change the time period to display */
         changeTimePeriod (state) {
@@ -116,7 +115,7 @@ export default {
         }
     },
     created () {
-        this.getTopArtists2();
+        this.getTopArtists();
     }
 }
 </script>

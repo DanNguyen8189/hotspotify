@@ -180,12 +180,22 @@ export const getTrackInfo = (id) => {
     return axios.get(`https://api.spotify.com/v1/audio-features/${id}`, { headers });
 }
 
-export const getUserPlaylists = (offset) => {
+export const getUserPlaylists = (limit, offset) => {
     if (token === undefined){
         // return an empty promise if we don't have an access token. We do this because the function calls 
         // this (getTopArtists) expects a promise and we'd rather not call the spotify api with an undefned token 
         const emptyPromise = new Promise((resolve) => { resolve(null); });
         return emptyPromise;
     }
-    return axios.get(`https://api.spotify.com/v1/me/playlists?offset=${offset}`, { headers });
+    return axios.get(`https://api.spotify.com/v1/me/playlists?limit=${limit}&offset=${offset}`, { headers });
+}
+
+export const getPlaylistItems = (markets, limit, offset) => {
+    if (token === undefined){
+        // return an empty promise if we don't have an access token. We do this because the function calls 
+        // this (getTopArtists) expects a promise and we'd rather not call the spotify api with an undefned token 
+        const emptyPromise = new Promise((resolve) => { resolve(null); });
+        return emptyPromise;
+    }
+    return axios.get(`https://api.spotify.com/v1/playlists?limit=${limit}&offset=${offset}`, { headers });
 }

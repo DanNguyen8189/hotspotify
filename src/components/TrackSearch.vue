@@ -12,23 +12,29 @@ export default {
     data () {
         return {
             msg: 'Track Search page',
-            playlist_tracks: null
+            playlists: null,
+            all_tracks: []
         }
     },
     components: {
         'fire-animation': FireAnimation
     },
     methods: {
-        getUserPlaylists2 (offset) {
-            getUserPlaylists(offset).then((response) => {
-                this.playlist_tracks = response;
-                console.log(this.playlist_tracks);
+        getUserPlaylists2 (limit, offset) {
+            getUserPlaylists(limit, offset).then((response) => {
+                this.playlists = response.data.items;
+                console.log(this.playlists);
+                /*for (i = 0; i < this.playlists.length; i++) {
+                    all_tracks.push()
+                }*/
+                console.log(this.$store.getters.getUser);
+
             }).catch(err => console.log("what?"),
             );
         }
     },
     mounted () {
-        this.getUserPlaylists2(0);
+        this.getUserPlaylists2(50, 0);
     }
 }
 </script>
