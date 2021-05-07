@@ -134,7 +134,9 @@ export default new Vuex.Store({
     /** the components call these to access/populate the state */
     actions: {
         getUser (context) {
-            if (router.currentRoute.params.sample){ 
+            if (context.getters.getUser) {
+                return;
+            } else if (router.currentRoute.params.sample){ 
                 //console.log("viewing sample");
                 //console.log(sampleUser);
                 context.commit('setUser', sampleUser.user);
@@ -149,7 +151,6 @@ export default new Vuex.Store({
         },
         getTopArtists (context) {
             if (context.getters.getTopArtists) {
-                console.log("skipped!");
                 return;
             }
             if (router.currentRoute.params.sample){ 
@@ -189,6 +190,6 @@ export default new Vuex.Store({
                     // this.$store.commit('setTimePeriod', 'short');
                 }).catch(err => console.log('user not logged in'));
             }
-        }
+        },
     }
 });
