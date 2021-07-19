@@ -1,25 +1,5 @@
 <template>
     <div id='home'>
-        <!--<template v-if="this.user">
-            <div id="profile-page">
-            <h1>Hi,</h1>
-            <h1>{{ this.user.display_name }}</h1>
-                <img :src="this.user.images[0].url" alt="profile_picture" class="profile-pic">
-                <a href="#" v-on:click="getSampleUser()" class="btn btn-primary" id="login-button">get sample user</a><br>
-            </div>
-        </template>
-        <template v-else>
-            <div id="login-page">
-            <h1>Hotspotify</h1>
-            <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a><br>
-            </div>
-        </template>-->
-        <!--<div id="login-page">
-            <h1>Hotspotify</h1>
-            <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a>
-            <br>
-            <button class="btn btn-primary" v-on:click="goSampleProfile()">View Sample</button>
-        </div>-->
         <h1>Hotspotify</h1>
         <a href="#" v-on:click="getLoginURI()" class="btn btn-primary" id="login-button">Log In With Spotify</a>
         <br>
@@ -84,20 +64,6 @@ export default {
             this.$router.push('/profile/sample');
         }
     },
-    /*created () {
-        // reset state when navigating home (this is so the hamburger menu doesn't show up after 
-        // navigating back from another page while looking at the sample view)
-        this.$store.commit('clearAll');
-        // redirect to profile page if user just logged in (check for tokens passed in the url)
-        var hashParams = getHashParams();
-        // console.log(hashParams.refresh_token);
-        // Checking for the refresh_token here because the access_token field of what getHashParams returns
-        // looks like "/access_token" and I can't do hashParams./access_token
-        if (hashParams.refresh_token){
-            this.$router.push({name: 'Profile'});
-        }
-        //this.getUserInfo();
-    },*/
     mounted () {
         // reset state when navigating home (this is so the hamburger menu doesn't show up after 
         // navigating back from another page while looking at the sample view)
@@ -116,37 +82,13 @@ export default {
 
 <style scoped>
 #home {
-    height: 100%;
-}
-#home {
-    transform: translateY(50%); /*vertically center*/
+    transform: translateY(50%); /* vertically center the page's contents */
 }
 #home h1 {
     margin: 0;
 }
-/*#profile-page {
-    width: 100%;
-    transform: translateY(5%); 
-}
-#profile-page h1 {
-    font-size: 2.5em;
-    color: white;
-}
-#profile-page h1:nth-child(1) {
-    margin-bottom: 0;
-}
-#profile-page h1:nth-child(2) {
-    margin-top: 0;
-}*/
-img {
-    border-radius: 50%;
-    width: 14em;
-    border: .4em solid #e42c6a;
-    padding: .5em;
-    display: block;
-    margin: auto;
-}
 
+/* styling for the log in and go to sample buttons */
 .btn-primary {
     cursor: pointer;
     border-radius: 2em;

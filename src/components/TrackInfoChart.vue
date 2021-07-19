@@ -1,6 +1,6 @@
 <template>
     <div id="graph-container">
-        <!--Chart gets rendered here-->
+        <!--Chart gets rendered here info on it can be found here: https://www.chartjs.org/docs/latest/-->
         <canvas id="chart" aria-label="Track info chart" role="img">
             <p>Track info chart</p>
         </canvas>

@@ -204,7 +204,7 @@ export default {
 <style scoped>
 .toptracks {
     max-width: 65em;
-    margin: auto;
+    margin: auto; /* center the component horizontally */
 }
 
 .list-item {
@@ -213,6 +213,8 @@ export default {
     margin: 0 5% .2em 5%;
     padding: 10px;
     border-radius: 5px;
+
+    /* on hover, the bar for the particular song changes color */
     -webkit-transition: background-color 0.5s;
     -moz-transition:    background-color 0.5s;
     -ms-transition:     background-color 0.5s;
@@ -221,9 +223,12 @@ export default {
 }
 .list-item .flex-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* this is so the track image sits on the far left, the text sits 
+    in the middle, and the play/stop button sits on the far right */
+    align-items: center; /* horizonatally align the items at the middle */
 }
+
+/* styling for the area that includes the track image and info button */
 .left-block {
     display: flex;
     justify-content: center;
@@ -236,7 +241,7 @@ export default {
 }
 
 .track-image {
-    border-radius: 50%;
+    border-radius: 50%; /* make the image circular */
     width: 100%;
     height: auto;
     top: 0;
@@ -253,7 +258,7 @@ export default {
     margin-left: 2%;*/
     color: #2f93c2;
     cursor: pointer;
-    position: absolute;
+    position: absolute; /* so the info button can sit in the middle of the image */
     width: 40%;
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
@@ -261,34 +266,36 @@ export default {
     -o-transition:      color 0.5s;
     transition:         color 0.5s;
 }
-
+/** styling for the text at the center (track name and artist name) */
+.middle-block {
+    display: inline-block;
+    overflow: hidden; /* if the text is too long hide the overflow */
+    padding: 0 .8em;
+    /*width: 40%;*/
+    font-weight: 700;
+}
 .track-name, .artist-name {
+    /* text changes cover when the bar is hovered over */
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
     -ms-transition:     color 0.5s;
     -o-transition:      color 0.5s;
     transition:         color 0.5s;
 }
-.middle-block {
-    display: inline-block;
-    overflow: hidden;
-    padding: 0 .8em;
-    /*width: 40%;*/
-    font-weight: 700;
-}
+
 .track-name {
     margin: 0;
     color: white;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* if the text is too long, end it with "..."*/
     white-space: nowrap;
     overflow: hidden; /* need this for text-overflow property to work */
     /* margin: 1.3em 0 0 0; */
 }
 .artist-name {
     color: rgba(255, 255, 255, 0.40);
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* if the text is too long, end it with "..."*/
     white-space: nowrap;
-    overflow: hidden;
+    overflow: hidden; /* need this for text-overflow property to work */
     margin: 0 0 0 0;
 }
 .play-button-area {
@@ -349,6 +356,7 @@ export default {
     background-color: transparent;
 }
 
+/* text when the track cannot be played */
 .preview-na {
     width: 4em;
     color: #2da9e2;

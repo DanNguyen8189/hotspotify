@@ -121,30 +121,33 @@ export default {
 </script>
 
 <style scoped>
+
 .topartists {
-    max-width: 65em;
-    margin: auto;
+    max-width: 65em; /* didn't want the top artists section to expand to full width */
+    margin: auto; /* horizontally center the top artists component */
 }
+
+/* the list of top artists sitting under the heading */
 .artist-list-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 60em;
-    margin: auto;
+    flex-wrap: wrap; /* lets each artist block wrap onto multiple lines */
+    justify-content: center; /* for the top artists to line up one by one down the middle */
+    max-width: 60em; /* didn't want the top artists to expand to full width */
+    margin: auto; /* horizontally center the top artists beneath the heading area */
     background-color: rgba(22, 85, 121, .5);
     padding-top: 1.5em;
 }
 .list-item{
-    display: inline-block;
+    display: inline-block; /* we want each artist block to be able to sit next to each other if possible */
     margin: 1.2em 3%;
-    flex-basis: 10em;
-    flex-shrink: 4;
+    flex-basis: 10em; /* original size of each artist block before the screen size adjustments */
+    flex-shrink: 4; /* shrink ratio for each artist block if the size of the container becomes too small*/
 }
 .list-item img {
-    border-radius: 50%;
+    border-radius: 50%; /* make artist image circular */
     width: 100%;
     height: 10em;
-    object-fit: cover; /* keep aspect ratio */
+    object-fit: cover; /* used to keep aspect ratio of the image */
     display: inline-block;
     border: .2em solid #e42c6a;
     padding: 3%;

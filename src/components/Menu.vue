@@ -222,9 +222,11 @@ export default {
 html {
     height: 100%;
 }
+
+/** hamburger button styling */
 .bm-burger-button {
     z-index: 1;
-    position: fixed;
+    position: fixed; /* hamburger button for the menu should stay at the top left */
     width: 36px;
     height: 30px;
     left: 36px;
@@ -232,19 +234,21 @@ html {
     cursor: pointer;
 }
 .bm-burger-button.hidden {
-    display: none;
+    display: none; /* hamburger button should be hidden when the hidden class is active */
 }
 .bm-burger-bars {
     background-color: #e42c6a;
 }
 .line-style {
     position: absolute;
-    height: 20%;
+    height: 20%; /* each hanburger line should be 20% the height of the parent element with 20% height space in between */
     left: 0;
     right: 0;
 }
+
+/** menu close button styling */
 .cross-style {
-    position: absolute;
+    position: absolute; /* 'x' button should sit on the top right of the menu that slides out */
     top: 12px;
     right: 10px;
     cursor: pointer;
@@ -257,13 +261,15 @@ html {
     width: 24px;
 }
 .bm-cross-button.hidden {
-    display: none;
+    display: none; /* when the hidden class is active, the close button shouldn't be visible */
 }
+
+/** styling for the actual menu */
 .bm-menu {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 2; /* Menu should be over everything else including the hamburger button */
     top: 0;
     left: 0;
     background-color: #b92557;

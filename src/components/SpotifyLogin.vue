@@ -1,4 +1,5 @@
 <template>
+    <!-- Test file for experimenting with login -->
     <div class="login">
         <div class="container">
         <div id="login">

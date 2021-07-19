@@ -87,39 +87,35 @@ export default {
 </script>
 
 <style scoped>
-.home {
-    height: 100%;
-}
-#login-page {
-    transform: translateY(50%); /*vertically center*/
-}
-#login-page h1 {
+*{
     margin: 0;
 }
+
 #profile-page {
-    width: 100%;
-    transform: translateY(5%); /*vertically center*/
+    width: 100%; /* there's been cases where the page becomes wider than the phone screen and we don't want that */
 }
 #profile-page h1 {
     font-size: 2.5em;
     color: white;
 }
 #profile-page h1:nth-child(1) {
-    margin-bottom: 0;
+    margin-top: 0.5em; /* add some space above the top of the text */
 }
 #profile-page h1:nth-child(2) {
-    margin-top: 0;
+    margin-bottom: 0.5em; /* add some space below the text and above the profile image */
 }
+
 img {
-    border-radius: 50%;
+    border-radius: 50%; /* make the profile image circular */
     width: 14em;
-    border: .4em solid #e42c6a;
+    border: .4em solid #e42c6a; /* add a magenta border around the profile image */
     padding: .5em;
-    display: block;
+    display: block; /* images are inline by default, but we want the image to clear everything next to it and 
+    sit on its own line */
     margin: auto;
 }
 
-.btn-primary {
+/*.btn-primary {
     cursor: pointer;
     border-radius: 2em;
     background-color: #e42c6a;
@@ -135,16 +131,13 @@ img {
 }
 .btn-primary:focus, .btn-primary:hover {
     background-color: #ff741e;
-}
+}*/
 @media screen and (min-width: 480px) {
-    #profile-page {
-        transform: translateY(0%); /*vertically center*/
-    }
     #profile-page h1 {
-        display: inline-block;
+        display: inline-block; /* the word "Hi" and the user's name should appear on the same line */
     }
     #profile-page h1:nth-child(2) {
-        margin-left: .5em;
+        margin-left: .5em; /* give some space between "Hi" and the person's name when they're on the same line */
     }
 }
 </style>
