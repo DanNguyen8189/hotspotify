@@ -29,22 +29,27 @@
                         <img :src=getImage(n-1) class='track-image'>
                         <!--<img src="https://img.icons8.com/office/30/000000/info.png"
                         @click="showModal(n-1)" class='track-info'/>-->
-                        <svg @click="showModal(n-1)" class='track-info' opacity='0.75' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        <button @click="showModal(n-1)">
+                            
+                        <svg class='track-info' opacity='0.75' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             width="50" height="50"
                             viewBox="0 0 226 226"
                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#ffffff"><path d="M113,9.04c-57.41756,0 -103.96,46.54244 -103.96,103.96c0,57.41756 46.54244,103.96 103.96,103.96c57.41756,0 103.96,-46.54244 103.96,-103.96c0,-57.41756 -46.54244,-103.96 -103.96,-103.96zM113,49.72c7.48964,0 13.56,6.07036 13.56,13.56c0,7.48964 -6.07036,13.56 -13.56,13.56c-7.48964,0 -13.56,-6.07036 -13.56,-13.56c0,-7.48964 6.07036,-13.56 13.56,-13.56zM131.08,171.76h-9.04h-18.08h-9.04v-9.04h9.04v-58.76h-9.04v-9.04h9.04h18.08v9.04v58.76h9.04z"></path></g></g></svg>
+                        </button>
                     </div>
                     <div class = 'middle-block'>
                         <p class='track-name'>{{ getTrackName(n-1) }}</p>
                         <p class='artist-name'>{{ getArtistName(n-1) }}</p>
                     </div>
-                    <button v-if='getTrackURL(n-1) !== null' class='play-button-area'
-                            v-bind:class='{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
-                                            pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'
-                            @click.prevent='playTrack(n-1)'
-                            aria-label='Pause or play current track'>
-                    </button>
-                    <p v-else class='play-button-area preview-na'>Preview N/A</p>
+                    <div class='right-block'>
+                        <button v-if='getTrackURL(n-1) !== null'
+                                v-bind:class='{ play: !(activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod),
+                                                pause: activeTrackIndex === n-1 && activeTrackPage === $store.state.timePeriod }'
+                                @click.prevent='playTrack(n-1)'
+                                aria-label='Pause or play current track'>
+                        </button>
+                    <p v-else class='right-block preview-na'>Preview N/A</p>
+                    </div>
                 </span>
 
             </div>
@@ -252,13 +257,23 @@ export default {
     margin-top: 0.5em;*/
     /*width: 4.01em;*/
 }
+
+/* button housing the track info icon*/
+.left-block button {
+    position: absolute; /* so that the button can sit in the middle of the left block and take up full size */
+    background: none;
+    cursor: pointer;
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
 .track-info {
     /*float: left;
     line-height: 10px;
     margin-left: 2%;*/
     color: #2f93c2;
-    cursor: pointer;
-    position: absolute; /* so the info button can sit in the middle of the image */
+    /*position: absolute;*/ /* so the info button can sit in the middle of the image */
     width: 40%;
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
@@ -298,11 +313,14 @@ export default {
     overflow: hidden; /* need this for text-overflow property to work */
     margin: 0 0 0 0;
 }
-.play-button-area {
+.right-block {
     /*display: inline-block;*/
     transition: 100ms all ease;
-    will-change: border-width;
-    cursor: pointer; /* changes the cursor to the hand cursor on hover */
+    /*will-change: border-width;*/
+    
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
 }
 .play {
     /* width: 0;
@@ -322,13 +340,16 @@ export default {
     -ms-transition:     border-top 0.5s;
     -o-transition:      border-top 0.5s;
     transition:         border-top 0.5s;*/
-    width: 35px;
-    height: 35px;
+    
+    /*width: 35px;
+    height: 35px;*/
+    height: 100%;
+    box-sizing: border-box;
     border-style: solid;
-    border-width: 20px 0 20px 35px;
-    /*border-color: transparent transparent transparent #0a2b5c;*/
+    border-width: 20px 0 20px 35px; /* use a 3 sided border to create a triangle */
     border-color: transparent transparent transparent #437ba3;
     background-color: transparent;
+    cursor: pointer; /* changes the cursor to the hand cursor on hover */
 }
 .pause {
     /*width: 24px;
@@ -348,17 +369,21 @@ export default {
     transition:         border-right 0.5s;*/
     /* transition:         all 0.5s; */
     /* margin: 1.45em 1.8em 0 2em; */
-    width: 35px;
-    height: 40px;
+    /*width: 35px;
+    height: 35px;*/
+    box-sizing: border-box;
+    height: inherit;
     border-style: double;
-    border-width: 0 0 0 24px;
+    border-width: 0 0 0 24px; /* use a left double border to create the pause button*/
     border-color: #f5d76e;
     background-color: transparent;
+    cursor: pointer; /* changes the cursor to the hand cursor on hover */
 }
 
 /* text when the track cannot be played */
 .preview-na {
-    width: 4em;
+    /*width: 4em;*/
+    margin: 0;
     color: #2da9e2;
     font-weight: 500;
 }
@@ -416,14 +441,17 @@ p a:visited {
         font-size: .9em;
         font-weight: 700;
     }
+    .right-block{
+        width: 26.25px;
+    }
     .play {
         /*margin: 1.5em 0.5em 0 1.8em;*/
         /*border-top: 15px solid transparent;
         border-left: 26.25px solid #0a2b5c;
         border-bottom: 15px solid transparent;*/
 
-        width: 26.25px;
-        height: 26.25px;
+        /*width: 26.25px;
+        height: 26.25px;*/
         border-style: solid;
         border-width: 15px 0 15px 26.25px;
     }
@@ -437,8 +465,8 @@ p a:visited {
         border-left: 6px solid #f5d76e;
         margin: 1.35em 1.4em 0 1.8em;*/
         /*margin: 1.5em 1em 0 1.8em;*/
-        width: 18px;
-        height: 30px;
+        /*width: 18px;
+        height: 30px;*/
         border-style: double;
         border-width: 0 0 0 20px;
         border-color: #f5d76e;
@@ -492,9 +520,6 @@ p a:visited {
 } 
 .play:focus {
     border-color: transparent transparent transparent #f5d76e;;
-    outline: none;
-}
-.pause:focus {
-    outline: none;
+
 }
 </style>

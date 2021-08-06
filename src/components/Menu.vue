@@ -25,7 +25,7 @@
             class="bm-burger-button"
             @click="openMenu"
             @keyup.enter="openMenu"
-            :tabindex = "[this.isSideBarOpen ? -1 : 1]"
+            :tabindex = "[this.isSideBarOpen ? -1 : 0]"
             aria-label="Open sidebar navigation menu"
             aria-controls="sidebar menu"
             :class="{ hidden: !burgerIcon }"
@@ -282,7 +282,7 @@ html {
 }
 .bm-item-list {
     color: #b8b7ad;
-    margin-left: 10%;
+    padding-left: 10%;
     font-size: 20px;
 }
 /*.bm-item-list :focus{
@@ -303,7 +303,8 @@ outline: none;
 }*/
 
 .bm-item-list > * > span {
-    margin-left: 10px;
+    white-space: nowrap; /* stops menu items with whitespace from taking up more than 1 line on menu close animation */
+    padding-left: 10px;
     font-weight: 700;
     color: #f5d76e;
     cursor: pointer;
