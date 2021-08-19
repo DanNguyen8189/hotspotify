@@ -8,7 +8,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 // import { access_token } from "../services/spotifyApi";
 import { logout as removeTokens, getUser } from "../services/spotifyApi";
 // import { getTopArtistsShort, getTopeArtistsMedium, getTopArtistsLong } from "../services/spotifyApi";
@@ -56,6 +56,18 @@ export default {
                 document.getElementById("login-button").href = 'http://localhost:5000/login';
             } else {
                 document.getElementById("login-button").href = 'https://hotspotify.herokuapp.com/login';
+            }
+        },
+
+        /** cors error? */
+        async axiosLogin(){
+            const baseURL = "http://localhost:5000/"
+            const request = axios.create({
+                baseURL
+            });
+            const response = await request.get("login");
+            if (response.data) {
+                consle.log(response.data);
             }
         },
 

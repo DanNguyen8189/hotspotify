@@ -6,6 +6,7 @@ import Profile from "@/components/Profile";
 import TopArtists from "@/components/TopArtists";
 import TopTracks from "@/components/TopTracks";
 import TrackSearch from "@/components/TrackSearch";
+import Login from "@/components/Login";
 
 Vue.use(Router);
 Vue.use(VueMeta, {
@@ -17,6 +18,7 @@ Vue.use(VueMeta, {
 });
 
 const router = new Router({
+    mode: 'history',
     routes: [
         /*{
             path: '/',
@@ -67,12 +69,29 @@ const router = new Router({
             name: 'TrackSearch',
             component: TrackSearch,
         },
-        {
+        /*{
             // home page route
             path: '/:tokens?',
             name: 'Home',
             component: Home,
+        },*/
+        {
+            path: '/',
+            name: 'Default',
+            redirect: {
+                name: 'Home'
+            }
         },
+        {
+            path: '/home',
+            name: 'Home',
+            component: Home,
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login,
+        }
     ]
 });
 
@@ -113,5 +132,6 @@ const router = new Router({
 
   next();
 }); */
+
 
 export default router;

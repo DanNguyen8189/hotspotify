@@ -1,15 +1,28 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
-
+import vuexPersistedstate from 'vuex-persistedstate';
 Vue.use(Vuex);
 
 import router from '../router/index.js'
 const sampleUser = require( "../assets/sampleUser.json");
 import { getUser, getTopArtists, getTopTracks } from '../services/spotifyApi';
 
+const persistedState = vuexPersistedstate({
+    // this is for persisting part of the state on page reloads
+    key: 'spotify_app_state',
+    reducer: state => ({
+        accessToken: state.accesstoken,
+        refreshToken: state.refreshToken,
+        expiryTime: state.expiryTime
+    }),
+});
+
 export default new Vuex.Store({
     state: {
         loggedIn: false,
+        accessToken: "",
+        refreshToken: "",
+        expiryTime: "",
         user: null, // used by Home.vue to store basic user information
         timePeriod: null, // set by TopArtists.vue and TopTracks.vue to determine which set of artists to display
         // The getters use this to determine which set of artists and tracks to return
@@ -25,6 +38,15 @@ export default new Vuex.Store({
         setUser (state, user) {
             state.loggedIn = true;
             state.user = user;
+        },
+        setAccessToken (state, token){
+            state.accessToken = token;
+        },
+        setRefreshToken (state, token){
+            state.refreshToken = token;
+        },
+        setExpiryTime(state, expiryTime){
+            state.expiryTime = expiryTime;
         },
         setTopArtistsShort (state, artists) {
             state.topArtistsShort = artists;
@@ -78,6 +100,15 @@ export default new Vuex.Store({
     getters: {
         isLoggedIn (state) {
             return state.loggedIn;
+        },
+        getAccessToken(state){
+            return state.accessToken;
+        },
+        getRefreshToken(state){
+            return state.refreshToken;
+        },
+        getExpiryTime(state){
+            return state.expiryTime;
         },
         getUser (state) {
             return state.user
@@ -191,5 +222,6 @@ export default new Vuex.Store({
                 }).catch(err => console.log('user not logged in'));
             }
         },
-    }
+    },
+    plugins: [persistedState],
 });

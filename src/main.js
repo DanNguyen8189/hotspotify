@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './services/store'
 import VueMeta from 'vue-meta'
-
 Vue.use(VueMeta, {
     keyName: 'head'
 });

@@ -76,6 +76,7 @@ app.get("/login", function(req, res) {
     'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
     console.log("logging in " + REDIRECT_URI);
     // your application requests authorization, redirect to the spotify login page
+    //console.log(res);
     res.redirect(
         "https://accounts.spotify.com/authorize?" +
         querystring.stringify({
@@ -92,7 +93,9 @@ app.get("/login", function(req, res) {
 app.get("/callback", function(req, res) {
     // your application requests refresh and access tokens
     // after checking the state parameter
-    console.log("got to callback function");
+    
+    console.log("got to callback function!!!!!!!!!!!!!!");
+    console.log(res);
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -142,7 +145,7 @@ app.get("/callback", function(req, res) {
   
             //pass the tokens to the browser to make requests from there
                 res.redirect(
-                    `${FRONTEND_URI}/#${querystring.stringify({
+                    `${FRONTEND_URI}/login/#${querystring.stringify({
                         access_token,
                         refresh_token,
                     })}`,
