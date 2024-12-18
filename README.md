@@ -1,5 +1,8 @@
 # hotspotify
 
+![image](https://github.com/user-attachments/assets/15cb95e8-e8c7-4650-85d7-efc3373aafc6)
+
+
 > A Vue.js project
 > Deployed at https://hotspotify.herokuapp.com/#/
 
