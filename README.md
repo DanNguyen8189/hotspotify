@@ -4,7 +4,8 @@
 
 
 > A Vue.js project
-> Deployed at https://hotspotify.herokuapp.com/#/
+> (Was) deployed at https://hotspotify.herokuapp.com/#/
+> Unfortunately heroku changed and is no longer free and my data was deleted there. So, I'll have to look for another host
 
 ## Build Setup
 
