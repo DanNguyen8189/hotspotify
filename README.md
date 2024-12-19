@@ -1,6 +1,8 @@
 # hotspotify
 
 ![image](https://github.com/user-attachments/assets/15cb95e8-e8c7-4650-85d7-efc3373aafc6)
+![image](https://github.com/user-attachments/assets/6b444cc4-26c4-4ff9-9739-3c81f5dff3a1)
+
 
 
 > A Vue.js project
