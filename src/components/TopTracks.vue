@@ -142,7 +142,7 @@ export default {
         },
         /** function to get amount of tracks listed in this time period */
         getAmount () {
-            return this.$store.getters.getTopTracks.total;
+            return this.$store.getters.getTopTracks.items.length;
         },
         /** function to get album cover image based on the page state */
         getImage (index) {

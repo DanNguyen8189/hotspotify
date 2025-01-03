@@ -1,6 +1,6 @@
 <template>
     <div class="topartists">
-        <template v-if="this.userArtistsShort">
+        <template v-if="this.$store.getters.getTopArtists.items[10].images[1].url">
             <div class='header-wrapper'>
                 <div class='header-inside'>
                     <h1>Top Artists</h1>
@@ -103,7 +103,7 @@ export default {
         },
         /** function to get amount of artists listed for this time period */
         getAmount () {
-            return this.$store.getters.getTopArtists.total;
+            return this.$store.getters.getTopArtists.items.length;
         },
         /** function to get artist image based on the page state */
         getImage (index) {

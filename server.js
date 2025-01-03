@@ -24,8 +24,10 @@ const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const serveStatic = require('serve-static');
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
+//const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_ID = "147aa37ac97147a7a28a5f2bc38da0ee"
+//const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const CLIENT_SECRET="748d226b5f7946698fd9c70bc7b49a66"
 // remember to add redirect URIs to the spotify app through settings or else a client error occurs
 // let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:5000/callback";
 // let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:8080";
