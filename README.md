@@ -18,7 +18,7 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-#run server
+#run server (needed to be able to login, otherwise you may just view the sample)
 npm start
 
 # build for production with minification
